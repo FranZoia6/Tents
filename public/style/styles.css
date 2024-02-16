@@ -1,0 +1,95 @@
+:root{
+    --principal-color1:#47a7ce;
+    --principal-color2:#a29fb6;
+    --text:#000000;
+    --background:#e1c7ae;
+
+}
+
+body{
+    border: 1px solid black;
+    margin: 0rem 10rem;
+    background: rgb(84,157,249,1);
+    background: linear-gradient(180deg, rgba(236,226,198,1) 33%, rgba(126,175,172,1) 51%, rgba(71,167,206,1) 66%, rgba(84,157,249,1) 78%);
+}
+
+header > figure {
+	height: 20rem;
+	overflow: hidden;
+}
+
+header > figure > img {
+    width: 100%;
+}
+nav{
+    position: sticky; 
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+}
+
+nav > ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px;
+}
+a:hover{
+    background-color:var(--principal-color1) ;
+}
+
+h1{
+    padding: 2rem;
+    text-align: center;
+    font-size: 5rem;
+}
+
+section{
+    border-top:  1px solid black;
+}
+
+h2{
+    text-align: center;
+    font-size: 4rem;
+    margin: 1rem;
+}
+
+section >figure{
+    display: inline-block;
+    margin: 1rem;
+}
+section >figure > img{
+    width: 30rem;
+}
+
+
+
+section > img{
+    width: 30rem;
+    margin: 1rem;
+    
+}
+
+.center{
+    border: none;
+    text-align: center;
+}
+
+p{
+    margin: 0rem 4rem;
+    font-size: 1.3rem;
+}
+
+.parrafo{
+    position: absolute;
+    display: inline-block;
+    margin-top: 5rem;
+    margin-left: 2rem;
+    margin-right: 13rem;
+}
