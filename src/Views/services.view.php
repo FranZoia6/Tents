@@ -17,20 +17,14 @@
 
     <nav>
         <ul>
-            <li>
-                <a href="/src/Views/index.html">Home</a>
-            </li>
-            <li>
-                <a href="">Contacto</a>
-            </li>
-            <li>
-                <a href="">Servicios</a>
-            </li>
+            <?php foreach ($menu as $item) : ?>
+            <li><a href="<?= $item["href"] ?>"><?=$item["name"]?></a></li>
+            <?php endforeach; ?>
         </ul>
     </nav>
-
+    
     <main>
-        <h1>Contacto</h1>
+        <h1>Servicios</h1>
     
     </main>
     <footer>

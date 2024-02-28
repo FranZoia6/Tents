@@ -17,15 +17,9 @@
 
     <nav>
         <ul>
-            <li>
-                <a href="">Home</a>
-            </li>
-            <li>
-                <a href="/src/Views/contacto.html">Contacto</a>
-            </li>
-            <li>
-                <a href="">Servicios</a>
-            </li>
+            <?php foreach ($menu as $item) : ?>
+            <li><a href="<?= $item["href"] ?>"><?=$item["name"]?></a></li>
+            <?php endforeach; ?>
         </ul>
     </nav>
 
