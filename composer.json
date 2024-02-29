@@ -1,0 +1,31 @@
+{
+    "name": "paw/proyecto-final",
+    "description": "Proyecto final PAW",
+    "keywords": ["php", "mvc"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Franco Zoia",
+            "email": "francozoia639@gmail.com",
+            "role": "Creator / Main Developer"
+        },
+        {
+            "name": "Franco Parzanese",
+            "email": "nose@gmail.com",
+            "role": "Creator / Main Developer"
+        },
+        {
+            "name": "Leo Duville",
+            "email": "nose@gmail.com",
+            "role": "Creator / Main Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paw\\":"src/"
+        }
+    }
+}
