@@ -2,37 +2,22 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
+use Paw\App\Controllers\PageController;
+
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops-> register();
 
-$menu = [
-    [
-        "href" => "/",
-        "name" => "Home",
-    ],
-    [
-        "href" => "/servicies",
-        "name" => "Servicios",
-    ],
-    [    
-        "href" => "/contact",
-        "name" => "Contactos",
-    ],
-
-];
-
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
+$controller = new PageController; 
+
 if ($path == '/'){
-    require  __DIR__ . '/../src/Views/index.view.php';
+    $controller -> index();
 }else if ($path == '/servicies'){
-    require  __DIR__ . '/../src/Views/services.view.php';
-    var_dump($path);
-    die;
+    $controller-> servicies();
 }else if ($path == '/contact'){
-    require  __DIR__ . '/../src/Views/contact.view.php';
+   $controller->contact();
 }else{
-    http_response_code(404);
-    require  __DIR__ . '/../src/Views/not-found.view.php';
+    $controller ->notFound();
 }
