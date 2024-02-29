@@ -1,4 +1,11 @@
 <?php
+
+require __DIR__ . "/../vendor/autoload.php";
+
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops-> register();
+
 $menu = [
     [
         "href" => "/",
@@ -26,5 +33,6 @@ if ($path == '/'){
 }else if ($path == '/contact'){
     require  __DIR__ . '/../src/Views/contact.view.php';
 }else{
-    echo "Page Not Found";
+    http_response_code(404);
+    require  __DIR__ . '/../src/Views/not-found.view.php';
 }
