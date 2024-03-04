@@ -10,21 +10,14 @@
 </head>
 <body>
     <header>
-        <figure>
-            <img src="/public/imagenes/carpasHeader.png" alt="Carpas">
-        </figure>
     </header>
 
-    <nav>
-        <ul>
-            <?php foreach ($this->menu as $item) : ?>
-            <li><a href="<?= $item["href"] ?>"><?=$item["name"]?></a></li>
-            <?php endforeach; ?>
-        </ul>
-    </nav>
+    <?php
+        require 'parts/nav.view.php'
+    ?>
     
     <main>
-        <h1>Servicios</h1>
+        <h1>Contacto</h1>
     
     </main>
     <footer>

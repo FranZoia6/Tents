@@ -1,12 +1,11 @@
 <?php
 
-namespace  Paw\App\Controllers;
+namespace Paw\App\Controllers;
 
-class PageController
+class ErrorController
 {
     public string $viewsDir;
     public $menu;
-
     public function __construct()
     {
         $this-> viewsDir = __DIR__ . "/../views/"; 
@@ -27,17 +26,9 @@ class PageController
         ];
     }
 
-    public function index()
+    public function notFound()
     {
-        require $this-> viewsDir . 'index.view.php';
+        http_response_code(404);
+        require $this->viewsDir .'not-found.view.php';
     }
-    public function servicies()
-    {
-        require $this-> viewsDir . 'services.view.php';
-    }
-    public function contact()
-    {
-        require $this-> viewsDir . 'contact.view.php';
-    }
- 
 }

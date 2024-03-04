@@ -2,6 +2,7 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
+use Paw\App\Controllers\ErrorController;
 use Paw\App\Controllers\PageController;
 
 $whoops = new \Whoops\Run;
@@ -19,5 +20,6 @@ if ($path == '/'){
 }else if ($path == '/contact'){
    $controller->contact();
 }else{
+    $controller = new ErrorController;
     $controller ->notFound();
 }
