@@ -20,9 +20,10 @@
         <h1>Contacto</h1>
     
     </main>
-    <footer>
-        <section>
-        </section>
-    </footer>
+
+    <?php
+        require 'parts/footer.view.php'
+    ?>
+
 </body>
 </html>
