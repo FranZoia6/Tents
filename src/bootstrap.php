@@ -19,6 +19,7 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops-> register();
 
 $router = new Router;
+$router -> setLogger($log);
 $router->get('/','PageController@index');
 $router->get('/servicies','PageController@servicies');
 $router->get('/contact','PageController@contact');
