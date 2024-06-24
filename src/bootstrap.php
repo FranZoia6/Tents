@@ -9,8 +9,6 @@ use Paw\Core\Exceptions\RouteNotFoundException;
 use Paw\Core\Request;
 use Paw\Core\Router;
 
-
-
 $log = new Logger('mvc-app');
 $log->pushHandler(new StreamHandler(__DIR__ . '/../logs/app.log', Level::Debug));
 

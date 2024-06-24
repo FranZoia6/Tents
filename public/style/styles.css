@@ -21,12 +21,12 @@ header > figure {
 header > figure > img {
     width: 100%;
 }
+
 nav{
     position: sticky; 
     text-align: center;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-
 }
 
 nav > ul {
