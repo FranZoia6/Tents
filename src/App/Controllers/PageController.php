@@ -1,31 +1,12 @@
 <?php
 
 namespace  Paw\App\Controllers;
+use Paw\Core\Controller;
 
-class PageController
+class PageController extends Controller
 {
     public string $viewsDir;
     public $menu;
-
-    public function __construct()
-    {
-        $this-> viewsDir = __DIR__ . "/../views/"; 
-        $this-> menu = [
-            [
-                "href" => "/",
-                "name" => "Home",
-            ],
-            [
-                "href" => "/servicies",
-                "name" => "Servicios",
-            ],
-            [    
-                "href" => "/contact",
-                "name" => "Contactos",
-            ],
-        
-        ];
-    }
 
     public function index()
     {
@@ -37,6 +18,7 @@ class PageController
         $titulo = 'Servicios';
         require $this-> viewsDir . 'services.view.php';
     }
+
     public function contact()
     {
         $titulo = 'Contacto';
