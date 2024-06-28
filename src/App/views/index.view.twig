@@ -1,16 +1,8 @@
-<?php
-    require 'parts/head.view.php'
-?>
-<body>
-    <header>
-    </header>
+{% extends "base.view.twig" %}
 
-    <?php
-        require 'parts/nav.view.php'
-    ?>
-
+{% block main %}
     <main>
-        <h1>Fran's</h1>
+        <h1>{{ titulo }}</h1>
                 
         <section class="center">
             <p>
@@ -38,10 +30,4 @@
             </p>
         </section>
     </main>
-
-    <?php
-        require 'parts/footer.view.php'
-    ?>
-
-</body>
-</html>
+{% endblock %}

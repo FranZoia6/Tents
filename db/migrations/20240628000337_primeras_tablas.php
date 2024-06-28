@@ -45,12 +45,6 @@ final class PrimerasTablas extends AbstractMigration
             ->addColumn('password', 'string', ['limit' => 100])
             ->create();
 
-        $tableRoom = $this->table('room');
-        $tableRoom->addColumn('description', 'string', ['limit'=>300])
-            ->addColumn('name','string', ['limit'=>100])
-            ->addColumn('price', 'float')
-            ->addColumn('visible', 'boolean',['default'=> true])
-            ->create();
     
         $tableCity = $this->table('city');
         $tableCity->addColumn('name','string',['limit'=>100] )

@@ -11,19 +11,21 @@ class PageController extends Controller
     public function index()
     {
         $titulo = 'Tens';
-        require $this-> viewsDir . 'index.view.php';
+        $menu = $this->menu;
+        echo $this->twig->render('index.view.twig', compact('menu','titulo'));
     }
     public function servicies()
     {
         $titulo = 'Servicios';
-        require $this-> viewsDir . 'services.view.php';
+        $menu = $this->menu;
+        echo $this->twig->render('services.view.twig', compact('menu','titulo'));
     }
 
     public function contact()
     {
         $titulo = 'Contacto';
-        require $this-> viewsDir . 'contact.view.php';
-
+        $menu = $this->menu;
+        echo $this->twig->render('contact.view.twig', compact('menu','titulo'));
     }
 
     public function contactProccess()
