@@ -1,9 +1,9 @@
 <?php
 
-namespace Paw\App\Models;
+namespace Tents\App\Models;
 
-use Paw\Core\Model;
-use Paw\App\Models\Profesional;
+use Tents\Core\Model;
+use Tents\App\Models\Profesional;
 use DateTime;
 
 class TurnosCollection extends Model {

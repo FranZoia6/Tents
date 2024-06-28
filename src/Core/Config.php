@@ -1,6 +1,6 @@
 <?php
 
-namespace Paw\Core;
+namespace Tents\Core;
 
 class Config {
 

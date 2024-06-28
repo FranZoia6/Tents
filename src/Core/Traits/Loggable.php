@@ -1,6 +1,6 @@
 <?php
 
-namespace Paw\Core\Traits;
+namespace Tents\Core\Traits;
 
 use Monolog\Logger;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Paw\Core;
+namespace Tents\Core;
 
-use Paw\Core\Database\QueryBuilder;
-use Paw\Core\Traits\Loggable;
+use Tents\Core\Database\QueryBuilder;
+use Tents\Core\Traits\Loggable;
 
 class Model {
     

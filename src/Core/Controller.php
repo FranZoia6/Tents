@@ -1,9 +1,9 @@
 <?php
 
-namespace Paw\Core;
+namespace Tents\Core;
 
-use Paw\Core\Database\QueryBuilder;
-use Paw\Core\Model;
+use Tents\Core\Database\QueryBuilder;
+use Tents\Core\Model;
 
 class Controller {
 

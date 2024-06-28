@@ -1,9 +1,9 @@
 <?php
 
-namespace Paw\App\models;
+namespace Tents\App\models;
 
-use Paw\Core\Model;
-use Paw\Core\Exceptions\InvalidValueFormatException;
+use Tents\Core\Model;
+use Tents\Core\Exceptions\InvalidValueFormatException;
 use Exception;
 
 class Profesional extends Model {

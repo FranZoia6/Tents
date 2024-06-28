@@ -5,11 +5,11 @@ require __DIR__ . "/../vendor/autoload.php";
 use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use Paw\Core\Exceptions\RouteNotFoundException;
-use Paw\Core\Request;
-use Paw\Core\Router;
-use Paw\Core\Database\ConnectionBuilder;
-use Paw\Core\Config;
+use Tents\Core\Exceptions\RouteNotFoundException;
+use Tents\Core\Request;
+use Tents\Core\Router;
+use Tents\Core\Database\ConnectionBuilder;
+use Tents\Core\Config;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');

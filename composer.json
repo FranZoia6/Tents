@@ -1,40 +1,36 @@
 {
-    "name": "paw/proyecto-final",
-    "description": "Proyecto final PAW",
-    "keywords": ["php", "mvc"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Franco Zoia",
-            "email": "francozoia639@gmail.com",
-            "role": "Creator / Main Developer"
-        },
-        {
-            "name": "Franco Parzanese",
-            "email": "nose@gmail.com",
-            "role": "Creator / Main Developer"
-        },
-        {
-            "name": "Leo Duville",
-            "email": "nose@gmail.com",
-            "role": "Creator / Main Developer"
-        },
-        {
-            "name": "Enzo Bianchi",
-            "email": "nose@gmail.com",
-            "role": "Creator / Main Developer"
-        }
-    ],
-    "require": {
-        "php": ">=8.2.5",
-        "filp/whoops": "~2",
-        "monolog/monolog": "^3.5",
-        "vlucas/phpdotenv": "^5.6",
-        "robmorgan/phinx": "^0.16.1"
-    },
-    "autoload": {
-        "psr-4": {
-            "Paw\\":"src/"
-        }
+  "name": "paw/tents",
+  "description": "Sistema de reserva de carpas en balnearios. Proyecto final de PAW",
+  "type": "project",
+  "require": {
+    "php": ">=8.3",
+    "filp/whoops": "~2",
+    "monolog/monolog": "^3.5",
+    "vlucas/phpdotenv": "^5.6",
+    "robmorgan/phinx": "^0.16.1"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Tents\\": "src/"
     }
+  },
+  "authors": [
+    {
+      "name": "Franco Zoia",
+      "email": "francozoia639@gmail.com"
+    },
+    {
+      "name": "Franco Parzanese",
+      "email": "parzanesefranco@gmail.com"
+    },
+    {
+      "name": "Leonardo Duville",
+      "email": "nose@gmail.com"
+    },
+    {
+      "name": "Enzo Bianchi",
+      "email": "nose@gmail.com"
+    }
+  ]
 }

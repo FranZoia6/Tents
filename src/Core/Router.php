@@ -1,10 +1,10 @@
 <?php
 
-namespace Paw\Core;
+namespace Tents\Core;
 
-use Paw\Core\Exceptions\RouteNotFoundException;
-use Paw\Core\Request;
-use Paw\Core\Traits\Loggable;
+use Tents\Core\Exceptions\RouteNotFoundException;
+use Tents\Core\Request;
+use Tents\Core\Traits\Loggable;
 
 class Router
 {
@@ -39,7 +39,7 @@ class Router
     }
 
     public function call($controller, $method) {
-        $controller_name = "Paw\\App\\Controllers\\{$controller}";
+        $controller_name = "Tents\\App\\Controllers\\{$controller}";
         $objController = new $controller_name;
         $objController->$method();
     }

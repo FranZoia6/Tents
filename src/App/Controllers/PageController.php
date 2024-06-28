@@ -1,7 +1,7 @@
 <?php
 
-namespace  Paw\App\Controllers;
-use Paw\Core\Controller;
+namespace  Tents\App\Controllers;
+use Tents\Core\Controller;
 
 class PageController extends Controller
 {

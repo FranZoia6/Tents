@@ -1,6 +1,6 @@
 <?php
 
-namespace Paw\Core\Database;
+namespace Tents\Core\Database;
 
 use PDO;
 use Monolog\Logger;

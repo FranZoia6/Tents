@@ -1,6 +1,6 @@
 <?php
 
-namespace Paw\Core\Exceptions;
+namespace Tents\Core\Exceptions;
 
 use Exception;
 

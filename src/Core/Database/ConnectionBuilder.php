@@ -1,11 +1,11 @@
 <?php
 
-namespace Paw\Core\Database;
+namespace Tents\Core\Database;
 
 use PDO;
 use PDOException;
-use Paw\Core\Config;
-use Paw\Core\Traits\Loggable;
+use Tents\Core\Config;
+use Tents\Core\Traits\Loggable;
 
 class ConnectionBuilder {
     use Loggable;

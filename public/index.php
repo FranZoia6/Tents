@@ -2,6 +2,6 @@
 
 require __DIR__ . "/../src/bootstrap.php";
 
-use Paw\Core\Router;
+use Tents\Core\Router;
 
 $router->direct($request);
