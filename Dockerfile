@@ -28,6 +28,3 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini" && \
 
 # Declara los puertos expuestos.
 EXPOSE 80
-
-# Establece el "entrypoint" de la imagen.
-ENTRYPOINT ["php", "-S", "0.0.0.0:80", "-t", "public"]

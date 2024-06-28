@@ -1,0 +1,25 @@
+name: tents
+
+services:
+  webserver:
+    build: .
+    image: tents/webserver
+    entrypoint: ./dev.sh
+    ports:
+      - "${APP_PORT:-8888}:80"
+    pull_policy: never
+    volumes:
+      - $PWD:/var/www/html
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+    volumes:
+      - db:/var/lib/mysql
+  adminer:
+    image: adminer
+    ports:
+      - "${ADMINER_PORT:-8090}:8080"
+
+volumes:
+  db:

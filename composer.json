@@ -32,5 +32,9 @@
       "name": "Enzo Bianchi",
       "email": "nose@gmail.com"
     }
-  ]
+  ],
+  "scripts": {
+    "dev": "docker compose -f docker-compose-dev.yml up -d",
+    "dev-clear": "docker compose -f docker-compose-dev.yml down"
+  }
 }
