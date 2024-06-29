@@ -10,7 +10,7 @@ class PageController extends Controller
 
     public function index()
     {
-        $titulo = 'Tens';
+        $titulo = 'Tents';
         $menu = $this->menu;
         echo $this->twig->render('index.view.twig', compact('menu','titulo'));
     }

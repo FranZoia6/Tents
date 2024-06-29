@@ -1,95 +1,177 @@
-:root{
-    --principal-color1:#47a7ce;
-    --principal-color2:#a29fb6;
-    --text:#000000;
-    --background:#e1c7ae;
+:root {
+    --principal-color1: #e1c7ae;
+    --principal-color2: #524f63;
+    --secondary-color2: #a29fb6;
+    --text: #333333;
+    --background-light: #e1c7ae;
+    --background-section1: #f5f5f5;
+    --background-section2: #fafafa;
 
+    	/* Tamaños de letras */
+	--nav-font-size: 18px;
+	--main-header-title-size: 5rem; /* Header de la pagina */
+	--header-description-size: 1.8rem; /* Descripcion del header de la pagina */
+	--section-title-size: 3.5rem; /* Titulo de los sections */
+	--section-description-size: 1.5rem; /* Descripcion de los sections */
+	--footer-header-title-size: 1.5rem;
+	--footer-description-text : 1rem;
+
+    
 }
 
-body{
-    border: 1px solid black;
-    margin: 0rem 10rem;
-    background: rgb(84,157,249,1);
-    background: linear-gradient(180deg, rgba(236,226,198,1) 33%, rgba(126,175,172,1) 51%, rgba(71,167,206,1) 66%, rgba(84,157,249,1) 78%);
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    /* background: var(--background-light); */
+    color: var(--text);
+    line-height: 1.6;
+    background-image: url('./../imagenes/93061.jpg');
+    background-size: cover; /* Para cubrir todo el fondo */
+    background-position: center; /* Centrar la imagen */
+    background-repeat: no-repeat; /* Evitar que se repita la imagen */
 }
+
+
 
 header > figure {
-	height: 20rem;
-	overflow: hidden;
+    height: 20rem;
+    overflow: hidden;
 }
 
 header > figure > img {
     width: 100%;
+    display: block;
 }
 
-nav{
-    position: sticky; 
+nav {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff; 
     text-align: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000000; 
+    z-index: 1000; 
 }
 
-nav > ul {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+nav ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-a{
+nav ul li {
     display: inline-block;
-    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    display: block;
     padding: 10px;
-}
-a:hover{
-    background-color:var(--principal-color1) ;
-}
-
-h1{
-    padding: 2rem;
-    text-align: center;
-    font-size: 5rem;
+    text-decoration: none;
+    color: var(--text);
 }
 
-section{
-    border-top:  1px solid black;
+nav ul li a:hover {
+    background-color: var(--principal-color1);
+    color: #ffffff; 
+}
+
+main {
+    padding: 20px;
+    /* background-color: var(--background-light);  */
+}
+
+img{
+    height: 25em;
+
+}
+
+
+
+section {
+    padding: 40px 20px; 
+    border-radius: 10px;
+    margin-bottom: 40px; /* Aumento del espacio entre secciones */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra más pronunciada */
+    background-color: rgba(255, 255, 255, 0.3); /* Color blanco con 70% de opacidad */
+}
+
+
+section section {
+    padding: 20px 10px; /* Ajuste del padding interno */
+    border-radius: 0; /* Eliminación del borde redondeado */
+    margin-bottom: 10px; /* Aumento del espacio entre secciones */
+    background-color: rgba(255, 255, 255, 0.1); /* Color blanco con 70% de opacidad */
+    box-shadow: none; /* Eliminación de la sombra */
+}
+
+
+
+
+h1 {
+    font-family: "Abril Fatface", serif;
+    font-size: var(--main-header-title-size); /* Asegúrate de definir esta variable según tu necesidad */
+    color: #0077b6; /* Cambia el color a uno más vibrante */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Efecto de sombra con transparencia */
+}
+
+
+p {
+	font-family: 'Century Gothic', sans-serif;
+	font-size: var(--section-description-size);
+	padding: 1rem  5rem;
 }
 
 h2{
+    font-family: "Abril Fatface", serif;
+	font-size: var(--section-title-size);
+	text-align: left;
+	padding-left: 4rem;
+	color: #E5992B; 
+	text-shadow: 1px 1px 2px var(--text-shadow);
+}
+
+.parrafo {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+
+figure {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+
+
+footer {
+    background-color: var(--background-section1); 
     text-align: center;
-    font-size: 4rem;
-    margin: 1rem;
+    padding: 20px;
+    color: var(--text);
+    margin-top: 40px; /* Espacio entre última sección y footer */
 }
 
-section >figure{
-    display: inline-block;
-    margin: 1rem;
-}
-section >figure > img{
-    width: 30rem;
-}
-
-
-
-section > img{
-    width: 30rem;
-    margin: 1rem;
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
     
-}
-
-.center{
-    border: none;
-    text-align: center;
-}
-
-p{
-    margin: 0rem 4rem;
-    font-size: 1.3rem;
-}
-
-.parrafo{
-    position: absolute;
-    display: inline-block;
-    margin-top: 5rem;
-    margin-left: 2rem;
-    margin-right: 13rem;
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .parrafo {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
