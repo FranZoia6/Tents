@@ -35,6 +35,8 @@ $router->get('/','PageController@index');
 $router->get('/servicies','PageController@servicies');
 $router->get('/contact','PageController@contact');
 $router->post('/contact','PageController@contactProccess');
+
+
 $router->get('not_found', 'ErrorController@notFound');
 $router->get('internal_error','ErrorController@internalError');
 
