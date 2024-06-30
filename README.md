@@ -34,8 +34,7 @@ composer dev-clear
 
 Las migraciones se deben crear y aplicar desde el contenedor del servidor web. Por ejemplo, para aplicar las migraciones en el entorno de desarrollo se debe ejecutar:
 ```bash
-docker exec -it tents-webserver-1 bash
-./vendor/bin/phinx migrate
+docker exec -t tents-webserver-1 vendor/bin/phinx migrate
 ```
 
 ## Integrantes
