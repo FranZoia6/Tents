@@ -3,4 +3,13 @@
 
 {% block main %}
         <h1>{{ titulo }}</h1>
+        <section>
+                {% for beachResort in beachResorts %}
+			{% if beachResort.fields.state != 3 %}
+                                <article>
+                                        <h2>{{ beachResort.fields.name }}</h2>
+                                </article>
+                        {% endif %}
+		{% endfor %}
+        </section>
 {% endblock %}

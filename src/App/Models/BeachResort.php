@@ -11,17 +11,17 @@ class BeachResort extends Model {
     public $table = 'beach_resort';
 
     public $fields = [
-        "nombre" => null,
+        "name" => null,
         "description" => null,
         "city_id" => null,
         "state_id" => null,
     ];
 
-    public function setNombre(string $nombre) {
-        $this -> fields["nombre"] = $nombre;
+    public function setName(string $name) {
+        $this -> fields["name"] = $name;
     }
 
-    public function setDescripcion(string $description) {
+    public function setDescription(string $description) {
         $this -> fields["description"] = $description;
     }
 

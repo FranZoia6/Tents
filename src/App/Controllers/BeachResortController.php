@@ -17,9 +17,9 @@ class BeachResortController extends Controller {
        
     public function index() {
         $titulo = "Balnearios";
-        $beach_resorts = $this->model->getAll();
+        $beachResorts = $this->model->getAll();
         $menu = $this->menu;
-        echo $this->twig->render('beachResort.view.twig', compact('menu','titulo','beachResort'));
+        echo $this->twig->render('beachResort.view.twig', compact('menu','titulo','beachResorts'));
     }
 
     public function get() {

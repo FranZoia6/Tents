@@ -39,6 +39,12 @@ class Controller {
         
         
         ];
+        if(!is_null($this->modelName)){
+			$qb = new QueryBuilder($connection,$log);
+			$model = new $this->modelName;
+			$model->setQueryBuilder($qb);
+			$this->setModel($model);
+		}
 
     }
 
