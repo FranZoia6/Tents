@@ -10,12 +10,13 @@ class BeachResortCollection extends Model {
 
     public $table = 'beach_resort';
 
-    public function getUsers() {
+    public function getAll() {
         $beach_resorts = $this -> queryBuilder -> select('beach_resort');
         $beach_resorts_collection = [];
         
         foreach ($beach_resorts as $beach_resort) {
             $newBeachResort = new BeachResort;
+            $newBeachResort->setQueryBuilder($this->queryBuilder);
             $newBeachResort -> set($beach_resort);
             $beach_resorts_collection[] = $newBeachResort;
         }

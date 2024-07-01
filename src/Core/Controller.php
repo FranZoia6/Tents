@@ -32,6 +32,11 @@ class Controller {
                 "href" => "/contact",
                 "name" => "Contactos",
             ],
+            [    
+                "href" => "/beachResort",
+                "name" => "Beach Resort",
+            ],
+        
         
         ];
 

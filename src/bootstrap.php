@@ -34,6 +34,7 @@ $router -> setLogger($log);
 $router->get('/','PageController@index');
 $router->get('/servicies','PageController@servicies');
 $router->get('/contact','PageController@contact');
+$router->get('/beachResort','BeachResortController@index');
 $router->post('/contact','PageController@contactProccess');
 
 

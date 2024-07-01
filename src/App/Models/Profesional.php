@@ -1,6 +1,6 @@
 <?php
 
-namespace Tents\App\models;
+namespace Tents\App\Models;
 
 use Tents\Core\Model;
 use Tents\Core\Exceptions\InvalidValueFormatException;
