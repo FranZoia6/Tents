@@ -19,7 +19,7 @@ class User extends Model {
         if (strlen($user) < 6) {
             throw new InvalidValueFormatException("El nombre de usuario debe ser mayor a 6 caracteres.");
         }
-        $this -> fields["user"] = $nombre;
+        $this -> fields["user"] = $user;
     }
 
     public function setPassword($password) {

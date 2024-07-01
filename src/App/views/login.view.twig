@@ -1,0 +1,25 @@
+{% extends "base.view.twig" %}
+
+{% block main %}
+    {% block title %}Iniciar Sesión{% endblock title %}
+
+    {% block content %}
+    <section class="login">
+        <h2>Iniciar sesión</h2>
+        <form class="fLogin" action="portal-admin" method="post">
+            <label for="inputDNI">DNI:
+                <input type="text" name="usuario">
+            </label>
+            <label for="inputPassword">Contraseña:
+                <input type="password" name="password">
+            </label>
+            <p>¿No tienes cuenta? <a href="/portal-pacientes/nuevo-usuario">Regístrate</a></p>
+            <p>¿Olvidaste tu contraseña? <a href="/portal-pacientes/recuperar-password">Recupérala aquí</a></p>
+
+            <input name="login" type="submit" value="Ingresar">
+        </form>
+
+    </section>
+
+    {% endblock content %}
+{% endblock %}

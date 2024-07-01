@@ -36,7 +36,9 @@ $router->get('/servicies','PageController@servicies');
 $router->get('/contact','PageController@contact');
 $router->get('/beachResort','BeachResortController@index');
 $router->post('/contact','PageController@contactProccess');
+$router -> get('/login', 'PageController@login');
 
+$router -> post('/portal-admin', 'UserController@loginValidar');
 
 $router->get('not_found', 'ErrorController@notFound');
 $router->get('internal_error','ErrorController@internalError');

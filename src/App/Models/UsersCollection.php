@@ -23,4 +23,15 @@ class UsersCollection extends Model {
         return $usersCollection;
     }
 
+    public function checkExists($usuario, $password) {
+
+        $users = $this -> queryBuilder -> select('user', ['user' => $usuario, 'password' => $password]);
+
+        if (count($users) !== 0)
+            return true;
+        else
+            return false;
+
+    }
+
 }

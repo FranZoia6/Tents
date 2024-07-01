@@ -28,6 +28,13 @@ class PageController extends Controller
         echo $this->twig->render('contact.view.twig', compact('menu','titulo'));
     }
 
+    public function login()
+    {
+        $titulo = 'Iniciar sesión';
+        $menu = $this->menu;
+        echo $this->twig->render('login.view.twig');
+    }
+
     public function contactProccess()
     {
         $formulario = $_POST;

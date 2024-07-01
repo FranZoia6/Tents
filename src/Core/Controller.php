@@ -18,7 +18,7 @@ class Controller {
         $this-> viewsDir = __DIR__ . "/../App/views/"; 
         $this->loader = new \Twig\Loader\FilesystemLoader($this->viewsDir);
 		$this->twig =new \Twig\Environment($this->loader,[]);
-        $this-> menu = [
+        @$this-> menu = [
 
             [
                 "href" => "/",
@@ -36,9 +36,12 @@ class Controller {
                 "href" => "/beachResort",
                 "name" => "Beach Resort",
             ],
-        
-        
+            [
+                "href" => "/login",
+                "name" => "Iniciar sesión",
+            ]
         ];
+
         if(!is_null($this->modelName)){
 			$qb = new QueryBuilder($connection,$log);
 			$model = new $this->modelName;
