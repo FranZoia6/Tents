@@ -1,5 +1,5 @@
 :root {
-    --principal-color1: #e1c7ae;
+    --principal-color1: #0077b6;
     --principal-color2: #524f63;
     --secondary-color2: #a29fb6;
     --text: #333333;
@@ -102,6 +102,23 @@ article p {
   display: inline-block;
   vertical-align: top; 
   max-width: 55%; 
+}
+
+article a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 1em;
+  margin-left: 80em;
+  margin-bottom: 2em;
+  border-radius: 10px;
+  background-color:  var(--principal-color1); 
+  box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
+  color: #fff; 
+}
+
+article button:active
+{  
+  background-color: #00aab6;
 }
 
 

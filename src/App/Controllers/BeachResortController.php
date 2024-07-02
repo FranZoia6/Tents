@@ -19,15 +19,15 @@ class BeachResortController extends Controller {
         $titulo = "Balnearios";
         $beachResorts = $this->model->getAll();
         $menu = $this->menu;
-        echo $this->twig->render('beachResort.view.twig', compact('menu','titulo','beachResorts'));
+        echo $this->twig->render('beachResort.index.view.twig', compact('menu','titulo','beachResorts'));
     }
 
     public function get() {
         global $request;
-        $beachResortId = $request -> get('Id');
+        $beachResortId = $request -> get('id');
         $beachResort = $this -> model -> get($beachResortId);
-        $titulo = 'Balneario';
-        require $this -> viewsDir . 'authors.show.view.php';   
+        $menu = $this->menu;
+        echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort'));  
     }
 
     public function edit() {

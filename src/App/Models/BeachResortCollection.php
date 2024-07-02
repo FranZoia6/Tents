@@ -24,4 +24,11 @@ class BeachResortCollection extends Model {
         return $beach_resorts_collection;
     }
 
+    public function get($id){
+        $newBeachResort = new BeachResort;
+        $newBeachResort->setQueryBuilder($this->queryBuilder);
+        $newBeachResort->load($id);
+        return $newBeachResort;
+    }
+
 }

@@ -11,11 +11,16 @@ class BeachResort extends Model {
     public $table = 'beach_resort';
 
     public $fields = [
+        "id" => null,
         "name" => null,
         "description" => null,
         "city" => null,
         "state" => null,
     ];
+
+    public function setId($id){
+        $this->fields["id"] = $id;
+    }
 
     public function setName(string $name) {
         $this -> fields["name"] = $name;
@@ -42,5 +47,14 @@ class BeachResort extends Model {
             $this -> $method($values[$field]);
         }
     }
+
+    public function load($id)
+    {
+        $params = ["id"=>$id];
+        $record = current($this->queryBuilder->select($this->table, $params));
+        $this->set($record);
+    }
+
+
 
 }
