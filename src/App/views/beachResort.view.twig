@@ -8,6 +8,8 @@
 			{% if beachResort.fields.state != 3 %}
                                 <article>
                                         <h2>{{ beachResort.fields.name }}</h2>
+                                        <img src="./../imagenes/sombrilla.jpeg" alt="carpa">
+                                        <p>{{ beachResort.fields.description }}</p>
                                 </article>
                         {% endif %}
 		{% endfor %}

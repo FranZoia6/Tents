@@ -13,8 +13,8 @@ class BeachResort extends Model {
     public $fields = [
         "name" => null,
         "description" => null,
-        "city_id" => null,
-        "state_id" => null,
+        "city" => null,
+        "state" => null,
     ];
 
     public function setName(string $name) {
@@ -25,12 +25,12 @@ class BeachResort extends Model {
         $this -> fields["description"] = $description;
     }
 
-    public function setCity(int $city_id) {
-        $this -> fields["city_id"] = $city_id;
+    public function setCity(int $city) {
+        $this -> fields["city"] = $city;
     }
 
-    public function setState(int $state_id) {
-        $this -> fields["state_id"] = $state_id;
+    public function setState(int $state) {
+        $this -> fields["state"] = $state;
     }
 
     public function set(array $values) {
