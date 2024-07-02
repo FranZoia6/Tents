@@ -6,6 +6,10 @@
     {% block content %}
     <section class="login">
         <h2>Iniciar sesión</h2>
+        {% if hayLogin %}
+            <p class="mensaje">Bienvenido, usted se encuentra logueado con el DNI: {{ dni }}.</p>
+            <p><a class="cerrarsesion" href="/?sesion=cerrar">Cerrar Sesion</a></p>
+        {% else %}
         <form class="fLogin" action="portal-admin" method="post">
             <label for="inputDNI">DNI:
                 <input type="text" name="usuario">
@@ -13,11 +17,9 @@
             <label for="inputPassword">Contraseña:
                 <input type="password" name="password">
             </label>
-            <p>¿No tienes cuenta? <a href="/portal-pacientes/nuevo-usuario">Regístrate</a></p>
-            <p>¿Olvidaste tu contraseña? <a href="/portal-pacientes/recuperar-password">Recupérala aquí</a></p>
-
             <input name="login" type="submit" value="Ingresar">
         </form>
+        {% endif %}
 
     </section>
 

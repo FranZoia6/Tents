@@ -1,1 +1,23 @@
 {% extends "base.view.twig" %}
+
+{% block title %}Perfil usuario{% endblock title %}
+
+{% block main %}
+<nav>
+    <ul>
+        <li>
+            <a href="/portal-admin/perfil-usuario">Gestión de Balnearios</a>
+        </li>
+        <li>
+            <a href="/portal-admin/historial-turnos">Gestión de Unidades de Balnearios</a>
+        </li>
+        <li>
+            <a href="/portal-admin/estudios-realizados">Gestión de Promociones</a>
+        </li>
+        <li>
+            <a href="/">Cerrar sesión</a>
+        </li>
+    </ul>
+</nav>
+
+{% endblock main %}
