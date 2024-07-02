@@ -11,11 +11,16 @@ class BeachResort extends Model {
     public $table = 'beach_resort';
 
     public $fields = [
+        "id" => null,
         "name" => null,
         "description" => null,
-        "city_id" => null,
-        "state_id" => null,
+        "city" => null,
+        "state" => null,
     ];
+
+    public function setId($id){
+        $this->fields["id"] = $id;
+    }
 
     public function setName(string $name) {
         $this -> fields["name"] = $name;
@@ -25,12 +30,12 @@ class BeachResort extends Model {
         $this -> fields["description"] = $description;
     }
 
-    public function setCity(int $city_id) {
-        $this -> fields["city_id"] = $city_id;
+    public function setCity(int $city) {
+        $this -> fields["city"] = $city;
     }
 
-    public function setState(int $state_id) {
-        $this -> fields["state_id"] = $state_id;
+    public function setState(int $state) {
+        $this -> fields["state"] = $state;
     }
 
     public function set(array $values) {
@@ -42,5 +47,14 @@ class BeachResort extends Model {
             $this -> $method($values[$field]);
         }
     }
+
+    public function load($id)
+    {
+        $params = ["id"=>$id];
+        $record = current($this->queryBuilder->select($this->table, $params));
+        $this->set($record);
+    }
+
+
 
 }

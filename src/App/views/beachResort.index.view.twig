@@ -1,0 +1,18 @@
+{% extends "base.view.twig" %}
+    
+
+{% block main %}
+        <h1>{{ titulo }}</h1>
+        <section>
+                {% for beachResort in beachResorts %}
+			{% if beachResort.fields.state != 3 %}
+                                <article>
+                                        <h2>{{ beachResort.fields.name }}</h2>
+                                        <img src="./../imagenes/sombrilla.jpeg" alt="carpa">
+                                        <p>{{ beachResort.fields.description }}</p>
+                                        <a href="beachResort?id={{ beachResort.fields.id }}">Reservar </a>
+                                </article>
+                        {% endif %}
+		{% endfor %}
+        </section>
+{% endblock %}

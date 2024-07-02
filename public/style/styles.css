@@ -1,5 +1,5 @@
 :root {
-    --principal-color1: #e1c7ae;
+    --principal-color1: #0077b6;
     --principal-color2: #524f63;
     --secondary-color2: #a29fb6;
     --text: #333333;
@@ -84,6 +84,42 @@ img{
 
 }
 
+article {
+  margin-bottom: 1rem; /* Añade espacio inferior al artículo */
+}
+
+article img {
+  display: inline-block;
+  vertical-align: top; 
+  height: 15em;
+  margin-right: 1rem; 
+  margin-bottom: 3rem; 
+  margin-left: 4em;
+  box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
+}
+
+article p {
+  display: inline-block;
+  vertical-align: top; 
+  max-width: 55%; 
+}
+
+article a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 1em;
+  margin-left: 80em;
+  margin-bottom: 2em;
+  border-radius: 10px;
+  background-color:  var(--principal-color1); 
+  box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
+  color: #fff; 
+}
+
+article button:active
+{  
+  background-color: #00aab6;
+}
 
 
 section {
@@ -95,12 +131,20 @@ section {
 }
 
 
+
 section section {
     padding: 20px 10px; /* Ajuste del padding interno */
     border-radius: 0; /* Eliminación del borde redondeado */
     margin-bottom: 10px; /* Aumento del espacio entre secciones */
     background-color: rgba(255, 255, 255, 0.1); /* Color blanco con 70% de opacidad */
     box-shadow: none; /* Eliminación de la sombra */
+}
+
+section article {
+  border-radius: 10px;
+  margin-bottom: 40px; /* Aumento del espacio entre secciones */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra más pronunciada */
+  background-color: rgba(255, 255, 255, 0.3); /* Color blanco con 70% de opacidad */
 }
 
 
@@ -110,7 +154,7 @@ h1 {
     font-family: "Abril Fatface", serif;
     font-size: var(--main-header-title-size); /* Asegúrate de definir esta variable según tu necesidad */
     color: #0077b6; /* Cambia el color a uno más vibrante */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Efecto de sombra con transparencia */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
 }
 
 

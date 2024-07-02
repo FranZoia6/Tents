@@ -33,7 +33,7 @@ class Controller {
                 "name" => "Contactos",
             ],
             [    
-                "href" => "/beachResort",
+                "href" => "/beachResortIndex",
                 "name" => "Beach Resort",
             ],
             [
