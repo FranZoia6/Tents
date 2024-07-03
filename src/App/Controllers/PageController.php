@@ -45,16 +45,15 @@ class PageController extends Controller
     public function login()
     {
         session_start();
-        $titulo = 'Iniciar sesión';
         $menu = $this->menu;
         $hayLogin = isset($_SESSION['login']) && !empty($_SESSION['login']);
 
-        $dni = '';
+        $usuario = '';
 
         if ($hayLogin) {
-            $dni = $_SESSION['login'];
+            $usuario = $_SESSION['login'];
         }
-        echo $this->twig->render('login.view.twig', ['hayLogin' => $hayLogin, 'dni' => $dni]);
+        echo $this->twig->render('login.view.twig', ['hayLogin' => $hayLogin, 'usuario' => $usuario]);
     }
 
     public function contactProccess()

@@ -1,17 +1,16 @@
 {% extends "base.view.twig" %}
 
 {% block main %}
-    {% block title %}Iniciar Sesión{% endblock title %}
 
     {% block content %}
     <section class="login">
         <h2>Iniciar sesión</h2>
         {% if hayLogin %}
-            <p class="mensaje">Bienvenido, usted se encuentra logueado con el DNI: {{ dni }}.</p>
+            <p class="mensaje">Bienvenido, usted se encuentra logueado con el usuario: {{ usuario }}.</p>
             <p><a class="cerrarsesion" href="/?sesion=cerrar">Cerrar Sesion</a></p>
         {% else %}
         <form class="fLogin" action="portal-admin" method="post">
-            <label for="inputDNI">DNI:
+            <label for="inputDNI">Usuario:
                 <input type="text" name="usuario">
             </label>
             <label for="inputPassword">Contraseña:

@@ -35,5 +35,4 @@ class UserController extends Controller {
         echo $this->twig->render('/portal-admin/inicio-usuario.view.twig');
     }
 
-
 }
