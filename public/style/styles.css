@@ -25,7 +25,7 @@ body {
     /* background: var(--background-light); */
     color: var(--text);
     line-height: 1.6;
-    background-image: url('./../imagenes/93061.jpg');
+    background-image: url('./../imagenes/background.jpg');
     background-size: cover; /* Para cubrir todo el fondo */
     background-position: center; /* Centrar la imagen */
     background-repeat: no-repeat; /* Evitar que se repita la imagen */
@@ -286,6 +286,10 @@ footer {
     100% {
       width: 100%;
     }
+  }
+
+  #parasol-12{
+    fill:red
   }
 
 @media (max-width: 768px) {
