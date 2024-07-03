@@ -288,6 +288,10 @@ footer {
     }
   }
 
+  #parasol-12{
+    fill:red
+  }
+
 @media (max-width: 768px) {
     body {
         padding: 10px;
