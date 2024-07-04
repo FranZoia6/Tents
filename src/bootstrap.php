@@ -37,7 +37,7 @@ $router->get('/contact','PageController@contact');
 $router->get('/beachResortIndex','BeachResortController@index');
 $router->get('/beachResort','BeachResortController@get');
 $router->post('/contact','PageController@contactProccess');
-$router -> get('/login', 'PageController@login');
+$router ->get('/login', 'PageController@login');
 
 $router -> post('/portal-admin', 'UserController@loginValidar');
 

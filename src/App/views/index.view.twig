@@ -2,8 +2,27 @@
 
 {% block main %}
     <main>
-        <h1>Bienvenidos al Paraíso Playero</h1>
-                
+        <section class="reserva">
+                <label for="ciudad">Ciudad:</label>
+                <select name="ciudad" id="ciudad">
+                    {% for ciudad in ciudades %}
+                        <option value="{{ ciudad }}">{{ ciudad }}</option>
+                    {% endfor %}
+                </select>
+                <label for="balneario">Balneario:</label>
+                <select name="balneario" id="balneario">
+                    {% for balneario in balnearios %}
+                        <option value="{{ balneario }}">{{ balneario }}</option>
+                    {% endfor %}
+                </select>
+                <label for="fecha_entrada">Fecha de Entrada:</label>
+                <input type="date" id="fecha_entrada" name="fecha_entrada">
+                <label for="fecha_salida">Fecha de Salida:</label>
+                <input type="date" id="fecha_salida" name="fecha_salida">
+                <button class="bReserva" type="buttom">Reservar</button>
+        </section>
+
+        <h1>Bienvenidos al Paraíso Playero</h1>       
         <section class="center">
             <section class="carousel"></section>
             <p>

@@ -190,8 +190,64 @@ footer {
     background-color: var(--background-section1); 
     text-align: center;
     padding: 20px;
-    color: var(--text);
-    margin-top: 40px; /* Espacio entre última sección y footer */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10%;
+}
+
+footer > a {
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+footer > a > i {
+  font-size: 1.5rem;
+}
+
+footer > a {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+footer .whatsapp > i {
+  color: green;
+}
+
+footer .phone > i { 
+    color: green;
+}
+
+
+footer .facebook > i {
+  color: blue;
+}
+
+footer .instagram > i {
+  color: #c92bb7;
+}
+
+.reserva {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  align-items: center;
+} 
+
+.reserva > label,select,input {
+  font-size: 1rem;
+  border-radius: 0.8rem;
+  padding: 5px;
+}
+
+.bReserva {
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+  background-color: #007bff;
 }
 
 .carousel {
