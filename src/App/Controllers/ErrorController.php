@@ -8,7 +8,9 @@ class ErrorController extends Controller
     public function notFound()
     {
         http_response_code(404);
-        require $this->viewsDir .'not-found.view.php';
+        $titulo = "Error 404";
+        $menu = $this->menu;
+        echo $this->twig->render('not-found.view.twig', compact('menu','titulo'));
     }
 
     public function internalError()
