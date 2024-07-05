@@ -16,6 +16,7 @@ class PageController extends Controller
         session_start();
 
         // Cerrar Sesion
+        
         $cerrarSesion = isset($_GET['sesion']);
         $haySesion = session_status() == PHP_SESSION_ACTIVE;
 
@@ -53,7 +54,13 @@ class PageController extends Controller
         if ($hayLogin) {
             $usuario = $_SESSION['login'];
         }
-        echo $this->twig->render('login.view.twig', ['hayLogin' => $hayLogin, 'usuario' => $usuario]);
+        echo $this->twig->render('login.view.twig', ['hayLogin' => $hayLogin, 
+                                'usuario' => $usuario, 'menu' => $menu],
+                                );
+    }
+
+    public function balnearios() {
+        echo $this->twig->render('/portal-admin/balnearios.view.twig');
     }
 
     public function contactProccess()

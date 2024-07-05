@@ -29,6 +29,8 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops-> register();
 
+$request = new Request;
+
 $router = new Router;
 $router -> setLogger($log);
 $router->get('/','PageController@index');
@@ -40,8 +42,8 @@ $router->post('/contact','PageController@contactProccess');
 $router -> get('/login', 'PageController@login');
 
 $router -> post('/portal-admin', 'UserController@loginValidar');
+$router -> get('/portal-admin/balnearios', 'PageController@balnearios');
 
 $router->get('not_found', 'ErrorController@notFound');
 $router->get('internal_error','ErrorController@internalError');
 
-$request = new Request;

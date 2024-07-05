@@ -18,6 +18,7 @@ class UserController extends Controller {
        # $user -> setPassword($_POST['password']);
 
         $userExist = $this->model->checkExists($_POST['usuario'], $_POST['password']);
+        $menu = $this->menu;
 
         if ($userExist) {
             session_start();
@@ -27,7 +28,8 @@ class UserController extends Controller {
             }
             $this -> inicioUsuario();
         } else {
-            echo $this->twig->render('login.view.twig');
+            $mensajeError = 'Credenciales incorrectas. Intentelo nuevamente.';
+            echo $this->twig->render('login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }
     }  
 
