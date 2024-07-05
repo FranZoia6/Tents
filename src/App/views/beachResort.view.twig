@@ -1,9 +1,32 @@
 {% extends "base.view.twig" %}
-    
-
 {% block main %}
         <h1>{{ beachResort.fields.name }}</h1>
         <section>
+            <ol>
+                <li>{{ beachResort.fields.city }}</li>
+                <li>{{ beachResort.fields.city }}</li>
+            </ol>    
+        </section>
+        <section>
+            	<form >
+					<fieldset>
+						<p>
+							<label>
+								Llegada:
+							</label>
+							<input type="date" />
+						</p>
+                        <p>
+							<label>
+								Salida:
+							</label>
+							<input type="date" />
+						</p>
+						<p>
+							<button type="submit" value="Buscar" > Buscar </button>
+						</p>	
+					</fieldset>
+				</form>
             <img src="./../imagenes/complejo.svg" alt="carpa">
         </section>
 {% endblock %}
