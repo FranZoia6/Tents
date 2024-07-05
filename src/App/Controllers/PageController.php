@@ -55,7 +55,7 @@ class PageController extends Controller
         if ($hayLogin) {
             $usuario = $_SESSION['login'];
         }
-        echo $this->twig->render('login.view.twig', ['hayLogin' => $hayLogin, 'usuario' => $usuario]);
+        echo $this->twig->render('login.view.twig', ['hayLogin' => $hayLogin, 'usuario' => $usuario,'menu' => $menu] );
     }
 
     public function contactProccess()
