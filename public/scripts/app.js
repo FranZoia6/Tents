@@ -24,6 +24,7 @@ class appPAW {
                     new Ciudades();
                 });
             }
+
         });
     }
 }

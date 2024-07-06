@@ -49,7 +49,7 @@ $router ->get('/resorts', 'BeachResortController@getByCity');
 
 
 $router -> post('/portal-admin', 'UserController@loginValidar');
-$router -> get('/portal-admin/balnearios', 'PageController@balnearios');
+$router -> get('/adminBeachResor', 'BeachResortController@adminBeachResor');
 
 $router->get('not_found', 'ErrorController@notFound');
 $router->get('internal_error','ErrorController@internalError');

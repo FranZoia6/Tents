@@ -10,6 +10,7 @@ use Tents\Core\Database\QueryBuilder;
 class UserController extends Controller {
 
     public ?string $modelName = UsersCollection::class;
+    
 
     public function loginValidar() {
 
@@ -19,6 +20,7 @@ class UserController extends Controller {
 
         $userExist = $this->model->checkExists($_POST['usuario'], $_POST['password']);
         $menu = $this->menu;
+        
 
         if ($userExist) {
             session_start();
@@ -34,7 +36,14 @@ class UserController extends Controller {
     }  
 
     public function inicioUsuario() {
-        echo $this->twig->render('/portal-admin/inicio-usuario.view.twig');
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $titulo = "Admin";
+        $menu = $this->menuAdmin;
+        echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo'));
     }
+
+
 
 }

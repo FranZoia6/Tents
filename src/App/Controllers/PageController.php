@@ -61,9 +61,6 @@ class PageController extends Controller
                                 );
     }
 
-    public function balnearios() {
-        echo $this->twig->render('/portal-admin/balnearios.view.twig');
-    }
 
     public function contactProccess()
     {

@@ -42,6 +42,17 @@ class BeachResortController extends Controller {
 
     }
 
+    public function adminBeachResor() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $titulo = "Balneario";
+        $menu = $this->menuAdmin;
+        $beachResorts = $this->model->getAll();
+        echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
+    }
+    
+
     public function edit() {
 
     }

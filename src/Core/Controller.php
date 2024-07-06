@@ -44,6 +44,17 @@ class Controller {
                 "name" => "Iniciar sesión",
             ]
         ];
+        @$this->menuAdmin = [
+
+            [
+                "href" => "/adminBeachResor",
+                "name" => "Balnearios",
+            ],
+            [
+                "href" => "/?sesion=cerrar",
+                "name" => "Cerrar sesión",
+            ]
+        ];
 
         if(!is_null($this->modelName)){
 			$qb = new QueryBuilder($connection,$log);

@@ -1,0 +1,27 @@
+{% extends "base.view.twig" %}
+{% block main %}
+        <h1>{{ titulo }}</h1>
+        <section>
+               <table>
+                        <thead>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Ciudad</th>
+                                <th>Estado</th>
+                                <th></th>
+                        </thead>
+                        <tbody>
+                                {% for beachResort in beachResorts %}
+                                        <tr class="ABM">
+                                                <td>{{ beachResort.fields.id }}</td>
+                                                <td>{{ beachResort.fields.name }}</td>
+                                                <td id="ciudad">{{ beachResort.fields.city }}</td>
+                                                <td>{{ beachResort.fields.state }}</td>
+                                                <td>Ver</td>
+                                        </tr>
+                                {% endfor %}                            
+                        </tbody>
+               </table> 
+        </section>
+{% endblock %}
