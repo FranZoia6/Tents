@@ -13,10 +13,9 @@ class CityCollection extends Model {
     public function getAll() {
         $cities = $this -> queryBuilder -> select('city');
         $city_collection = [];
-        
         foreach ($cities as $city) {
             $newCity = new City;
-            $newCity->setQueryBuilder($this->queryBuilder);
+            #$newCity->setQueryBuilder($this->queryBuilder);
             $newCity -> set($city);
             $city_collection[] = $newCity;
         }

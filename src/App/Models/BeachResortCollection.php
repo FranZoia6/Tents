@@ -31,4 +31,8 @@ class BeachResortCollection extends Model {
         return $newBeachResort;
     }
 
+    public function getByCity($cityId) {
+        return $this->queryBuilder->select('beach_resort', ['city' => $cityId]);
+    }
+
 }

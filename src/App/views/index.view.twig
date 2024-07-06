@@ -4,16 +4,9 @@
     <main>
         <section class="reserva">
                 <label for="ciudad">Ciudad:</label>
-                <select name="ciudad" id="ciudad">
-                    {% for ciudad in ciudades %}
-                        <option value="{{ ciudad }}">{{ ciudad }}</option>
-                    {% endfor %}
-                </select>
+                <select class="selectCiudades" name="ciudad" id="ciudad"></select>
                 <label for="balneario">Balneario:</label>
-                <select name="balneario" id="balneario">
-                    {% for balneario in balnearios %}
-                        <option value="{{ balneario }}">{{ balneario }}</option>
-                    {% endfor %}
+                <select class="balnearios" name="balneario" id="balneario">
                 </select>
                 <label for="fecha_entrada">Fecha de Entrada:</label>
                 <input type="date" id="fecha_entrada" name="fecha_entrada">

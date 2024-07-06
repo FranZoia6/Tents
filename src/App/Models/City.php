@@ -8,17 +8,22 @@ use Exception;
 
 class City extends Model {
 
-    public $table = 'shade';
+    public $table = 'city';
 
     public $fields = [
-        "nombre" => null,
+        "id" => null,
+        "name" => null,
     ];
 
-    public function setNombre(string $nombre) {
+    public function setName(string $nombre) {
         if (strlen($nombre) > 63) {
             throw new InvalidValueFormatException("El nombre de la ciudad no debe ser mayor a 63 caracteres");
         }
-        $this -> fields["nombre"] = $nombre;
+        $this -> fields["name"] = $nombre;
+    }
+
+    public function setId(int $id) {
+        $this -> fields["id"] = $id;
     }
 
     public function set(array $values) {

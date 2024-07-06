@@ -21,6 +21,34 @@ class CityController extends Controller {
         echo $this->twig->render('beachResort.index.view.twig', compact('menu','titulo','beachResorts'));
     }
 
+    public function getAll() {
+        try {
+            $cities = $this->model->getAll();
+            
+            $ciudades = [];
+            foreach ($cities as $city) {
+                $ciudades[] = $city->fields;
+            }
+    
+            $response = [
+                'success' => true,
+                'data' => $ciudades
+            ];
+    
+            header('Content-Type: application/json');
+            echo json_encode($response, JSON_UNESCAPED_UNICODE);
+        } catch (Exception $e) {
+            // Manejo de errores
+            $response = [
+                'success' => false,
+                'message' => 'Error al obtener las ciudades: ' . $e->getMessage()
+            ];
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+    
+
     public function get() {
         global $request;
         $beachResortId = $request -> get('id');

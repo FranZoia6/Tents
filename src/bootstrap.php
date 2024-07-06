@@ -15,10 +15,12 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv -> load();
 
-$log = new Logger('mvc-app');
-$log->pushHandler(new StreamHandler(__DIR__ . '/../logs/app.log', Level::Debug));
-
 $config = new Config;
+
+$log = new Logger('mvc-app');
+$handler = new StreamHandler($config -> get("LOG_PATH"));
+$handler -> setLevel($config -> get("LOG_LEVEL"));
+$log->pushHandler($handler);
 
 // Conexion a BD
 $connectionBuilder = new ConnectionBuilder;
@@ -40,6 +42,11 @@ $router->get('/beachResortIndex','BeachResortController@index');
 $router->get('/beachResort','BeachResortController@get');
 $router->post('/contact','PageController@contactProccess');
 $router ->get('/login', 'PageController@login');
+
+$router ->get('/cities', 'CityController@getAll');
+
+$router ->get('/resorts', 'BeachResortController@getByCity');
+
 
 $router -> post('/portal-admin', 'UserController@loginValidar');
 $router -> get('/portal-admin/balnearios', 'PageController@balnearios');

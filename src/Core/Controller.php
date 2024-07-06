@@ -50,7 +50,6 @@ class Controller {
 		}
 
     }
-
     
     public function setModel(Model $model) {
         $this -> model = $model;

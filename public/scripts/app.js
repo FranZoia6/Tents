@@ -16,6 +16,14 @@ class appPAW {
                     new CarouselComponent(".carousel", images);
                 });
             }
+
+            contenedor = document.querySelector(".reserva");
+
+            if (contenedor) {
+                PAW.cargarScript("Ciudades", "scripts/components/ciudades.component.js", () => {
+                    new Ciudades();
+                });
+            }
         });
     }
 }

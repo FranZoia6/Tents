@@ -30,6 +30,18 @@ class BeachResortController extends Controller {
         echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort'));  
     }
 
+    public function getByCity() {
+        
+        global $request;
+        $cityId = $request->get('cityId');
+
+        $beachResorts = $this->model->getByCity($cityId);
+        
+        header('Content-Type: application/json');
+        echo json_encode($beachResorts, JSON_UNESCAPED_UNICODE);
+
+    }
+
     public function edit() {
 
     }
