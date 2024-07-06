@@ -23,4 +23,15 @@ class Request {
     {
         return $_POST[$key] ?? $_GET[$key] ?? null;
     }
+
+    /**
+     * Determina si la solicitud es AJAX.
+     * @return bool
+     * @see https://css-tricks.com/snippets/php/detect-ajax-request/
+     */
+    public function isAjax() {
+        return !empty($_SERVER["HTTP_X_REQUESTED_WITH"])
+                && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest";
+    }
+
 }

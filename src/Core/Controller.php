@@ -4,6 +4,7 @@ namespace Tents\Core;
 
 use Tents\Core\Database\QueryBuilder;
 use Tents\Core\Model;
+use Tents\Core\Request;
 
 class Controller {
 
@@ -12,9 +13,11 @@ class Controller {
     public $model;
     public $loader = null;
     public $twig = null;
+    protected Request $request;
 
-    public function __construct(){
+    public function __construct(Request $request) {
         global $connection, $log;
+        $this->request = $request;
         $this-> viewsDir = __DIR__ . "/../App/views/"; 
         $this->loader = new \Twig\Loader\FilesystemLoader($this->viewsDir);
 		$this->twig =new \Twig\Environment($this->loader,[]);

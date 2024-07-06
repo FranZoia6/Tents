@@ -38,9 +38,9 @@ class Router
         $this -> loadRoutes($path, $action, "POST");
     }
 
-    public function call($controller, $method) {
+    public function call($controller, $method, Request $request) {
         $controller_name = "Tents\\App\\Controllers\\{$controller}";
-        $objController = new $controller_name;
+        $objController = new $controller_name($request);
         $objController->$method();
     }
 
@@ -64,7 +64,7 @@ class Router
                 list($controller, $method) = $this -> getController($this -> notFound, "GET");
                 $this -> logger -> debug('Status Code:404 - Route Not Found', ["ERROR" => $e]);
             } finally {
-                $this -> call($controller, $method);
+                $this->call($controller, $method, $request);
             }
     }
 } 
