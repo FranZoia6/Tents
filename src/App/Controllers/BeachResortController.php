@@ -6,6 +6,9 @@ use Tents\Core\Controller;
 use Tents\App\Models\BeachResortCollection;
 use Tents\Core\Database\QueryBuilder;
 use Tents\App\Models\BeachResort;
+use Tents\App\Models\CityCollection;
+use Tents\App\Models\ServiceBeachResortCollection;
+use Tents\App\Models\ServiceCollection;
 
 
 class BeachResortController extends Controller {
@@ -19,6 +22,7 @@ class BeachResortController extends Controller {
         $titulo = "Balnearios";
         $beachResorts = $this->model->getAll();
         $menu = $this->menu;
+
         echo $this->twig->render('beachResort.index.view.twig', compact('menu','titulo','beachResorts'));
     }
 
@@ -27,7 +31,20 @@ class BeachResortController extends Controller {
         $beachResortId = $request -> get('id');
         $beachResort = $this -> model -> get($beachResortId);
         $menu = $this->menu;
-        echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort'));  
+        $cityCollection = new CityCollection;
+        $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+        $city = $cityCollection->get($beachResort->fields["city"]);
+        $serviceBeachResortCollection = new ServiceBeachResortCollection;
+        $serviceBeachResortCollection -> setQueryBuilder($this->model->queryBuilder);
+        $servicesBeachResorts = $serviceBeachResortCollection-> getByBeachResort($beachResort->fields["id"]);
+        $serviceCollection = new ServiceCollection;
+        $serviceCollection -> setQueryBuilder($this->model->queryBuilder);
+        $service_colection = [];
+
+        foreach ($servicesBeachResorts as $servicesBeachResort){
+            $service_colection[] = $serviceCollection->get($servicesBeachResort["service"])->fields;
+        }
+        echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort',"city","service_colection"));  
     }
 
     public function getByCity() {
@@ -43,13 +60,17 @@ class BeachResortController extends Controller {
     }
 
     public function adminBeachResor() {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+        session_start();
+        if (isset($_SESSION['logueado'])) {
+            $titulo = "Balneario";
+            $menu = $this->menuAdmin;
+            $beachResorts = $this->model->getAll();
+            echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
+        }else {
+            $mensajeError = 'Prueba';
+            $menu = $this->menu;
+            echo $this->twig->render('login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }
-        $titulo = "Balneario";
-        $menu = $this->menuAdmin;
-        $beachResorts = $this->model->getAll();
-        echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
     }
     
 

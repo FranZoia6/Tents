@@ -11,14 +11,14 @@ class Service extends Model {
     public $table = 'service';
 
     public $fields = [
-        "nombre" => null,
+        "name" => null,
     ];
 
-    public function setNombre(string $nombre) {
-        if (strlen($nombre) > 63) {
+    public function setName(string $name) {
+        if (strlen($name) > 63) {
             throw new InvalidValueFormatException("El nombre de la ciudad no debe ser mayor a 63 caracteres");
         }
-        $this -> fields["nombre"] = $nombre;
+        $this -> fields["name"] = $name;
     }
     
     public function set(array $values) {

@@ -14,4 +14,11 @@ class Model {
     public function setQueryBuilder(QueryBuilder $qb) {
         $this -> queryBuilder = $qb;
     }
+
+    public function load($id)
+    {
+        $params = ["id"=>$id];
+        $record = current($this->queryBuilder->select($this->table, $params));
+        $this->set($record);
+    }
 }

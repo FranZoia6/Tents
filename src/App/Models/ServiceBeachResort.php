@@ -11,20 +11,21 @@ class ServiceBeachResort extends Model {
     public $table = 'service_beach_resort';
 
     public $fields = [
-        "service_id" => null,
-        "resort_id" => null,
+        "id" => null,
+        "service" => null,
+        "beachResort" => null,
     ];
 
     public function setId(int $id) {
         $this -> fields["id"] = $id;
     }
 
-    public function setService(int $service_id) {
-        $this -> fields["service_id"] = $service_id;
+    public function setService(int $service) {
+        $this -> fields["service"] = $service;
     }
 
-    public function setResort(int $resort_id) {
-        $this -> fields["resort_id"] = $resort_id;
+    public function setBeachResort(int $beachResort) {
+        $this -> fields["beachResort"] = $beachResort;
     }
 
     public function set(array $values) {

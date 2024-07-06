@@ -37,7 +37,7 @@ class Controller {
             ],
             [    
                 "href" => "/beachResortIndex",
-                "name" => "Beach Resort",
+                "name" => "Balnearios",
             ],
             [
                 "href" => "/login",

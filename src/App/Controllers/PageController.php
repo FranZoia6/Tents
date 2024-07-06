@@ -12,8 +12,6 @@ class PageController extends Controller
     {
         $titulo = 'Tents';
         $menu = $this->menu;
-        $ciudades = ['Mar del Plata', 'Ciudad 2', 'Ciudad 3'];
-        $balnearios = ['Alfonsina Storni', 'Balneario 2', 'Balneario 3'];
 
         session_start();
 
