@@ -3,26 +3,26 @@
 {% block main %}
 
     <section class="login">
-    
-        <h2>Iniciar sesión</h2>
-        {% if hayLogin %}
-            <p class="mensaje">Bienvenido, usted se encuentra logueado con el usuario: {{ usuario }}.</p>
-            <p><a class="cerrarsesion" href="/?sesion=cerrar">Cerrar Sesion</a></p>
-        {% else %}
-            <form class="fLogin" action="portal-admin" method="post">
-                <label for="inputDNI">Usuario:
-                    <input type="text" name="usuario">
-                </label>
-                <label for="inputPassword">Contraseña:
-                    <input type="password" name="password">
-                </label>
-                <input name="login" type="submit" value="Ingresar">
-                {% if mensajeError %}
-                    <p> {{ mensajeError }}</p>
-                {% endif %}
-            </form>
-        {% endif %}
-
+        <section>
+            <h2>Iniciar sesión</h2>
+            {% if hayLogin %}
+                <p class="mensaje">Bienvenido, usted se encuentra logueado con el usuario: {{ usuario }}.</p>
+                <p><a class="cerrarsesion" href="/?sesion=cerrar">Cerrar Sesion</a></p>
+            {% else %}
+                <form class="fLogin" action="portal-admin" method="post">
+                    <label for="inputDNI">Usuario:
+                        <input type="text" name="usuario">
+                    </label>
+                    <label for="inputPassword">Contraseña:
+                        <input type="password" name="password">
+                    </label>
+                    <input name="login" type="submit" value="Ingresar">
+                    {% if mensajeError %}
+                        <p> {{ mensajeError }}</p>
+                    {% endif %}
+                </form>
+            {% endif %}
+        </section>
     </section>
 </main>
 

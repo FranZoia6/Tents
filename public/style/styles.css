@@ -19,6 +19,10 @@
     
 }
 
+html{
+  max-width: 100%; 
+}
+
 body {
     margin: 0;
     font-family: 'Roboto', Arial, sans-serif;
@@ -105,21 +109,17 @@ article p {
 }
 
 article a {
-  text-decoration: none;
   display: inline-block;
+  text-decoration: none;
   padding: 1em;
-  margin-left: 80em;
-  margin-bottom: 2em;
+  margin-left: 80%;
+  margin-bottom: 2%;
   border-radius: 10px;
   background-color:  var(--principal-color1); 
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
   color: #fff; 
 }
 
-article button:active
-{  
-  background-color: #00aab6;
-}
 
 
 section {
@@ -187,6 +187,8 @@ figure {
 }
 
 footer {
+    bottom: 0;
+    width: 100%;
     background-color: var(--background-section1); 
     text-align: center;
     padding: 20px;
@@ -237,17 +239,32 @@ footer .instagram > i {
 
 .reserva > label,select,input {
   font-size: 1rem;
-  border-radius: 0.8rem;
+  border-radius: 0.3rem;
   padding: 5px;
+ 
+}
+
+.reserva > select, input{
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .bReserva {
-  font-size: 1rem;
-  padding: 10px;
-  border-radius: 5px;
-  color: black;
-  font-weight: bold;
-  background-color: #007bff;
+  padding: 1em;
+  border-radius: 10px;
+  background-color:  var(--principal-color1); 
+  box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
+  color: #fff; 
+}
+
+.login section{
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.3); /* Color blanco con 70% de opacidad */
+  padding: 4em;
+}
+
+.login h2{
+  text-align: center;
 }
 
 .carousel {
