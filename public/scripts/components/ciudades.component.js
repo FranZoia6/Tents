@@ -65,7 +65,7 @@ class Ciudades {
         resortsList.innerHTML = ''; // Limpiar la lista anterior
 
         resorts.forEach(resort => {
-            const listItem = PAW.nuevoElemento('option', resort.name);
+            const listItem = PAW.nuevoElemento('option', resort.name, {value: resort.id});
             resortsList.appendChild(listItem);
         });
     }

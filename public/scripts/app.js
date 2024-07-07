@@ -25,6 +25,14 @@ class appPAW {
                 });
             }
 
+            contenedor = document.querySelector(".bReserva");
+
+            if (contenedor) {
+                PAW.cargarScript("ReservationHomeComponent", "scripts/components/reservationHome.component.js", () => {
+                    new ReservationHomeComponent();
+                });
+            }
+
         });
     }
 }

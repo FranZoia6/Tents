@@ -40,11 +40,14 @@ class BeachResortController extends Controller {
         $serviceCollection = new ServiceCollection;
         $serviceCollection -> setQueryBuilder($this->model->queryBuilder);
         $service_colection = [];
-
+        $start_date = $request -> get('start_date');
+        $end_date = $request -> get('end_date');
+       
         foreach ($servicesBeachResorts as $servicesBeachResort){
             $service_colection[] = $serviceCollection->get($servicesBeachResort["service"])->fields;
         }
-        echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort',"city","service_colection"));  
+        echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort',"city","service_colection",
+                                                                  'start_date', 'end_date'));  
     }
 
     public function getByCity() {
@@ -75,7 +78,6 @@ class BeachResortController extends Controller {
             echo $this->twig->render('login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }
     }
-    
 
     public function edit() {
 

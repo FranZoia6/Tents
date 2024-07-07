@@ -1,35 +1,36 @@
 {% extends "base.view.twig" %}
+
 {% block main %}
-        <h1>{{ beachResort.fields.name }}</h1>
-        <section>
-                <p>{{ beachResort.fields.description }}</p>
-                <p>Ciudad: {{ city.fields.name }}</p>
-				<ol>Servicios:
-					{% for service in service_colection %}
-						<li>{{ service.name }}</li>
-					{% endfor %}
-            	</ol>    
-        </section>
-        <section>
-            	<form >
-					<fieldset>
-						<p>
-							<label>
-								Llegada:
-							</label>
-							<input type="date" />
-						</p>
-                        <p>
-							<label>
-								Salida:
-							</label>
-							<input type="date" />
-						</p>
-						<p>
-							<button type="submit" value="Buscar" > Buscar </button>
-						</p>	
-					</fieldset>
-				</form>
-            <img src="./../imagenes/complejo.svg" alt="carpa">
-        </section>
+    <h1>{{ beachResort.fields.name }}</h1>
+    <section>
+        <p>{{ beachResort.fields.description }}</p>
+        <p>Ciudad: {{ city.fields.name }}</p>
+        <ol>Servicios:
+            {% for service in service_colection %}
+                <li>{{ service.name }}</li>
+            {% endfor %}
+        </ol>
+    </section>
+    <section>
+        <form>
+            <fieldset>
+                <p>
+                    <label>
+                        Llegada:
+                    </label>
+                    <input type="date" id="fecha_entrada" name="fecha_entrada" {% if start_date is not null %}value="{{ start_date }}" {% endif %}/>
+                </p>
+                <p>
+                    <label>
+                        Salida:
+                    </label>
+                    <input type="date" id="fecha_salida" name="fecha_salida" {% if end_date is not null %}value="{{ end_date }}" {% endif %}/>
+                </p>
+                <p>
+                    <button type="submit">Buscar</button>
+                </p>	
+            </fieldset>
+        </form>
+        <img src="./../imagenes/complejo.svg" alt="carpa">
+    </section>
 {% endblock %}
