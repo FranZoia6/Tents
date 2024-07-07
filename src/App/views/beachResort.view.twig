@@ -2,13 +2,13 @@
 {% block main %}
         <h1>{{ beachResort.fields.name }}</h1>
         <section>
-            <ol>
-                <li>{{ beachResort.fields.description }}</li>
-                <li>{{ city.fields.name }}</li>
-				{% for service in service_colection %}
-        			<li>{{ service.name }}</li>
-        		{% endfor %}
-            </ol>    
+                <p>{{ beachResort.fields.description }}</p>
+                <p>Ciudad: {{ city.fields.name }}</p>
+				<ol>Servicios:
+					{% for service in service_colection %}
+						<li>{{ service.name }}</li>
+					{% endfor %}
+            	</ol>    
         </section>
         <section>
             	<form >

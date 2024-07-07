@@ -30,7 +30,7 @@ class QueryBuilder {
     
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+   
     
     public function getPdo() {
         return $this->pdo;

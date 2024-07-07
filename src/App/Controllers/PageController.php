@@ -26,7 +26,7 @@ class PageController extends Controller
             session_destroy();
         }
 
-        echo $this->twig->render('index.view.twig', compact('menu','titulo','ciudades','balnearios'));
+        echo $this->twig->render('index.view.twig', compact('menu','titulo'));
     }
 
     public function servicies()

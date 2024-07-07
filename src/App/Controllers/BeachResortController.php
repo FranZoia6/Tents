@@ -65,6 +65,9 @@ class BeachResortController extends Controller {
             $titulo = "Balneario";
             $menu = $this->menuAdmin;
             $beachResorts = $this->model->getAll();
+            $cityCollection = new CityCollection;
+            $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+            $city = $cityCollection->get($beachResort->fields["city"]);
             echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
         }else {
             $mensajeError = 'Prueba';

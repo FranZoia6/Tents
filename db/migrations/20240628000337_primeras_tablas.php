@@ -24,11 +24,31 @@ final class PrimerasTablas extends AbstractMigration
         $tableCity->addColumn('name', 'text', ['limit' => MysqlAdapter::TEXT_TINY, 'null' => false])
             ->addIndex(['name'], ['unique' => true, 'limit' => 63])
             ->create();
+        if ($this->isMigratingUp()) {
+            $tableCity->insert([
+                ['id' => 1,'name' => 'Mar Del Plata'],
+                ['id' => 2,'name' => 'Villa Gesell'],
+                ['id' => 3,'name' => 'Miramar'], 
+                ['id' => 4,'name' => 'Necochea'],
+                ['id' => 5,'name' => 'Pinamar']
+
+            ])->saveData();
+        }
 
         $tableService = $this->table('service');
         $tableService->addColumn('name', 'text', ['limit' => MysqlAdapter::TEXT_TINY, 'null' => false])
             ->addIndex(['name'], ['unique' => true, 'limit' => 63])
             ->create();
+        if ($this->isMigratingUp()) {
+            $tableService->insert([
+                ['id' => 1,'name' => 'Pileta'],
+                ['id' => 2,'name' => 'SPA'],
+                ['id' => 3,'name' => 'Masajes'],
+                ['id' => 4,'name' => 'Barra'],
+                ['id' => 5,'name' => 'Restaurant'],
+                ['id' => 6,'name' => 'Baño'],
+            ])->saveData();
+        }
 
         $tableStateBeachResort = $this->table('state_beach_resort');
         $tableStateBeachResort->addColumn('name', 'text', ['limit' => MysqlAdapter::TEXT_TINY, 'null' => false])
@@ -46,6 +66,11 @@ final class PrimerasTablas extends AbstractMigration
             ->addColumn('password', 'text', ['limit' => MysqlAdapter::TEXT_TINY, 'null' => false])
             ->addIndex(['user'], ['unique' => true, 'limit' => 63])
             ->create();
+        if ($this->isMigratingUp()) {
+            $tableUser->insert([
+                ['id' => 1, 'user' => 'admin', 'password' => 'admin']
+            ])->saveData();
+        }
 
         $tableShade = $this->table('shade');
         $tableShade->addColumn('name', 'text', ['limit' => MysqlAdapter::TEXT_TINY, 'null' => false])
@@ -65,6 +90,13 @@ final class PrimerasTablas extends AbstractMigration
             ->addColumn('from', 'datetime', ['null' => false])
             ->addColumn('to', 'datetime', ['null' => false])
             ->create();
+        if ($this->isMigratingUp()) {
+            $tablePromotion->insert([
+                ['id'=> 1, 'name' => 'descuento 10' ,'code' => 'descuento10', 'discount' => '10','isPercentage' => true, 'from' => '2024-07-06', 'to' =>'2024-08-06' ],
+                ['id'=> 2, 'name' => 'descuento 20' , 'code' => 'descuento20', 'discount' => '20','isPercentage' => true, 'from' => '2024-07-06', 'to' =>'2024-08-06' ],
+                ['id'=> 3, 'name' => 'descuento 5000' , 'code' => 'descuento5000', 'discount' => '5000','isPercentage' => false, 'from' => '2024-07-06', 'to' =>'2024-08-06' ]
+            ])->saveData();
+        }
 
         $tableBeachResort = $this->table('beach_resort');
         $tableBeachResort->addColumn('name', 'text', ['limit' => MysqlAdapter::TEXT_TINY, 'null' => false])
@@ -75,6 +107,23 @@ final class PrimerasTablas extends AbstractMigration
             ->addForeignKey('city', 'city', 'id', ['delete' => 'RESTRICT', 'update' => 'RESTRICT'])
             ->addForeignKey('state', 'state_beach_resort', 'id', ['delete' => 'RESTRICT', 'update' => 'RESTRICT'])
             ->create();
+        if ($this->isMigratingUp()){
+            $tableBeachResort->insert([
+                ['id' => 1, 'name' => 'Playa Grande', 'description' => 'Ubicado en la majestuosa costa de Playa Grande, nuestro balneario es el destino perfecto para aquellos que buscan combinar relajación y diversión en un entorno paradisíaco. Con vistas impresionantes al océano y una playa de arena blanca que se extiende por kilómetros, ofrecemos una experiencia inigualable para toda la familia.',
+                'city' => 1, 'state' => 1],
+                ['id' => 2, 'name' => 'Varese', 'description' => 'Ubicado en la pintoresca Playa Varese, nuestro balneario ofrece una combinación perfecta de elegancia y confort en un entorno sereno y exclusivo. Con vistas espectaculares al mar y una atmósfera relajante, es el lugar ideal para escapar del bullicio de la ciudad y disfrutar de un día de descanso y diversión.',
+                'city' => 1, 'state' => 1],
+                ['id' => 3, 'name' => 'Torreon del Monje', 'description' => 'Ubicado en el icónico Torreón del Monje, nuestro balneario combina historia, elegancia y belleza natural en un solo lugar. Con una ubicación privilegiada y vistas panorámicas al mar, es el destino perfecto para quienes buscan una experiencia de playa única y sofisticada en Mar del Plata.',
+                'city' => 1, 'state' => 1],
+                ['id' => 4, 'name' => 'Luz de Luna', 'description' => 'Ubicado en la encantadora Villa Gesell, el Balneario Luz de Luna es un refugio de tranquilidad y belleza natural. Con una playa de arena fina y un entorno sereno, es el lugar perfecto para desconectar y disfrutar de la naturaleza en su máxima expresión.',
+                'city' => 2, 'state' => 1],
+                ['id' => 5, 'name' => 'Amy', 'description' => 'Ubicado en la encantadora Villa Gesell, el Balneario Luz de Luna es un refugio de tranquilidad y belleza natural. Con una playa de arena fina y un entorno sereno, es el lugar perfecto para desconectar y disfrutar de la naturaleza en su máxima expresión.',
+                'city' => 2, 'state' => 1],
+                ['id' => 6, 'name' => 'Ola-La', 'description' => 'Ubicado en la encantadora Villa Gesell, el Balneario Luz de Luna es un refugio de tranquilidad y belleza natural. Con una playa de arena fina y un entorno sereno, es el lugar perfecto para desconectar y disfrutar de la naturaleza en su máxima expresión.',
+                'city' => 2, 'state' => 1]
+
+            ])->saveData();
+        }
 
         $tableServiceBeachResort = $this->table('service_beach_resort');
         $tableServiceBeachResort->addColumn('service', 'integer', ['null' => false, 'signed' => false])
@@ -83,6 +132,27 @@ final class PrimerasTablas extends AbstractMigration
             ->addForeignKey('service', 'service', 'id', ['delete' => 'RESTRICT', 'update' => 'RESTRICT'])
             ->addForeignkey('beachResort', 'beach_resort', 'id', ['delete' => 'CASCADE', 'update' => 'RESTRICT'])
             ->create();
+        if ($this->isMigratingUp()){
+            $tableServiceBeachResort->insert([
+                ['id' => 1,'service' => 1, 'beachResort' =>1],
+                ['id' => 2,'service' => 2, 'beachResort' =>1],
+                ['id' => 3,'service' => 3, 'beachResort' =>1],
+                ['id' => 4,'service' => 1, 'beachResort' =>2],
+                ['id' => 5,'service' => 2, 'beachResort' =>2],
+                ['id' => 6,'service' => 4, 'beachResort' =>2],
+                ['id' => 7,'service' => 1, 'beachResort' =>3],
+                ['id' => 8,'service' => 3, 'beachResort' =>3],
+                ['id' => 9,'service' => 5, 'beachResort' =>3],
+                ['id' => 10,'service' => 1, 'beachResort' =>4],
+                ['id' => 11,'service' => 2, 'beachResort' =>4],
+                ['id' => 12,'service' => 1, 'beachResort' =>5],
+                ['id' => 13,'service' => 5, 'beachResort' =>5],
+                ['id' => 14,'service' => 6, 'beachResort' =>5],
+                ['id' => 15,'service' => 1, 'beachResort' =>6],
+                ['id' => 16,'service' => 2, 'beachResort' =>6],
+                ['id' => 17,'service' => 6, 'beachResort' =>6],
+            ])->saveData();
+        }
 
         $tableUnit = $this->table('unit');
         $tableUnit->addColumn('beachResort', 'integer', ['null' => false, 'signed' => false])

@@ -158,7 +158,7 @@ h1 {
 }
 
 
-p {
+p, ol {
 	font-family: 'Century Gothic', sans-serif;
 	font-size: var(--section-description-size);
 	padding: 1rem  5rem;
