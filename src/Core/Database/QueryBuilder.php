@@ -59,6 +59,26 @@ class QueryBuilder {
         
         $statement->execute();
     }
+
+    public function join($table, $joinTable, $joinCondition, $selectColumns = ['*'], $params = []) {
+        $where = "1 = 1";
+        $bindings = [];
+    
+        foreach ($params as $column => $value) {
+            $where .= " AND $column = $value";
+            $bindings[":$column"] = $value;
+        }
+        
+        $selectColumnsString = implode(', ', $selectColumns);
+        $query = "SELECT $selectColumnsString FROM $table INNER JOIN $joinTable ON $joinCondition WHERE $where";
+
+        $sentencia = $this->pdo->prepare($query);
+        $sentencia->setFetchMode(PDO::FETCH_ASSOC);
+        $sentencia->execute();
+
+        return $sentencia->fetchAll();
+    }
+    
     
     public function update() {
 

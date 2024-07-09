@@ -33,6 +33,14 @@ class appPAW {
                 });
             }
 
+            contenedor = document.querySelector(".reserveUnit");
+
+            if (contenedor) {
+                PAW.cargarScript("ReservationsBeachResortComponent", "scripts/components/reservationsBeachResort.component.js", () => {
+                    new ReservationsBeachResortComponent();
+                });
+            }
+
         });
     }
 }

@@ -1,7 +1,7 @@
 {% extends "base.view.twig" %}
 
 {% block main %}
-    <h1>{{ beachResort.fields.name }}</h1>
+    <h1 class="balneario">{{ beachResort.fields.name }}</h1>
     <section>
         <p>{{ beachResort.fields.description }}</p>
         <p>Ciudad: {{ city.fields.name }}</p>
@@ -11,7 +11,7 @@
             {% endfor %}
         </ol>
     </section>
-    <section>
+    <section class="reserveUnit">
         <form>
             <fieldset>
                 <p>
@@ -27,10 +27,16 @@
                     <input type="date" id="fecha_salida" name="fecha_salida" {% if end_date is not null %}value="{{ end_date }}" {% endif %}/>
                 </p>
                 <p>
-                    <button type="submit">Buscar</button>
+                    <input type="button" value="Buscar" class="bBuscar"></input>
                 </p>	
             </fieldset>
         </form>
         <img src="./../imagenes/complejo.svg" alt="carpa">
     </section>
+{% endblock %}
+
+{% block javascript %}
+
+    const beachResortId = {{ beachResort.fields.id }};
+
 {% endblock %}
