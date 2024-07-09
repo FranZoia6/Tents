@@ -66,6 +66,11 @@ class BeachResortController extends Controller {
             $titulo = "Balnearios";
             $menu = $this->menuAdmin;
             $beachResorts = $this->model->getAll();
+<<<<<<< Updated upstream
+=======
+            $cityCollection = new CityCollection;
+            $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+>>>>>>> Stashed changes
             echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
         }else {
             $mensajeError = 'Prueba';
@@ -73,6 +78,19 @@ class BeachResortController extends Controller {
             echo $this->twig->render('login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }
     }
+
+    public function new() {
+        $menu = $this->menu;
+        $cityCollection = new CityCollection;
+        $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+        $cities = $cityCollection->getAll();
+        echo $this->twig->render('newBeachResort.view.twig', compact('menu','cities'));
+    }
+
+    public function submitNew() {
+        
+    }
+
 
     public function edit() {
 
