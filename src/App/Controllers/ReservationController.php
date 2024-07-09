@@ -29,11 +29,10 @@ class ReservationController extends Controller {
         // $unitReservationCollection ->setQueryBuilder($this->model->queryBuilder);
         // $unitsReservation = $unitReservationCollection->getAll();
 
-        $prueba = $this -> model -> join("unit", "unit_reservation", "unit.id = unit_reservation.unit",
-                                         ['*'], ['unit.beachResort' => $beachResortId]);
+        $occupatedTents = $this -> model -> getOccupatedTents($beachResortId, $start_date, $end_date);
 
-        var_dump($prueba);
-        die;
+        //var_dump($prueba);
+        //die;
         
     }
 

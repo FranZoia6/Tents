@@ -20,16 +20,53 @@ class QueryBuilder {
         $bindings = [];
     
         foreach ($params as $column => $value) {
-            $where .= " AND $column = :$column";
-            $bindings[":$column"] = $value;
+            if (is_array($value)) {
+                // Handle comparison operators
+                $operator = $value[0];
+                $conditionValue = $value[1];
+    
+                switch ($operator) {
+                    case '=':
+                    case '<':
+                    case '>':
+                    case '>=':
+                    case '<=':
+                        // Ensure strings are quoted
+                        if (is_string($conditionValue)) {
+                            $conditionValue = "'" . $conditionValue . "'";
+                        }
+                        $where .= " AND $column $operator $conditionValue";
+                        break;
+                    default:
+                        throw new Exception("Unsupported operator: $operator");
+                }
+            } else {
+                // Default to equality if no operator specified
+                // Ensure strings are quoted
+                if (is_string($value)) {
+                    $value = "'" . $value . "'";
+                }
+                $where .= " AND $column = $value";
+            }
         }
     
         $query = "SELECT * FROM $table WHERE $where";
-        $statement = $this->pdo->prepare($query);
-        $statement->execute($bindings);
+      //  $statement = $this->pdo->prepare($query);
+      //  var_dump($query);
+      //  var_dump($bindings);
+        
+        //$statement->execute($bindings);
+      //  var_dump($query);
+     //   die;
+
+        $sentencia = $this->pdo->prepare($query);
+        $sentencia->setFetchMode(PDO::FETCH_ASSOC);
+        $sentencia->execute();
     
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+       // return $statement->fetchAll(PDO::FETCH_ASSOC);
+       return $sentencia->fetchAll();
     }
+    
    
     
     public function getPdo() {
@@ -70,7 +107,7 @@ class QueryBuilder {
         }
         
         $selectColumnsString = implode(', ', $selectColumns);
-        $query = "SELECT $selectColumnsString FROM $table INNER JOIN $joinTable ON $joinCondition WHERE $where";
+        $query = "SELECT $selectColumnsString FROM $table LEFT JOIN $joinTable ON $joinCondition WHERE $where";
 
         $sentencia = $this->pdo->prepare($query);
         $sentencia->setFetchMode(PDO::FETCH_ASSOC);

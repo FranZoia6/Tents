@@ -31,8 +31,25 @@ class ReservationCollection extends Model {
         return $newReservation;
     }
 
-    public function join($table, $joinTable, $joinCondition, $selectColumns, $params) {
-        return $this -> queryBuilder -> join($table, $joinTable, $joinCondition, $selectColumns, $params);
+    public function getOccupatedTents($beachResortId, $start_date, $end_date) {
+
+        $prueba = $this -> queryBuilder -> join("unit", "unit_reservation", "unit.id = unit_reservation.unit",
+        ['*'], ['unit.beachResort' => $beachResortId]);
+
+        foreach ($prueba as $item) {
+            $reservation = $this -> queryBuilder -> select('reservation', [
+                                                        'id' => $item['reservation'],
+                                                        'reservation.from' => ['>=', date("Y-m-d", strtotime($start_date))],
+                                                        'reservation.to' => ['<=', date("Y-m-d", strtotime($end_date))]
+                                                        ]);                                    
+            var_dump($reservation);
+            die;
+        }
+
+
+        // $unitsReservation = $this -> queryBuilder -> join("reservation", "unit_reservation", "reservation.id = unit_reservation.reservation",
+        // ['*'], []);
+
     }
 
 }
