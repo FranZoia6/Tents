@@ -2,22 +2,22 @@
 {% block main %}
         <h1>{{ titulo }}</h1>
         <section>
-               <table>
+               <table class="tents-table">
                         <thead>
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Ciudad</th>
                                 <th>Estado</th>
-                                <th></th>
+                                <th>Acciones</th>
                         </thead>
                         <tbody>
                                 {% for beachResort in beachResorts %}
-                                        <tr class="ABM">
-                                                <td>{{ beachResort.fields.id }}</td>
+                                        <tr class="ABM row-{{ loop.index is odd ? "odd" : "even" }}">
+                                                <td class="center">{{ beachResort.fields.id }}</td>
                                                 <td>{{ beachResort.fields.name }}</td>
                                                 <td id="ciudad">{{ beachResort.fields.city }}</td>
-                                                <td>{{ beachResort.fields.state }}</td>
-                                                <td>Ver</td>
+                                                <td class="center">{{ beachResort.fields.state }}</td>
+                                                <td class="center">Ver</td>
                                         </tr>
                                 {% endfor %}                            
                         </tbody>

@@ -365,6 +365,38 @@ footer .instagram > i {
     fill:red
   }
 
+/* Estilos de las tablas */
+.tents-table {
+  border: 2px solid black;
+  font-family: serif;
+  margin: auto;
+  width: 80%;
+}
+
+.tents-table thead {
+  background-color: #efcf8d;
+  color: #0077b6;
+  font-weight: bold;
+}
+
+.tents-table tbody .row-odd {
+  background-color: #b2dae6;
+}
+
+.tents-table tbody .row-even {
+  background-color: #e5f6f6;
+}
+
+.tents-table th,
+.tents-table td {
+  border: 1px solid black;
+  padding: 4px 8px;
+}
+
+.center {
+  text-align: center;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 10px;
