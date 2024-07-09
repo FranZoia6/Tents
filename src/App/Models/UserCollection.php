@@ -6,7 +6,7 @@ use Tents\Core\Model;
 use Tents\App\Models\User;
 use DateTime;
 
-class UsersCollection extends Model {
+class UserCollection extends Model {
 
     public $table = 'user';
 

@@ -4,13 +4,12 @@ namespace Tents\App\controllers;
 
 use Tents\Core\Controller;
 use Tents\App\Models\User;
-use Tents\App\Models\UsersCollection;
+use Tents\App\Models\UserCollection;
 use Tents\Core\Database\QueryBuilder;
 
 class UserController extends Controller {
 
-    public ?string $modelName = UsersCollection::class;
-    
+    public ?string $modelName = UserCollection::class;
 
     public function loginValidar() {
 
