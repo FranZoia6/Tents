@@ -50,8 +50,7 @@ class CityController extends Controller {
     
 
     public function get() {
-        global $request;
-        $beachResortId = $request -> get('id');
+        $beachResortId = $this->request->get('id');
         $beachResort = $this -> model -> get($beachResortId);
         $menu = $this->menu;
         echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort'));  

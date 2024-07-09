@@ -27,8 +27,7 @@ class BeachResortController extends Controller {
     }
 
     public function get() {
-        global $request;
-        $beachResortId = $request -> get('id');
+        $beachResortId = $this->request->get('id');
         $beachResort = $this -> model -> get($beachResortId);
         $menu = $this->menu;
         $cityCollection = new CityCollection;
@@ -40,9 +39,9 @@ class BeachResortController extends Controller {
         $serviceCollection = new ServiceCollection;
         $serviceCollection -> setQueryBuilder($this->model->queryBuilder);
         $service_colection = [];
-        $start_date = $request -> get('start_date');
-        $end_date = $request -> get('end_date');
-       
+        $start_date = $this->request->get('start_date');
+        $end_date = $this->request->get('end_date');
+
         foreach ($servicesBeachResorts as $servicesBeachResort){
             $service_colection[] = $serviceCollection->get($servicesBeachResort["service"])->fields;
         }
@@ -51,9 +50,8 @@ class BeachResortController extends Controller {
     }
 
     public function getByCity() {
-        
-        global $request;
-        $cityId = $request->get('cityId');
+
+        $cityId = $this->request->get('cityId');
 
         $beachResorts = $this->model->getByCity($cityId);
         

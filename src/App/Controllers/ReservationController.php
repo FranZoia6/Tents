@@ -17,10 +17,9 @@ class ReservationController extends Controller {
        
     public function searchUnitsFree() {
 
-        global $request;
-        $beachResortId = $request -> get('id');
-        $start_date = $request -> get('start_date');
-        $end_date = $request -> get('end_date');
+        $beachResortId = $this->request->get('id');
+        $start_date = $this->request->get('start_date');
+        $end_date = $this->request->get('end_date');
 
         // $unitCollection = new UnitCollection;
         // $unitCollection ->setQueryBuilder($this->model->queryBuilder);
