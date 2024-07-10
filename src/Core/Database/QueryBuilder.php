@@ -31,6 +31,7 @@ class QueryBuilder {
                     case '>':
                     case '>=':
                     case '<=':
+                    case 'not':
                         // Ensure strings are quoted
                         if (is_string($conditionValue)) {
                             $conditionValue = "'" . $conditionValue . "'";
@@ -60,6 +61,7 @@ class QueryBuilder {
      //   die;
 
         $sentencia = $this->pdo->prepare($query);
+        var_dump($sentencia);
         $sentencia->setFetchMode(PDO::FETCH_ASSOC);
         $sentencia->execute();
     
@@ -114,6 +116,19 @@ class QueryBuilder {
         $sentencia->execute();
 
         return $sentencia->fetchAll();
+    }
+
+    public function querySql($query){
+
+        // var_dump($query);
+        // die;
+
+        $sentencia = $this->pdo->prepare($query);
+        $sentencia->setFetchMode(PDO::FETCH_ASSOC);
+        $sentencia->execute();
+
+        return $sentencia->fetchAll();
+
     }
     
     

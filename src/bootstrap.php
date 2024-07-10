@@ -46,13 +46,8 @@ $router ->get('/login', 'PageController@login');
 $router ->get('/cities', 'CityController@getAll');
 
 $router ->get('/resorts', 'BeachResortController@getByCity');
-<<<<<<< Updated upstream
 
 $router ->get('/searchReservations', 'ReservationController@searchUnitsFree');
-=======
-$router->get('/newBeachResort', 'BeachResortController@new');
-$router->get('/submitBeachResort', 'BeachResortController@submitNew');
->>>>>>> Stashed changes
 
 $router -> post('/portal-admin', 'UserController@loginValidar');
 $router -> get('/adminBeachResor', 'BeachResortController@adminBeachResor');

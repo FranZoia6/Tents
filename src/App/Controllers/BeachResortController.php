@@ -66,11 +66,6 @@ class BeachResortController extends Controller {
             $titulo = "Balnearios";
             $menu = $this->menuAdmin;
             $beachResorts = $this->model->getAll();
-<<<<<<< Updated upstream
-=======
-            $cityCollection = new CityCollection;
-            $cityCollection ->setQueryBuilder($this->model->queryBuilder);
->>>>>>> Stashed changes
             echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
         }else {
             $mensajeError = 'Prueba';
