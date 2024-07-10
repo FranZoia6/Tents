@@ -19,6 +19,7 @@
     
 }
 
+
 html{
   max-width: 100%; 
 }
@@ -423,6 +424,10 @@ footer .instagram > i {
 
 .center {
   text-align: center;
+}
+
+object{
+  height: 500px;
 }
 
 @media (max-width: 768px) {

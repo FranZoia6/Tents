@@ -26,10 +26,6 @@ class ReservationsBeachResortComponent {
             const fechaEntrada = fechaEntradaInput.value;
             const fechaSalida = fechaSalidaInput.value;
 
-            console.log(beachResortId);
-            console.log(fechaEntrada);
-            console.log(fechaSalida);
-
             // Validar que fechaSalida no sea menor que fechaEntrada
             if (fechaEntrada > fechaSalida) {
                 alert('La fecha de salida debe ser posterior a la fecha de entrada.');
@@ -42,11 +38,32 @@ class ReservationsBeachResortComponent {
             fetch(url)
             .then(response => response.json())
             .then(data => {
-              this.reserves = data.data;
-              console.log(this.reserves);
-            });
+                const reserves = data; // Los datos vienen directamente como objeto
+                console.log(reserves);
 
-            
+                const reservesList = document.querySelector('#reservesList');
+                reservesList.innerHTML = '';
+
+                const svgObject = document.getElementById('svgImage');
+                const svgDocument = svgObject.contentDocument;
+
+                for (const key in reserves) {
+                    if (reserves.hasOwnProperty(key)) {
+                        const reserve = reserves[key];
+                        const listItem = document.createElement('option');
+                        const unit = svgDocument.getElementById(reserve.id);
+                        if (unit) {
+                            unit.style.fill = "#008000";
+                        }
+                        listItem.value = reserve.id;
+                        listItem.textContent = reserve.id;
+                        reservesList.appendChild(listItem);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
         });
     }
 

@@ -27,16 +27,25 @@
                     <input type="date" id="fecha_salida" name="fecha_salida" {% if end_date is not null %}value="{{ end_date }}" {% endif %}/>
                 </p>
                 <p>
-                    <input type="button" value="Buscar" class="bBuscar"></input>
-                </p>	
+                    <input type="button" value="Buscar" class="bBuscar" id="botonBuscar"></input>
+                </p>
+                <p>
+                    <label for="reservesList">Seleccione una reserva:</label>
+                    <select id="reservesList" class="reserveUnit">
+                        <!-- Las opciones se generarán dinámicamente aquí -->
+                    </select>
+                </p>
             </fieldset>
         </form>
-        <img src="./../imagenes/complejo.svg" alt="carpa">
+        <object type="image/svg+xml" data="./../imagenes/complejo.svg" id="svgImage"></object>
+
+
     </section>
 {% endblock %}
 
 {% block javascript %}
 
-    const beachResortId = {{ beachResort.fields.id }};
+   const beachResortId = {{ beachResort.fields.id }};
 
+    </script>
 {% endblock %}

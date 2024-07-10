@@ -58,10 +58,8 @@ class ReservationCollection extends Model {
             return !in_array($unidad['id'], $idReservasIds);
         });
 
-        var_dump($idReservasIds);
-        // var_dump($units);  
-        var_dump($unidadesFiltradas); 
-        die;
+        return $unidadesFiltradas;
+
 
     // $prueba = $this -> queryBuilder -> join("unit", "unit_reservation", "unit.id = unit_reservation.unit",
     // ['*'], ['unit.beachResort' => $beachResortId]);
@@ -72,8 +70,6 @@ class ReservationCollection extends Model {
     //                                                 'reservation.from' => ['>=', date("Y-m-d", strtotime($start_date))],
     //                                                 'reservation.to' => ['<=', date("Y-m-d", strtotime($end_date))]
     //                                                 ]);                                    
-    //     var_dump($reservation);
-    //     die;
     // }
 
 

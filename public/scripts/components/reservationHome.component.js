@@ -37,6 +37,8 @@ class ReservationHomeComponent {
 
             // Redirigir al usuario
             window.location.href = url;
+
+
         });
     }
 }

@@ -30,11 +30,11 @@ class ReservationController extends Controller {
         // $unitsReservation = $unitReservationCollection->getAll();
 
         $occupatedTents = $this -> model -> getOccupatedTents($beachResortId, $start_date, $end_date);
-
-        //var_dump($prueba);
-        //die;
-        
+        header('Content-Type: application/json');
+        echo json_encode($occupatedTents, JSON_UNESCAPED_UNICODE);
     }
+
+
 
     public function edit() {
 

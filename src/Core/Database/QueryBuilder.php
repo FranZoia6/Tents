@@ -53,15 +53,12 @@ class QueryBuilder {
     
         $query = "SELECT * FROM $table WHERE $where";
       //  $statement = $this->pdo->prepare($query);
-      //  var_dump($query);
-      //  var_dump($bindings);
+
         
         //$statement->execute($bindings);
-      //  var_dump($query);
-     //   die;
+
 
         $sentencia = $this->pdo->prepare($query);
-        var_dump($sentencia);
         $sentencia->setFetchMode(PDO::FETCH_ASSOC);
         $sentencia->execute();
     
@@ -120,8 +117,6 @@ class QueryBuilder {
 
     public function querySql($query){
 
-        // var_dump($query);
-        // die;
 
         $sentencia = $this->pdo->prepare($query);
         $sentencia->setFetchMode(PDO::FETCH_ASSOC);
