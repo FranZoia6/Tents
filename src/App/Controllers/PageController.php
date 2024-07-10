@@ -59,13 +59,16 @@ class PageController extends Controller
                                 );
     }
 
-
     public function contactProccess()
     {
         $formulario = $_POST;
         //Hacer algo
         require $this-> viewsDir . 'contact.view.php';
 
+    }
+
+    public function reservationPersonalData() {
+        echo $this->twig->render('reservationPersonalData.view.twig');
     }
  
 }

@@ -52,6 +52,8 @@ $router ->get('/searchReservations', 'ReservationController@searchUnitsFree');
 $router -> post('/portal-admin', 'UserController@loginValidar');
 $router -> get('/adminBeachResor', 'BeachResortController@adminBeachResor');
 
+$router -> get('/reservationPersonalData', 'PageController@reservationPersonalData');
+
 $router->get('not_found', 'ErrorController@notFound');
 $router->get('internal_error','ErrorController@internalError');
 
