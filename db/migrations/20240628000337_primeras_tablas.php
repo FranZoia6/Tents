@@ -163,6 +163,28 @@ final class PrimerasTablas extends AbstractMigration
             ->addForeignKey('beachResort', 'beach_resort', 'id', ['delete' => 'CASCADE', 'update' => 'RESTRICT'])
             ->addForeignKey('shade', 'shade', 'id', ['delete' => 'RESTRICT', 'update' => 'RESTRICT'])
             ->create();
+            if ($this->isMigratingUp()){
+                $tableUnit->insert([
+                    ['id' => 1, 'beachResort'=>1,'number' =>1, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 2, 'beachResort'=>1,'number' =>2, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 3, 'beachResort'=>1,'number' =>3, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 4, 'beachResort'=>1,'number' =>4, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 5, 'beachResort'=>1,'number' =>5, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 6, 'beachResort'=>1,'number' =>6, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 7, 'beachResort'=>1,'number' =>7, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 8, 'beachResort'=>1,'number' =>8, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 9, 'beachResort'=>1,'number' =>9, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 10, 'beachResort'=>1,'number' =>10, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 11, 'beachResort'=>1,'number' =>11, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 12, 'beachResort'=>1,'number' =>12, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 13, 'beachResort'=>2,'number' =>1, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 14, 'beachResort'=>2,'number' =>2, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 15, 'beachResort'=>2,'number' =>3, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 16, 'beachResort'=>2,'number' =>4, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 17, 'beachResort'=>2,'number' =>5, 'shade' =>1,'price' =>20000 ],
+                    ['id' => 18, 'beachResort'=>2,'number' =>6, 'shade' =>1,'price' =>20000 ],
+                ])->saveData();
+            }
 
         $tableReservation = $this->table('reservation');
         $tableReservation->addColumn('date', 'datetime', ['null' => false])
@@ -181,6 +203,16 @@ final class PrimerasTablas extends AbstractMigration
             ->addIndex(['date'])
             ->addForeignKey('promotion', 'promotion', 'id', ['delete' => 'RESTRICT', 'update' => 'RESTRICT'])
             ->create();
+            if ($this->isMigratingUp()){
+                $tableReservation->insert([
+                    ['id' => 1, 'date' => '2024-07-10','from' => '2024-07-10', 'to' =>'2024-07-13','firstName' =>'Example',
+                    'lastName' => 'Example', 'email' => 'example@mail.com', 'phone' => '12341234','reservationAmount'=> 20000,
+                    'promotion'=> NULL, 'discountAmount' => 0, 'payed' => TRUE, 'voucher' => NULL, 'manual' => FALSE ],
+                    ['id' => 2, 'date' => '2024-07-10','from' => '2024-07-8', 'to' =>'2024-07-10','firstName' =>'Example',
+                    'lastName' => 'Example', 'email' => 'example@mail.com', 'phone' => '12341234','reservationAmount'=> 20000,
+                    'promotion'=> NULL, 'discountAmount' => 0, 'payed' => TRUE, 'voucher' => NULL, 'manual' => FALSE ]
+                ])->saveData();
+            }
 
         $tableUnitReservation = $this->table('unit_reservation');
         $tableUnitReservation->addColumn('reservation', 'integer', ['null' => false, 'signed' => false])
@@ -189,5 +221,11 @@ final class PrimerasTablas extends AbstractMigration
             ->addForeignKey('reservation', 'reservation', 'id', ['delete' => 'CASCADE', 'update' => 'RESTRICT'])
             ->addForeignkey('unit', 'unit', 'id', ['delete' => 'RESTRICT', 'update' => 'RESTRICT'])
             ->create();
+            if ($this->isMigratingUp()){
+                $tableUnitReservation->insert([
+                   ['id'=> 1, 'unit' =>1, 'reservation'=>1],
+                   ['id'=> 2, 'unit' =>1, 'reservation'=>2]
+                ])->saveData();
+            }
     }
 }
