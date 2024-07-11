@@ -82,8 +82,14 @@ class BeachResortController extends Controller {
         echo $this->twig->render('newBeachResort.view.twig', compact('menu','cities'));
     }
 
-    public function submitNew() {
-        
+    public function submit() {
+        $beachResort = new BeachResort;
+        $beachResort->setName($_POST['name']);
+        $beachResort->setDescription($_POST['description']);
+        $beachResort->setCity($_POST['city']);
+        $beachResort->setState(1);
+        $this->model->insertBeachResort($beachResort);
+        $this->adminBeachResor();
     }
 
 

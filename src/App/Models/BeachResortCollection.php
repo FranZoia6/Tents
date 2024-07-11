@@ -35,4 +35,18 @@ class BeachResortCollection extends Model {
         return $this->queryBuilder->select('beach_resort', ['city' => $cityId]);
     }
 
+    public function insertBeachResort($values) {
+        try {
+            $this->queryBuilder->insert($this->table, $values);
+        } catch (DatabaseException $e) {
+            // Manejar el error de la base de datos, mostrar mensaje, registrar, etc.
+            echo "Ocurrió un error al insertar el turno: " . $e->getMessage();
+        } catch (InvalidDataException $e) {
+            // Manejar el error de datos inválidos, mostrar mensaje, registrar, etc.
+            echo "Los datos del turno son inválidos: " . $e->getMessage();
+        } catch (InvalidValueFormatException $e) {
+            // Manejar el error de formato de valor inválido, mostrar mensaje, registrar, etc.
+            echo "El formato de un valor proporcionado es inválido: " . $e->getMessage();
+        }
+    }
 }

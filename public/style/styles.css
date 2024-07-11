@@ -121,6 +121,17 @@ article a {
   color: #fff; 
 }
 
+.bNew {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1em;
+  margin-left: 80%;
+  margin-bottom: 2%;
+  border-radius: 10px;
+  background-color:  var(--principal-color1); 
+  box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
+  color: #fff; 
+}
 
 
 section {

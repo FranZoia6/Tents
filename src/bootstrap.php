@@ -49,6 +49,9 @@ $router ->get('/resorts', 'BeachResortController@getByCity');
 
 $router ->get('/searchReservations', 'ReservationController@searchUnitsFree');
 
+$router->get('/newbeachresort', 'BeachResortController@new');
+$router->post('/submitBeachResort', 'BeachResortController@submit');
+
 $router -> post('/portal-admin', 'UserController@loginValidar');
 $router -> get('/adminBeachResor', 'BeachResortController@adminBeachResor');
 
