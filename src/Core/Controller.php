@@ -47,6 +47,10 @@ class Controller {
         @$this->menuAdmin = [
 
             [
+                "href" => "/adminCity",
+                "name" => "Ciudades",
+            ],
+            [
                 "href" => "/adminBeachResor",
                 "name" => "Balnearios",
             ],

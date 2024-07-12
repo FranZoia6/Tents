@@ -56,6 +56,32 @@ class CityController extends Controller {
         echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort'));  
     }
 
+    public function adminCity() {
+        session_start();
+        if (isset($_SESSION['logueado'])) {
+            $titulo = "Ciudades";
+            $menu = $this->menuAdmin;
+            $cities = $this->model->getAll();
+            echo $this->twig->render('/portal-admin/adminCity.view.twig',compact('menu','titulo','cities'));
+        }else {
+            $mensajeError = 'Prueba';
+            $menu = $this->menu;
+            echo $this->twig->render('login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
+        }
+    }
+
+    public function new() {
+        $menu = $this->menu;
+        echo $this->twig->render('/portal-admin/newCity.view.twig', compact('menu'));
+    }
+
+    public function submit() {
+        $city = new City;
+        $city->setName($_POST['name']);
+        $this->model->insertCity($city);
+        $this->adminCity();
+    }
+
     public function edit() {
 
     }

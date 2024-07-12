@@ -50,10 +50,15 @@ $router ->get('/resorts', 'BeachResortController@getByCity');
 $router ->get('/searchReservations', 'ReservationController@searchUnitsFree');
 
 $router->get('/newbeachresort', 'BeachResortController@new');
+$router->get('/newcity', 'CityController@new');
+$router->post('/submitCity', 'CityController@submit');
 $router->post('/submitBeachResort', 'BeachResortController@submit');
+$router->post('/enableBeachResort', 'BeachResortController@enable');
+$router->post('/disableBeachResort', 'BeachResortController@disable');
 
 $router -> post('/portal-admin', 'UserController@loginValidar');
 $router -> get('/adminBeachResor', 'BeachResortController@adminBeachResor');
+$router -> get('/adminCity', 'CityController@adminCity');
 
 $router -> get('/reservationPersonalData', 'PageController@reservationPersonalData');
 

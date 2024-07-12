@@ -1,4 +1,27 @@
 {% extends "base.view.twig" %}
 {% block main %}
-    <h1>{{ titulo }}</h1>
-{% endblock main %}
+        <h1>{{ titulo }}</h1>
+        <section>
+                <section>
+                        <a class="bNew" href="/newcity">Nueva Ciudad</a>
+                </section> 
+                <table class="tents-table">
+                        <thead>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                        </thead>
+                        <tbody>
+                            {% for city in cities %}
+                                    <tr class="ABM row-{{ loop.index is odd ? "odd" : "even" }}">
+                                            <td class="center">{{ city.fields.id }}</td>
+                                            <td>{{ city.fields.name }}</td>
+                                            <td class="center">
+                                                <a title="Editar" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+                                    </tr>
+                            {% endfor %}                           
+                        </tbody>
+               </table> 
+        </section>
+{% endblock %}

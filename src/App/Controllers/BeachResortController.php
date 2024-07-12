@@ -92,6 +92,19 @@ class BeachResortController extends Controller {
         $this->adminBeachResor();
     }
 
+    public function enable() {
+        $id = $_POST['idbeachresort'];
+        $state = 1;
+        $this->model->updateBeachResortState($id,$state);
+        $this->adminBeachResor();
+    }
+
+    public function disable() {
+        $id = $_POST['idbeachresort'];
+        $state = 0;
+        $this->model->updateBeachResortState($id,$state);
+        $this->adminBeachResor();
+    }
 
     public function edit() {
 

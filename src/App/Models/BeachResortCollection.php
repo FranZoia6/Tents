@@ -49,4 +49,20 @@ class BeachResortCollection extends Model {
             echo "El formato de un valor proporcionado es inválido: " . $e->getMessage();
         }
     }
+
+    public function updateBeachResortState($id, $newState) {
+        try {
+            // Asumiendo que $this->queryBuilder tiene un método update
+            $this->queryBuilder->update($this->table, ['state' => $newState], ['id' => $id]);
+        } catch (DatabaseException $e) {
+            // Manejar el error de la base de datos, mostrar mensaje, registrar, etc.
+            echo "Ocurrió un error al actualizar el estado del resort: " . $e->getMessage();
+        } catch (InvalidDataException $e) {
+            // Manejar el error de datos inválidos, mostrar mensaje, registrar, etc.
+            echo "Los datos proporcionados son inválidos: " . $e->getMessage();
+        } catch (InvalidValueFormatException $e) {
+            // Manejar el error de formato de valor inválido, mostrar mensaje, registrar, etc.
+            echo "El formato del valor proporcionado es inválido: " . $e->getMessage();
+        }
+    }
 }

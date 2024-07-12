@@ -1,0 +1,13 @@
+{% extends "base.view.twig" %}
+
+{% block main %}
+    <h1>Nueva Ciudad</h1>
+    <form class="newBeachResort" action="/submitCity" method = "POST">  
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+        <div>
+            <button class="bReserva" type="submit">Envíar</button>
+        </div>
+    </form>
+    </section>
+{% endblock %}
