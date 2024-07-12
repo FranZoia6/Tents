@@ -22,23 +22,18 @@
             </p>
         </section>
         
-        <section>
-            <h2>Carpas</h2>
-            <figure>
-                <img src="./../imagenes/carpas2.jpeg" alt="carpa">
-            </figure>
-            <p class="parrafo">
-                Un servicio de carpa en la playa de Mar del Plata brinda la oportunidad de disfrutar del sol y el mar con comodidad y estilo. Con carpas privadas equipadas con mobiliario, atención personalizada para bebidas y alimentos, junto con toallas y servicio de limpieza, ofrece una experiencia relajada y sin preocupaciones. Además, la posibilidad de reservar anticipadamente asegura un espacio ideal para aprovechar al máximo el día en la playa.
-            </p>
+        <section class= "card-container">
+            <h2>Ciudades</h2>
+            {% for city in cities   %}
+                <article class="card">    
+                    <h3>{{ city.fields.name }}</h3>
+                    <figure>
+                        <img src="./../imagenes/cities/{{ city.fields.id }}/city.jpg" alt="city" height=5em" ;>
+                    </figure>
+                    <p>Balnearios: 4</p>
+                </article> 
+            {% endfor %}                  
         </section>
-        <section>
-            <h2>Sombrillas</h2>
-            <figure>
-                <img src="./../imagenes/sombrilla.jpeg" alt="carpa">
-            </figure>
-            <p class="parrafo">
-                Nuestro servicio de mesa con sombrilla redefine la experiencia playera, ofreciéndote un oasis personal en la costa. Con nuestras mesas estratégicamente ubicadas y equipadas con cómodas sillas, te brindamos la oportunidad de disfrutar del sol y el mar con la máxima comodidad. La sombrilla adjunta proporciona sombra para momentos de relajación mientras te sumerges en la brisa marina. Nuestro objetivo es ofrecerte un espacio exclusivo y acogedor para que disfrutes de cada momento en la playa con tranquilidad y confort
-            </p>
-        </section>
+
     </main>
 {% endblock %}

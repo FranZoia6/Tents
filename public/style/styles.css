@@ -16,12 +16,12 @@
 	--footer-header-title-size: 1.5rem;
 	--footer-description-text : 1rem;
 
-    
+
 }
 
 
 html{
-  max-width: 100%; 
+  max-width: 100%;
 }
 
 body {
@@ -51,10 +51,10 @@ header > figure > img {
 nav {
     position: sticky;
     top: 0;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     text-align: center;
-    border-bottom: 1px solid #000000; 
-    z-index: 1000; 
+    border-bottom: 1px solid #000000;
+    z-index: 1000;
 }
 
 nav ul {
@@ -76,7 +76,7 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: var(--principal-color1);
-    color: #ffffff; 
+    color: #ffffff;
 }
 
 main {
@@ -92,22 +92,21 @@ img{
 article {
   margin-bottom: 1rem; /* Añade espacio inferior al artículo */
 }
-
+/*
 article img {
   display: inline-block;
-  vertical-align: top; 
+  vertical-align: top;
   height: 15em;
-  margin-right: 1rem; 
-  margin-bottom: 3rem; 
+  margin-right: 1rem;
+  margin-bottom: 3rem;
   margin-left: 4em;
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
-}
+} */
 
-article p {
+/* article p {
   display: inline-block;
-  vertical-align: top; 
-  max-width: 55%; 
-}
+  vertical-align: top;
+} */
 
 article a {
   display: inline-block;
@@ -116,9 +115,9 @@ article a {
   margin-left: 80%;
   margin-bottom: 2%;
   border-radius: 10px;
-  background-color:  var(--principal-color1); 
+  background-color:  var(--principal-color1);
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
-  color: #fff; 
+  color: #fff;
 }
 
 .bNew {
@@ -128,28 +127,27 @@ article a {
   margin-left: 80%;
   margin-bottom: 2%;
   border-radius: 10px;
-  background-color:  var(--principal-color1); 
+  background-color:  var(--principal-color1);
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
-  color: #fff; 
+  color: #fff;
 }
 
-
+/*
 section {
-    padding: 40px 20px; 
+    padding: 40px 20px;
     border-radius: 10px;
-    margin-bottom: 40px; /* Aumento del espacio entre secciones */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra más pronunciada */
-    background-color: rgba(255, 255, 255, 0.3); /* Color blanco con 70% de opacidad */
-}
+    margin-bottom: 40px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background-color: rgba(255, 255, 255, 0.3);
+} */
 
 
 
 section section {
-    padding: 20px 10px; /* Ajuste del padding interno */
-    border-radius: 0; /* Eliminación del borde redondeado */
-    margin-bottom: 10px; /* Aumento del espacio entre secciones */
-    background-color: rgba(255, 255, 255, 0.1); /* Color blanco con 70% de opacidad */
-    box-shadow: none; /* Eliminación de la sombra */
+    padding: 20px 10px;
+    border-radius: 0;
+    margin-bottom: 10px;
+    box-shadow: none;
 }
 
 section article {
@@ -166,7 +164,7 @@ h1 {
     font-family: "Abril Fatface", serif;
     font-size: var(--main-header-title-size); /* Asegúrate de definir esta variable según tu necesidad */
     color: #0077b6; /* Cambia el color a uno más vibrante */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .titulo {
@@ -176,7 +174,6 @@ h1 {
 p, ol {
 	font-family: 'Century Gothic', sans-serif;
 	font-size: var(--section-description-size);
-	padding: 1rem  5rem;
 }
 
 h2{
@@ -184,7 +181,7 @@ h2{
 	font-size: var(--section-title-size);
 	text-align: left;
 	padding-left: 4rem;
-	color: #E5992B; 
+	color: #E5992B;
 	text-shadow: 1px 1px 2px var(--text-shadow);
 }
 
@@ -229,7 +226,7 @@ figure {
 
 footer {
     bottom: 0;
-    background-color: var(--background-section1); 
+    background-color: var(--background-section1);
     text-align: center;
     padding: 20px;
     display: flex;
@@ -257,7 +254,7 @@ footer .whatsapp > i {
   color: green;
 }
 
-footer .phone > i { 
+footer .phone > i {
     color: green;
 }
 
@@ -275,13 +272,13 @@ footer .instagram > i {
   justify-content: center;
   gap: 1.5rem;
   align-items: center;
-} 
+}
 
 .reserva > label,select,input {
   font-size: 1rem;
   border-radius: 0.3rem;
   padding: 5px;
- 
+
 }
 
 .reserva > select, input{
@@ -292,9 +289,9 @@ footer .instagram > i {
 .bReserva {
   padding: 1em;
   border-radius: 10px;
-  background-color:  var(--principal-color1); 
+  background-color:  var(--principal-color1);
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
-  color: #fff; 
+  color: #fff;
 }
 
 .login section{
@@ -312,14 +309,14 @@ footer .instagram > i {
     width: 100%;
     overflow: hidden;
   }
-  
+
   .carousel-images {
     align-items: center;
     justify-content: center;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease; 
     display: flex;
    }
-  
+
   .carousel-image {
     width: auto;
     object-fit: cover;
@@ -328,7 +325,7 @@ footer .instagram > i {
   .carousel-image.active {
     display: block;
   }
-  
+
   .carousel-prev-button,
   .carousel-next-button {
     position: absolute;
@@ -343,21 +340,21 @@ footer .instagram > i {
     font-weight: bold;
     cursor: pointer;
   }
-  
+
   .carousel-prev-button {
     left: 10px;
   }
-  
+
   .carousel-next-button {
     right: 10px;
   }
-  
+
   .carousel-thumbnails {
     display: flex;
     justify-content: center;
     margin-top: 10px;
   }
-  
+
   .thumbnail {
     width: 50px;
     height: 50px;
@@ -366,7 +363,7 @@ footer .instagram > i {
     background-position: center;
     cursor: pointer;
   }
-  
+
   .thumbnail:hover {
     opacity: 0.7;
   }
@@ -380,7 +377,8 @@ footer .instagram > i {
     height: 10px;
     background-color: #ccc;
   }
-  
+
+
   .progress-bar {
     height: 100%;
     width: 0;
@@ -391,7 +389,7 @@ footer .instagram > i {
   .progress-bar-animated {
     animation: progress-animation 2s linear infinite;
   }
-  
+
   @keyframes progress-animation {
     0% {
       width: 0;
@@ -437,6 +435,33 @@ footer .instagram > i {
   text-align: center;
 }
 
+
+.card {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2em;
+  width: 15em;
+  height: 20em; /* Establece una altura fija */
+  text-align: center;
+  transition: transform 0.2s;
+  overflow: hidden; /* Oculta contenido que exceda la altura */
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+}
+
 object{
   height: 500px;
 }
@@ -445,20 +470,20 @@ object{
     body {
         padding: 10px;
     }
-    
+
     nav ul li {
         display: block;
         margin-bottom: 10px;
     }
-    
+
     h1 {
         font-size: 2.5rem;
     }
-    
+
     h2 {
         font-size: 2rem;
     }
-    
+
     .parrafo {
         margin-left: 0;
         margin-right: 0;

@@ -2,11 +2,15 @@
 
 namespace  Tents\App\Controllers;
 use Tents\Core\Controller;
+use Tents\Core\Database\QueryBuilder;
+use Tents\App\Models\CityCollection;
 
 class PageController extends Controller
 {
     public string $viewsDir;
     public $menu;
+
+    public ?string $modelName = CityCollection::class;
 
     public function index()
     {
@@ -25,8 +29,10 @@ class PageController extends Controller
             setcookie(session_name(), '', time() - 10000);
             session_destroy();
         }
-
-        echo $this->twig->render('index.view.twig', compact('menu','titulo'));
+        $cityCollection = new CityCollection;
+        $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+        $cities = $cityCollection->getAll();
+        echo $this->twig->render('index.view.twig', compact('menu','titulo','cities'));
     }
 
     public function servicies()

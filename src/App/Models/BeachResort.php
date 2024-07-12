@@ -48,6 +48,9 @@ class BeachResort extends Model {
         }
     }
 
+
+    
+
     // public function load($id)
     // {
     //     $params = ["id"=>$id];

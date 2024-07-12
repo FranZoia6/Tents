@@ -23,6 +23,8 @@ class CityCollection extends Model {
         return $city_collection;
     }
 
+    
+
     public function get($id){
         $newCity = new City;
         $newCity->setQueryBuilder($this->queryBuilder);
