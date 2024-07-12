@@ -36,13 +36,18 @@ class ReservationCollection extends Model {
 
         $query = 'SELECT DISTINCT unit.id FROM unit '. 
         'INNER JOIN unit_reservation ON (unit_reservation.unit = unit.id) '. 
-        'INNER JOIN reservation ON (reservation.id = unit_reservation.reservation) '. 
-        'WHERE unit.beachResort = '. $beachResortId. 
-        " AND ((reservation.from < '$start_date' AND reservation.to >= '$start_date') ". 
-        "OR reservation.from = '$start_date' ". 
-        "OR (reservation.from > '$start_date' AND reservation.from <= '$end_date'))"; 
+        'INNER JOIN reservation ON (reservation.id = unit_reservation.reservation) ' . 
+        'WHERE unit.beachResort =  :beachResortId' . 
+        ' AND ((reservation.from < :start_date AND reservation.to >= :start_date) ' . 
+        'OR reservation.from = :start_date ' . 
+        'OR (reservation.from > :start_date AND reservation.from <= :end_date))'; 
+
+        $array = [":beachResortId" => $beachResortId, ":start_date" => $start_date, ":end_date" => $end_date];
 
         $reservation = $this -> queryBuilder -> querySql($query);
+
+        var_dump($reservation);
+        die;
 
 
 
@@ -60,21 +65,6 @@ class ReservationCollection extends Model {
 
         return $unidadesFiltradas;
 
-
-    // $prueba = $this -> queryBuilder -> join("unit", "unit_reservation", "unit.id = unit_reservation.unit",
-    // ['*'], ['unit.beachResort' => $beachResortId]);
-
-    // foreach ($prueba as $item) {
-    //     $reservation = $this -> queryBuilder -> select('reservation', [
-    //                                                 'id' => $item['reservation'],
-    //                                                 'reservation.from' => ['>=', date("Y-m-d", strtotime($start_date))],
-    //                                                 'reservation.to' => ['<=', date("Y-m-d", strtotime($end_date))]
-    //                                                 ]);                                    
-    // }
-
-
-        // $unitsReservation = $this -> queryBuilder -> join("reservation", "unit_reservation", "reservation.id = unit_reservation.reservation",
-        // ['*'], []);
 
     }
 

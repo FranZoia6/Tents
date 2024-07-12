@@ -115,12 +115,15 @@ class QueryBuilder {
         return $sentencia->fetchAll();
     }
 
-    public function querySql($query){
+    public function querySql($query, $array = []){
 
 
         $sentencia = $this->pdo->prepare($query);
         $sentencia->setFetchMode(PDO::FETCH_ASSOC);
-        $sentencia->execute();
+        foreach ($array as $key => $param){
+            $sentencia->bindParam($key,$param)
+        };
+        $sentencia->execute($array);
 
         return $sentencia->fetchAll();
 
