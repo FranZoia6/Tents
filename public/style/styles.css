@@ -89,31 +89,14 @@ img{
 
 }
 
-article {
-  margin-bottom: 1rem; /* Añade espacio inferior al artículo */
-}
-/*
-article img {
-  display: inline-block;
-  vertical-align: top;
-  height: 15em;
-  margin-right: 1rem;
-  margin-bottom: 3rem;
-  margin-left: 4em;
-  box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
-} */
 
-/* article p {
-  display: inline-block;
-  vertical-align: top;
-} */
+
+
 
 article a {
   display: inline-block;
   text-decoration: none;
   padding: 1em;
-  margin-left: 80%;
-  margin-bottom: 2%;
   border-radius: 10px;
   background-color:  var(--principal-color1);
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
@@ -132,14 +115,6 @@ article a {
   color: #fff;
 }
 
-/*
-section {
-    padding: 40px 20px;
-    border-radius: 10px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    background-color: rgba(255, 255, 255, 0.3);
-} */
 
 
 
@@ -149,15 +124,6 @@ section section {
     margin-bottom: 10px;
     box-shadow: none;
 }
-
-section article {
-  border-radius: 10px;
-  margin-bottom: 40px; /* Aumento del espacio entre secciones */
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra más pronunciada */
-  background-color: rgba(255, 255, 255, 0.3); /* Color blanco con 70% de opacidad */
-}
-
-
 
 
 h1 {
@@ -436,7 +402,7 @@ footer .instagram > i {
 }
 
 
-.card {
+article {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.3);
   border: 1px solid #ddd;
@@ -444,18 +410,18 @@ footer .instagram > i {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 2em;
   width: 15em;
-  height: 20em; /* Establece una altura fija */
+  height: 20em; 
   text-align: center;
   transition: transform 0.2s;
-  overflow: hidden; /* Oculta contenido que exceda la altura */
-}
+  overflow: hidden; 
+ } 
 
-.card:hover {
+article:hover {
   transform: scale(1.05);
 }
 
 
-.card img {
+article img {
   width: 100%;
   height: auto;
   display: block;
