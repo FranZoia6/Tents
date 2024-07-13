@@ -52,8 +52,10 @@ class ReservationsBeachResortComponent {
                         const reserve = reserves[key];
                         const listItem = document.createElement('option');
                         const unit = svgDocument.getElementById(reserve.id);
-                        if (unit) {
+                        if (reserve.free) {
                             unit.style.fill = "#008000";
+                        } else {
+                            unit.style.fill = "#800000";
                         }
                         listItem.value = reserve.id;
                         listItem.textContent = reserve.id;
