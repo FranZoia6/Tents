@@ -4,6 +4,7 @@ class ReservationsBeachResortComponent {
         const botonBuscar = document.querySelector('.bBuscar');
         const fechaEntradaInput = document.getElementById('fecha_entrada');
         const fechaSalidaInput = document.getElementById('fecha_salida');
+        const selectedUnits = [];
 
         // Agrega un evento de escucha para el cambio en la fecha de entrada
         fechaEntradaInput.addEventListener('change', function(event) {
@@ -54,8 +55,28 @@ class ReservationsBeachResortComponent {
                         const unit = svgDocument.getElementById(reserve.id);
                         if (reserve.free) {
                             unit.style.fill = "#008000";
+                            unit.style.cursor = "pointer";
+                            unit.addEventListener("click", function(event) {
+                                /*
+                                 * Vamos por acá. Está el problema de q se carga el listener
+                                 * cada vez q cambiamos las fechas. Debe cargarse una sola vez.
+                                 */
+                                const idUnit = event.target.id;
+                                const idInArray = selectedUnits.indexOf(idUnit);
+                                console.log(idUnit);
+                                if (idInArray >= 0) {
+                                    // Lo está soltando...
+                                    selectedUnits.splice(idInArray, 1);
+                                    event.target.style.fill = "#008000";
+                                } else {
+                                    // Lo está marcando...
+                                    selectedUnits.push(idUnit);
+                                    event.target.style.fill = "#0000aa";
+                                }
+                            });
                         } else {
                             unit.style.fill = "#800000";
+                            unit.style.cursor = "auto";
                         }
                         listItem.value = reserve.id;
                         listItem.textContent = reserve.id;
