@@ -19,11 +19,6 @@
 
 }
 
-
-html{
-  max-width: 100%;
-}
-
 body {
     margin: 0;
     font-family: 'Roboto', Arial, sans-serif;
@@ -49,48 +44,44 @@ header > figure > img {
 }
 
 nav {
-    position: sticky;
-    top: 0;
-    background-color: #ffffff;
-    text-align: center;
-    border-bottom: 1px solid #000000;
-    z-index: 1000;
+  position: sticky;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  text-align: center;
+  border-bottom: 1px solid #000000;
+  z-index: 1000;
 }
 
 nav ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Eliminar margen para centrar */
+  display: flex; /* Usar flexbox para alinear en línea */
+  align-items: center; /* Centrar verticalmente */
 }
 
 nav ul li {
-    display: inline-block;
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 nav ul li a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: var(--text);
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--text);
+  color: #ffffff;
+  font-family: 'Century Gothic', sans-serif;
+	font-size: var(--section-description-size);
 }
 
 nav ul li a:hover {
-    background-color: var(--principal-color1);
-    color: #ffffff;
+  background-color: var(--principal-color1);
 }
 
-main {
-    padding: 20px;
-    /* background-color: var(--background-light);  */
+nav img {
+  height: 6em;
+  margin-right: 10px; /* Espacio entre el logo y el resto */
 }
-
-img{
-    height: 25em;
-
-}
-
-
-
 
 
 article a {
@@ -113,16 +104,6 @@ article a {
   background-color:  var(--principal-color1);
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
   color: #fff;
-}
-
-
-
-
-section section {
-    padding: 20px 10px;
-    border-radius: 0;
-    margin-bottom: 10px;
-    box-shadow: none;
 }
 
 
@@ -435,13 +416,13 @@ footer .instagram > i {
   text-align: center;
 }
 
-
 article {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.3);
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 1em;
   padding: 2em;
   width: 15em;
   height: 20em; 
@@ -489,3 +470,4 @@ object{
         margin-right: 0;
     }
 }
+
