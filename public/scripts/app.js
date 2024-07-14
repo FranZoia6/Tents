@@ -17,7 +17,7 @@ class appPAW {
                 });
             }
 
-            contenedor = document.querySelector(".reserva");
+            contenedor = document.querySelector(".cities-list");
 
             if (contenedor) {
                 PAW.cargarScript("Ciudades", "scripts/components/ciudades.component.js", () => {

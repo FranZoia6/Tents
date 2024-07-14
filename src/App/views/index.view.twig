@@ -4,7 +4,11 @@
     <main>
         <section class="reserva">
                 <label for="ciudad">Ciudad:</label>
-                <select class="selectCiudades" name="ciudad" id="ciudad"></select>
+                <div class="ciudad-container">
+                    <input type="text" id="ciudad" name="ciudad" class="selectCiudades" placeholder="Ingrese una ciudad">
+                    <ul id="cities-list" class="cities-list"></ul>
+                </div>
+                
                 <label for="balneario">Balneario:</label>
                 <select class="balnearios" name="balneario" id="balneario"></select>
                 <label for="fecha_entrada">Fecha de Entrada:</label>
@@ -14,7 +18,8 @@
                 <a href="#" class="bReserva">Reservar</a>
         </section>
 
-        <h1 class="titulo">Bienvenidos al Paraíso Playero</h1>       
+        <h1 class="titulo">Bienvenidos al Paraíso Playero</h1>      
+
         <section class="center">
             <section class="carousel"></section>
             <p>
@@ -37,3 +42,10 @@
 
     </main>
 {% endblock %}
+
+{% block javascript %}
+
+   const ciudades = {{ cities | json_encode | raw }};
+
+{% endblock %}
+
