@@ -22,8 +22,11 @@ class BeachResortController extends Controller {
         $titulo = "Balnearios";
         $beachResorts = $this->model->getAll();
         $menu = $this->menu;
+        $cityCollection = new CityCollection;
+        $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+        $cities = $cityCollection->getAll();
 
-        echo $this->twig->render('beachResort.index.view.twig', compact('menu','titulo','beachResorts'));
+        echo $this->twig->render('beachResort.index.view.twig', compact('menu','titulo','beachResorts', 'cities'));
     }
 
     public function get() {
