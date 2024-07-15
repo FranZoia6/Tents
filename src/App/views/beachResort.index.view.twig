@@ -9,11 +9,12 @@
                         {% for beachResort in beachResorts %}
                                 {% if beachResort.fields.city == city.fields.id %}
                                         {% if beachResort.fields.state != 3 %}
-                                                <article>
-                                                        <h3>{{ beachResort.fields.name }}</h3>
-                                                        <img src="./../imagenes/sombrilla.jpeg" alt="carpa">
-                                                        <a href="beachResort?id={{ beachResort.fields.id }}">Reservar </a>
-                                                </article>
+                                                <a href="beachResort?id={{ beachResort.fields.id }}">
+                                                        <article>
+                                                                <h3>{{ beachResort.fields.name }}</h3>
+                                                                <img src="./../imagenes/sombrilla.jpeg" alt="carpa">
+                                                        </article>
+                                                </a>
                                         {% endif %}
                                 {% endif %}
                         {% endfor %}

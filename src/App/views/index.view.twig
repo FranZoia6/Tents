@@ -32,6 +32,7 @@
         <section class= "card-container">
             <h2>Ciudades</h2>
             {% for city in cities   %}
+             <a href="/beachResortIndex">
                 <article class="card">    
                     <h3>{{ city.fields.name }}</h3>
                     <figure>
@@ -39,6 +40,7 @@
                     </figure>
                     <p>Balnearios: 4</p>
                 </article> 
+                 </a>
             {% endfor %}                  
         </section>
 

@@ -13,6 +13,8 @@
 	--header-description-size: 1.8rem; /* Descripcion del header de la pagina */
 	--section-title-size: 3.5rem; /* Titulo de los sections */
 	--section-description-size: 1.5rem; /* Descripcion de los sections */
+  --article-header-title-size: 1.5rem;
+  --article-description-size:1rem;
 	--footer-header-title-size: 1.5rem;
 	--footer-description-text : 1rem;
 
@@ -84,15 +86,20 @@ nav img {
 }
 
 
-article a {
-  display: inline-block;
+h3{
+  font-family: "Abril Fatface", serif;
+	font-size: var(--article-header-title-size);
   text-decoration: none;
+}
+
+/* article a{
+  display: inline-block;
   padding: 1em;
   border-radius: 10px;
   background-color:  var(--principal-color1);
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
   color: #fff;
-}
+} */
 
 .bNew {
   display: inline-block;
