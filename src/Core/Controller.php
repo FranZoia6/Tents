@@ -41,7 +41,7 @@ class Controller {
             ],
             [
                 "href" => "/login",
-                "name" => "Iniciar sesión",
+                "name" => "Acceso",
             ]
         ];
         @$this->menuAdmin = [

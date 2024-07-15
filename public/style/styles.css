@@ -46,44 +46,54 @@ header > figure > img {
 }
 
 nav {
-  position: sticky;
-  top: 0;
   background-color: rgba(0, 0, 0, 0.75);
-  text-align: center;
-  border-bottom: 1px solid #000000;
-  z-index: 1000;
+  border-bottom: 1px solid #dddddd;
 }
 
 nav ul {
   list-style-type: none;
+  margin: 0;
   padding: 0;
-  margin: 0; /* Eliminar margen para centrar */
-  display: flex; /* Usar flexbox para alinear en línea */
-  align-items: center; /* Centrar verticalmente */
+  display: flex; /* Hacer que los elementos de la lista se distribuyan como una fila */
+  align-items: center; /* Alinear verticalmente los elementos */
 }
 
 nav ul li {
-  margin: 0 10px;
+  margin-right: 20px;
+}
+
+nav ul li.logo-item {
+  display: flex; /* Usar flexbox para alinear los elementos internos */
+  align-items: center; /* Alinear verticalmente */
+}
+
+nav ul li.logo-item img {
+  height: 5rem; /* Altura máxima de la imagen */
+  vertical-align: middle; /* Alinear verticalmente la imagen con el texto */
+  margin-right: 10px; /* Espacio entre el logo y el texto */
+}
+
+nav ul li.logo-item span {
+  font-size: 1.2rem; /* Tamaño de fuente del texto */
+  color: white; /* Color del texto */
 }
 
 nav ul li a {
-  display: block;
-  padding: 10px;
   text-decoration: none;
-  color: var(--text);
-  color: #ffffff;
-  font-family: 'Century Gothic', sans-serif;
-	font-size: var(--section-description-size);
+  color: white;
+  padding: 12px 18px;
+  display: block;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 nav ul li a:hover {
-  background-color: var(--principal-color1);
+  color: #007bff;
 }
 
-nav img {
-  height: 6em;
-  margin-right: 10px; /* Espacio entre el logo y el resto */
-}
+/* nav img {
+  height: 5em;
+  margin-right: 10px;
+} */
 
 
 h3{
@@ -219,6 +229,22 @@ footer .facebook > i {
 
 footer .instagram > i {
   color: #c92bb7;
+}
+
+.botonLogin {
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  position: absolute;
+  right: 0;
+}
+
+.botonLogin:hover {
+  border-color: #0056b3;
+  color: #000000;
 }
 
 .reserva {
