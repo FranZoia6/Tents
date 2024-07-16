@@ -96,24 +96,42 @@ class QueryBuilder {
         $statement->execute();
     }
 
-    public function join($table, $joinTable, $joinCondition, $selectColumns = ['*'], $params = []) {
+    public function join($table, $joins, $selectColumns = ['*'], $params = []) {
         $where = "1 = 1";
         $bindings = [];
     
         foreach ($params as $column => $value) {
-            $where .= " AND $column = $value";
+            $where .= " AND $column = :$column";
             $bindings[":$column"] = $value;
         }
-        
+    
         $selectColumnsString = implode(', ', $selectColumns);
-        $query = "SELECT $selectColumnsString FROM $table LEFT JOIN $joinTable ON $joinCondition WHERE $where";
+        $query = "SELECT $selectColumnsString FROM $table";
+    
+        // Construir los JOINs
+        foreach ($joins as $join) {
+            $joinTable = $join['table'];
+            $joinCondition = $join['condition'];
+            $joinType = isset($join['type']) ? strtoupper($join['type']) : 'LEFT'; // LEFT JOIN por defecto
+    
+            $query .= " $joinType JOIN $joinTable ON $joinCondition";
+        }
+    
+        $query .= " WHERE $where";
 
         $sentencia = $this->pdo->prepare($query);
         $sentencia->setFetchMode(PDO::FETCH_ASSOC);
-        $sentencia->execute();
+        
+        // Bind de los parámetros
+        foreach ($bindings as $param => $value) {
+            $sentencia->bindValue($param, $value);
+        }
 
+        $sentencia->execute();
+    
         return $sentencia->fetchAll();
     }
+    
 
     public function querySql($query, $params = []) {
         $statement = $this->pdo->prepare($query);

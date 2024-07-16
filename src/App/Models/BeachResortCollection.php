@@ -65,4 +65,19 @@ class BeachResortCollection extends Model {
             echo "El formato del valor proporcionado es inválido: " . $e->getMessage();
         }
     }
+
+    public function obtenerNombres() {
+
+        // Definición de los joins
+        $joins = [
+            ['table' => 'city', 'condition' => 'beach_resort.city = city.id', 'type' => 'INNER'],
+            ['table' => 'state_beach_resort', 'condition' => 'beach_resort.state = state_beach_resort.id', 'type' => 'INNER']
+        ];
+
+        // Llamada a la función join
+        $resultado = $this->queryBuilder->join('beach_resort', $joins, ['beach_resort.id AS beach_resort_id, beach_resort.name AS beach_resort_name, city.name AS city_name, state_beach_resort.name AS state_beach_resort_name'], []);
+        
+        return $resultado;
+    }
+
 }

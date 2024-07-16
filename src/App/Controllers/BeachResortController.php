@@ -68,7 +68,10 @@ class BeachResortController extends Controller {
         if (isset($_SESSION['logueado'])) {
             $titulo = "Balnearios";
             $menu = $this->menuAdmin;
-            $beachResorts = $this->model->getAll();
+           // $beachResorts = $this->model->getAll();
+            $beachResorts = $this->model->obtenerNombres();
+          //  var_dump($beachResorts);
+         //   die;
             echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
         }else {
             $mensajeError = 'Prueba';
