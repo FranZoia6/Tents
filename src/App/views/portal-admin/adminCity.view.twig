@@ -7,17 +7,15 @@
                 </section> 
                 <table class="tents-table">
                         <thead>
-                                <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Acciones</th>
                         </thead>
                         <tbody>
                             {% for city in cities %}
                                     <tr class="ABM row-{{ loop.index is odd ? "odd" : "even" }}">
-                                            <td class="center">{{ city.fields.id }}</td>
                                             <td>{{ city.fields.name }}</td>
                                             <td class="center">
-                                                <a title="Editar" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a title="Editar" href="/portal-admin/cities/edit?id={{ city.fields.id }}&name={{ city.fields.name }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
                                     </tr>
                             {% endfor %}                           

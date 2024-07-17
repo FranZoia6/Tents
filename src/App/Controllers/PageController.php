@@ -32,21 +32,14 @@ class PageController extends Controller
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
-        echo $this->twig->render('index.view.twig', compact('menu','titulo','cities'));
-    }
-
-    public function servicies()
-    {
-        $titulo = 'Servicios';
-        $menu = $this->menu;
-        echo $this->twig->render('services.view.twig', compact('menu','titulo'));
+        echo $this->twig->render('/portal-user/index.view.twig', compact('menu','titulo','cities'));
     }
 
     public function contact()
     {
         $titulo = 'Contacto';
         $menu = $this->menu;
-        echo $this->twig->render('contact.view.twig', compact('menu','titulo'));
+        echo $this->twig->render('/portal-user/contact.view.twig', compact('menu','titulo'));
     }
 
     public function login()
@@ -60,7 +53,7 @@ class PageController extends Controller
         if ($hayLogin) {
             $usuario = $_SESSION['login'];
         }
-        echo $this->twig->render('login.view.twig', ['hayLogin' => $hayLogin, 
+        echo $this->twig->render('/portal-user/login.view.twig', ['hayLogin' => $hayLogin, 
                                 'usuario' => $usuario, 'menu' => $menu],
                                 );
     }
@@ -69,12 +62,12 @@ class PageController extends Controller
     {
         $formulario = $_POST;
         //Hacer algo
-        require $this-> viewsDir . 'contact.view.php';
+        require $this-> viewsDir . '/portal-user/contact.view.php';
 
     }
 
     public function reservationPersonalData() {
-        echo $this->twig->render('reservationPersonalData.view.twig');
+        echo $this->twig->render('/portal-user/reservationPersonalData.view.twig');
     }
  
 }

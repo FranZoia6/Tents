@@ -47,4 +47,20 @@ class CityCollection extends Model {
         }
     }
 
+    public function updateCity($city) {
+       // var_dump($city);
+       // die;
+        $params = [
+            "id" => $city -> fields['id'],
+            "name" => $city -> fields['name']
+        ];
+
+        try {
+            $this->queryBuilder->update($this->table, $params);
+        } catch (DatabaseException $e) {
+            echo "Ocurrió un error al actualizar la ciudad: " . $e->getMessage();
+        }
+
+    }
+
 }

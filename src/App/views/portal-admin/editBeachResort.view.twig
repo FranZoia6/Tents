@@ -1,0 +1,13 @@
+{% extends "base.view.twig" %}
+
+{% block main %}
+    <h1>Edición de ciudad</h1>
+    <form class="editCity" action="/portal-admin/cities/edit" method = "POST">  
+        <input value='{{ cityId }}' name="id" type="hidden" required>
+        <label for="name">Nombre:</label>
+        <input value='{{ cityName }}' type="text" name="name" required>
+        <div>
+            <button class="bBuscarCity" type="submit">Envíar</button>
+        </div>
+    </form>
+{% endblock %}
