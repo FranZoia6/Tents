@@ -2,6 +2,7 @@ class Ciudades {
     constructor() {
         this.ciudadInput = document.getElementById('ciudad');
         this.ciudadList = document.getElementById('cities-list');
+        this.ciudadId = document.getElementById('cityId');
         console.log(ciudades);
         // if (ciudades || !Array.isArray(ciudades)) {
         //     console.error('Las ciudades no se han proporcionado o no son un array');
@@ -34,7 +35,6 @@ class Ciudades {
     filterCities() {
         const query = this.ciudadInput.value.toLowerCase();
         this.ciudadList.innerHTML = '';  // Limpiar la lista antes de añadir nuevas opciones
-        
         if (query.length > 0) {
             // Filtrar ciudades según la búsqueda
             const filteredCities = ciudades.filter(city => city.fields.name.toLowerCase().includes(query));
@@ -57,6 +57,7 @@ class Ciudades {
     // Función para manejar la selección de una ciudad
     handleCitySelect(cityId) {
         console.log(cityId);
+        this.ciudadId.value = cityId;
         const selectedCity = ciudades.find(city => city.fields.id == cityId);
         console.log(selectedCity);
         if (selectedCity) {

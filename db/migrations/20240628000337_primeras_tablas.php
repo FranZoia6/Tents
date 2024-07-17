@@ -22,15 +22,17 @@ final class PrimerasTablas extends AbstractMigration
     {
         $tableCity = $this->table('city');
         $tableCity->addColumn('name', 'text', ['limit' => MysqlAdapter::TEXT_TINY, 'null' => false])
+            ->addColumn('lat', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
+            ->addColumn('lon', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
             ->addIndex(['name'], ['unique' => true, 'limit' => 63])
             ->create();
         if ($this->isMigratingUp()) {
             $tableCity->insert([
-                ['id' => 1,'name' => 'Mar Del Plata'],
-                ['id' => 2,'name' => 'Villa Gesell'],
-                ['id' => 3,'name' => 'Miramar'], 
-                ['id' => 4,'name' => 'Necochea'],
-                ['id' => 5,'name' => 'Pinamar']
+                ['id' => 1,'name' => 'Mar Del Plata','lat' => '-38.0055','lon' => '-57.5426'],
+                ['id' => 2,'name' => 'Villa Gesell','lat' => '-37.2636','lon' => '-56.9730'],
+                ['id' => 3,'name' => 'Miramar','lat' => '-38.2712','lon' => '-57.8369'], 
+                ['id' => 4,'name' => 'Necochea','lat' => '-38.5569','lon' => '-58.7396'],
+                ['id' => 5,'name' => 'Pinamar','lat' => '-37.1079','lon' => '-56.8651']
 
             ])->saveData();
         }
@@ -103,6 +105,8 @@ final class PrimerasTablas extends AbstractMigration
             ->addColumn('description', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR])
             ->addColumn('city', 'integer', ['null' => false, 'signed' => false])
             ->addColumn('state', 'integer', ['null' => false, 'signed' => false])
+            ->addColumn('lat', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
+            ->addColumn('lon', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
             ->addIndex(['name'], ['unique' => true, 'limit' => 63])
             ->addForeignKey('city', 'city', 'id', ['delete' => 'RESTRICT', 'update' => 'RESTRICT'])
             ->addForeignKey('state', 'state_beach_resort', 'id', ['delete' => 'RESTRICT', 'update' => 'RESTRICT'])

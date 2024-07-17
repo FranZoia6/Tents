@@ -53,14 +53,21 @@ class BeachResortController extends Controller {
     }
 
     public function getByCity() {
-
         $cityId = $this->request->get('cityId');
-
         $beachResorts = $this->model->getByCity($cityId);
         
         header('Content-Type: application/json');
         echo json_encode($beachResorts, JSON_UNESCAPED_UNICODE);
+    }
 
+    public function getAllByCity() {
+        $menu = $this->menu;
+        $cityId = $this->request->get('id');
+        $beachResorts = $this->model->getByCity($cityId);
+        $cityCollection = new CityCollection;
+        $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+        $city = $cityCollection->get($cityId);
+        echo $this->twig->render('beachResortsCity.view.twig', compact('menu','beachResorts',"city"));  
     }
 
     public function adminBeachResor() {

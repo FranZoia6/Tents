@@ -1,0 +1,40 @@
+{% extends "base.view.twig" %}
+
+{% block main %}
+    <main>
+        <section class= "card-container">
+            <h2>Balnearios en {{ city.fields.name }}</h2>
+            <input type="hidden" id="cityLat" name="cityLat" value="{{ city.fields.lat }}">
+            <input type="hidden" id="cityLon" name="cityLon" value="{{ city.fields.lon }}">
+
+            <section style="width:100%; height:300px" class="map" id="map"></section> 
+
+            {% for beachResort in beachResorts %}
+                <a href="/beachResort/{{ beachResort.id }}">
+                    <article class="card">    
+                        <h3>{{ beachResort.name }}</h3>
+                        <figure>
+                            <img src="./../imagenes/beachResorts/{{ beachResort.id }}/beachresort.jpg" alt="beach resort">
+                        </figure>
+                        <p>{{ beachResort.description }}</p>
+                    </article> 
+                </a>
+            {% endfor %}                  
+        </section>
+    </main>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        const latitud = document.getElementById('cityLat').value;
+        const longitud = document.getElementById('cityLon').value;
+       
+       console.log(latitud);
+       console.log(longitud);
+        // Create a map centered on Chivilcoy, Buenos Aires, Argentina
+        var map = L.map('map').setView([latitud, longitud], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+    </script>
+{% endblock %}

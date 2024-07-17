@@ -252,6 +252,7 @@ footer .instagram > i {
   justify-content: center;
   gap: 1.5rem;
   align-items: center;
+  margin-top: 20px;
 }
 
 .reserva > label,select,input {

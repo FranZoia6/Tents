@@ -5,17 +5,11 @@
         <section class="reserva">
                 <label for="ciudad">Ciudad:</label>
                 <div class="ciudad-container">
-                    <input type="text" id="ciudad" name="ciudad" class="selectCiudades" placeholder="Ingrese una ciudad">
+                    <input type="text" id="ciudad" name="ciudad" autocomplete="off" class="selectCiudades" placeholder="Ingrese una ciudad">
                     <ul id="cities-list" class="cities-list"></ul>
+                    <input type="hidden" id="cityId" name="cityId" value="">
                 </div>
-                
-                <label for="balneario">Balneario:</label>
-                <select class="balnearios" name="balneario" id="balneario"></select>
-                <label for="fecha_entrada">Fecha de Entrada:</label>
-                <input type="date" id="fecha_entrada" name="fecha_entrada">
-                <label for="fecha_salida">Fecha de Salida:</label>
-                <input type="date" id="fecha_salida" name="fecha_salida">
-                <a href="#" class="bReserva">Reservar</a>
+                <a href="#" class="bReserva">Buscar</a>
         </section>
 
         <h1 class="titulo">Bienvenidos al Paraíso Playero</h1>      
@@ -48,8 +42,8 @@
 {% endblock %}
 
 {% block javascript %}
-
-   const ciudades = {{ cities | json_encode | raw }};
-
+    <script>
+        const ciudades = {{ cities | json_encode | raw }};
+    </script>
 {% endblock %}
 

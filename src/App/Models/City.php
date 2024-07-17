@@ -13,6 +13,8 @@ class City extends Model {
     public $fields = [
         "id" => null,
         "name" => null,
+        "lat" => null,
+        "lon" => null
     ];
 
     public function setName(string $nombre) {
@@ -20,6 +22,14 @@ class City extends Model {
             throw new InvalidValueFormatException("El nombre de la ciudad no debe ser mayor a 63 caracteres");
         }
         $this -> fields["name"] = $nombre;
+    }
+
+    public function setLat(string $lat) {
+        $this -> fields["lat"] = $lat;
+    }
+
+    public function setLon(string $lon) {
+        $this -> fields["lon"] = $lon;
     }
 
     public function setId(int $id) {
