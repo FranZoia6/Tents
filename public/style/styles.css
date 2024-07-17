@@ -50,7 +50,21 @@ nav {
   border-bottom: 1px solid #dddddd;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 9999;
+}
+
+.btnLocalizar {
+  width: 25%;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #df954d;
+  color: white;
+  font-weight: bold;
+}
+
+.conteinerBtnLocalizar {
+  display: flex;
+  justify-content: center;
 }
 
 nav ul {

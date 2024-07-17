@@ -67,7 +67,7 @@ class BeachResortController extends Controller {
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $city = $cityCollection->get($cityId);
-        echo $this->twig->render('beachResortsCity.view.twig', compact('menu','beachResorts',"city"));  
+        echo $this->twig->render('beachResortsCity.view.twig', compact('menu','beachResorts','city'));  
     }
 
     public function adminBeachResor() {
@@ -101,6 +101,8 @@ class BeachResortController extends Controller {
         $beachResort->setDescription($_POST['description']);
         $beachResort->setCity($_POST['city']);
         $beachResort->setState(1);
+        $beachResort->setLat($_POST['latitud']);
+        $beachResort->setLon($_POST['longitud']);
         $this->model->insertBeachResort($beachResort);
         $this->adminBeachResor();
     }

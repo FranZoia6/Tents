@@ -26,15 +26,28 @@
 
 {% block javascript %}
     <script>
-        const latitud = document.getElementById('cityLat').value;
-        const longitud = document.getElementById('cityLon').value;
-       
-       console.log(latitud);
-       console.log(longitud);
-        // Create a map centered on Chivilcoy, Buenos Aires, Argentina
-        var map = L.map('map').setView([latitud, longitud], 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
+        document.addEventListener('DOMContentLoaded', function() {
+            const latitud = document.getElementById('cityLat').value;
+            const longitud = document.getElementById('cityLon').value;
+        
+            // Create a map centered on City, Buenos Aires, Argentina
+            var map = L.map('map').setView([latitud, longitud], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+
+            // Convertir los datos de Twig en un array de objetos JavaScript
+            var beachResorts = {{ beachResorts|json_encode|raw }};
+         
+            // Agregar markers para cada establecimiento
+            beachResorts.forEach(function(beachResort) {
+                if ((beachResort.lat !== null) || (beachResort.lon !== null)) {
+                    console.log(beachResort.lat);
+                    console.log(beachResort.lon);
+                    var marker = L.marker([beachResort.lat, beachResort.lon]).addTo(map);
+                    marker.bindPopup(`<b>${beachResort.name}</b><br>${beachResort.description}`);
+                }
+            });
+        });
     </script>
 {% endblock %}
