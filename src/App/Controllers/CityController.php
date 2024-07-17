@@ -48,7 +48,6 @@ class CityController extends Controller {
         }
     }
     
-
     public function get() {
         $beachResortId = $this->request->get('id');
         $beachResort = $this -> model -> get($beachResortId);
@@ -83,6 +82,26 @@ class CityController extends Controller {
     }
 
     public function edit() {
+
+        $cityId = $this->request->get('id');
+        $cityName = $this->request->get('name');
+        $menu = $this->menuAdmin;
+        echo $this->twig->render('/portal-admin/editCity.view.twig', compact('cityId', 'cityName', 'menu'));
+
+    }
+
+    public function editCity() {
+
+        $idCity = $_POST['id'];
+        $nameCity = $_POST['name'];
+
+        $city = new City;
+        $city -> setId($idCity);
+        $city -> setName($nameCity);
+
+        $this->model->updateCity($city);
+        
+        $this->adminCity();
 
     }
 

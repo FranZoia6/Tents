@@ -26,7 +26,7 @@ class BeachResortController extends Controller {
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
 
-        echo $this->twig->render('beachResort.index.view.twig', compact('menu','titulo','beachResorts', 'cities'));
+        echo $this->twig->render('/portal-user/beachResort.index.view.twig', compact('menu','titulo','beachResorts', 'cities'));
     }
 
     public function get() {
@@ -48,7 +48,7 @@ class BeachResortController extends Controller {
         foreach ($servicesBeachResorts as $servicesBeachResort){
             $service_colection[] = $serviceCollection->get($servicesBeachResort["service"])->fields;
         }
-        echo $this->twig->render('beachResort.view.twig', compact('menu','beachResort',"city","service_colection",
+        echo $this->twig->render('/portal-user/beachResort.view.twig', compact('menu','beachResort',"city","service_colection",
                                                                   'start_date', 'end_date'));  
     }
 
@@ -77,13 +77,13 @@ class BeachResortController extends Controller {
             $menu = $this->menuAdmin;
            // $beachResorts = $this->model->getAll();
             $beachResorts = $this->model->obtenerNombres();
-          //  var_dump($beachResorts);
-         //   die;
+          //  var_dump($beachResorts[0]);
+          //  die;
             echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
         }else {
             $mensajeError = 'Prueba';
             $menu = $this->menu;
-            echo $this->twig->render('login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
+            echo $this->twig->render('/portal-user/login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }
     }
 
@@ -92,7 +92,7 @@ class BeachResortController extends Controller {
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
-        echo $this->twig->render('newBeachResort.view.twig', compact('menu','cities'));
+        echo $this->twig->render('/portal-admin/newBeachResort.view.twig', compact('menu','cities'));
     }
 
     public function submit() {
@@ -120,6 +120,12 @@ class BeachResortController extends Controller {
     }
 
     public function edit() {
+
+        $beachResortId = $this->request->get('beachResort');
+        $menu = $this->menuAdmin;
+        //var_dump($beachResortId);
+        
+        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('beachResortId'));
 
     }
 

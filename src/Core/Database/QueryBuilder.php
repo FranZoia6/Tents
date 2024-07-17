@@ -144,8 +144,26 @@ class QueryBuilder {
     }
     
     
-    public function update() {
-
+    public function update($table, $values = [])
+    {
+        $arg = "";
+        $where = " 1 = 1 ";
+        if (isset($values['id'])){
+            $where = " id = :id ";
+        }
+        foreach($values as $clave => $value){
+            $arg .= "{$clave}=:{$clave},";
+        }
+        $arg = trim($arg, ',');
+        $query = "update {$table} set {$arg} where {$where}";
+        if (isset($params['id'])){
+            $sentencia->bindValue(":id",$params['id']);
+        }
+        $sentencia = $this->pdo->prepare($query);
+        // var_dump($values);
+        // die();
+        $sentencia->setFetchMode(PDO::FETCH_ASSOC);
+        $sentencia->execute($values);
     }
 
     public function delete() {

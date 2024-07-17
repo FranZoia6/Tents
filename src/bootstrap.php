@@ -45,8 +45,13 @@ $router->post('/contact','PageController@contactProccess');
 $router ->get('/login', 'PageController@login');
 
 $router ->get('/cities', 'CityController@getAll');
+$router ->get('/portal-admin/cities/edit', 'CityController@edit');
+
+$router ->post('/portal-admin/cities/edit', 'CityController@editCity');
 
 $router ->get('/resorts', 'BeachResortController@getByCity');
+
+$router ->get('/portal-admin/beachResorts/editBeachResort', 'BeachResortController@edit');
 
 $router ->get('/searchReservations', 'ReservationController@searchUnitsFree');
 

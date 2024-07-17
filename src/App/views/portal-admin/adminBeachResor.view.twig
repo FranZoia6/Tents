@@ -19,7 +19,7 @@
                                                 <td id="ciudad">{{ beachResort.city_name }}</td>
                                                 <td>{{ beachResort.state_beach_resort_name }}</td>
                                                 <td class="center">
-                                                        <a title="Editar" href="/editarBeachResort"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a title="Editar" href="/portal-admin/beachResorts/editBeachResort?beachResort={{ beachResort.beach_resort_id }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                                         <a title="Habilitar" href="#" onClick="confirmar('¿Deséa habilitar el Balneario?','/enableBeachResort', '{{ beachResort.fields.id }}')" {% if beachResort.fields.state == 1 %} style="display:none;" {% endif %}><i class="fa-solid fa-circle-check"></i></a>
                                                         <a title="Deshabilitar" href="#" onClick="confirmar('¿Deséa deshabilitar el Balneario?','/disableBeachResort', '{{ beachResort.fields.id }}')" {% if beachResort.fields.state == 0 %} style="display:none;" {% endif %}><i class="fa-solid fa-eye-slash"></i></a>
                                                 </td>
