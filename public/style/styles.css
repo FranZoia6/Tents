@@ -48,6 +48,9 @@ header > figure > img {
 nav {
   background-color: rgba(0, 0, 0, 0.75);
   border-bottom: 1px solid #dddddd;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 nav ul {
@@ -238,8 +241,7 @@ footer .instagram > i {
   text-align: center;
   text-decoration: none;
   color: black;
-  position: absolute;
-  right: 0;
+  margin-left: auto;
 }
 
 .botonLogin:hover {
