@@ -1,9 +1,9 @@
 class ReservationPersonalDataComponent {
 
     constructor() {
-        const botonContinuar = document.querySelector('.bContinuar');
-        const fechaEntradaInput = document.getElementById('fecha_entrada');
-        const fechaSalidaInput = document.getElementById('fecha_salida');
+        const continueBtn = document.querySelector('.bContinuar');
+        const fechaEntradaInput = document.getElementById('startDate');
+        const fechaSalidaInput = document.getElementById('endDate');
 
         // Agrega un evento de escucha para el cambio en la fecha de entrada
         fechaEntradaInput.addEventListener('change', function(event) {
@@ -20,7 +20,7 @@ class ReservationPersonalDataComponent {
         });
 
         // Agrega un evento de escucha para el clic en el botón
-        botonContinuar.addEventListener('click', function(event) {
+        continueBtn.addEventListener('click', function(event) {
 
             // Obtener los valores de los campos
             const fechaEntrada = fechaEntradaInput.value;

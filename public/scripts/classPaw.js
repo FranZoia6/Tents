@@ -37,4 +37,10 @@ class PAW {
         });
         document.head.appendChild(css);
     }
+
+    static crearElementoCargando() {
+        const loadingSpan = document.createElement('span');
+        loadingSpan.classList.add('loading');
+        return loadingSpan;
+    }
 }
