@@ -10,11 +10,11 @@
             <section style="width:100%; height:300px" class="map" id="map"></section> 
 
             {% for beachResort in beachResorts %}
-                <a href="/beachResort/{{ beachResort.id }}">
+                <a href="/beachResort?id={{ beachResort.id }}">
                     <article class="card">    
                         <h3>{{ beachResort.name }}</h3>
                         <figure>
-                            <img src="./../imagenes/beachResorts/{{ beachResort.id }}/beachresort.jpg" alt="beach resort">
+                            <img src="{{ beachResort.img }}" alt="beach resort">
                         </figure>
                         <p>{{ beachResort.description }}</p>
                     </article> 
@@ -42,8 +42,6 @@
             // Agregar markers para cada establecimiento
             beachResorts.forEach(function(beachResort) {
                 if ((beachResort.lat !== null) || (beachResort.lon !== null)) {
-                    console.log(beachResort.lat);
-                    console.log(beachResort.lon);
                     var marker = L.marker([beachResort.lat, beachResort.lon]).addTo(map);
                     marker.bindPopup(`<b>${beachResort.name}</b><br>${beachResort.description}`);
                 }

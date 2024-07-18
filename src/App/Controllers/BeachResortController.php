@@ -20,7 +20,7 @@ class BeachResortController extends Controller {
        
     public function index() {
         $titulo = "Balnearios";
-        $beachResorts = $this->model->getAll();
+        $beachResorts = $this->model->getEnable();
         $menu = $this->menu;
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
@@ -96,6 +96,17 @@ class BeachResortController extends Controller {
     }
 
     public function submit() {
+        // Directorio donde se guardarán las imágenes subidas
+        $uploadDir = '././imagenes/beachResorts/';
+
+        $fileExtension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+
+        // Nombre del archivo subido con la extensión original
+        $uploadFile = $uploadDir . $_POST['name'] . '.' . $fileExtension;
+    
+        // Mover el archivo subido al directorio deseado
+        move_uploaded_file($_FILES['imagen']['tmp_name'], $uploadFile);
+
         $beachResort = new BeachResort;
         $beachResort->setName($_POST['name']);
         $beachResort->setDescription($_POST['description']);
@@ -103,6 +114,7 @@ class BeachResortController extends Controller {
         $beachResort->setState(1);
         $beachResort->setLat($_POST['latitud']);
         $beachResort->setLon($_POST['longitud']);
+        $beachResort->setImg($uploadFile);
         $this->model->insertBeachResort($beachResort);
         $this->adminBeachResor();
     }
@@ -111,14 +123,16 @@ class BeachResortController extends Controller {
         $id = $_POST['idbeachresort'];
         $state = 1;
         $this->model->updateBeachResortState($id,$state);
-        $this->adminBeachResor();
+        header("Location: /adminBeachResor");
+        exit();
     }
 
     public function disable() {
         $id = $_POST['idbeachresort'];
-        $state = 0;
+        $state = 2;
         $this->model->updateBeachResortState($id,$state);
-        $this->adminBeachResor();
+        header("Location: /adminBeachResor");
+        exit();
     }
 
     public function edit() {

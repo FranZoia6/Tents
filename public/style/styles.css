@@ -207,7 +207,7 @@ figure {
 
 footer {
     bottom: 0;
-    background-color: var(--background-section1);
+    background-color: rgba(0, 0, 0, 0.75);
     text-align: center;
     padding: 20px;
     display: flex;
@@ -228,7 +228,7 @@ footer > a > i {
 footer > a {
     display: flex;
     flex-direction: column;
-    color: black;
+    color: white;
 }
 
 footer .whatsapp > i {
@@ -440,6 +440,7 @@ footer .instagram > i {
   font-family: serif;
   margin: auto;
   width: 80%;
+  margin-bottom: 3em;
 }
 
 .tents-table thead {
@@ -495,6 +496,10 @@ article img {
 
 object{
   height: 500px;
+}
+
+section a {
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {

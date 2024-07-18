@@ -17,7 +17,8 @@ class BeachResort extends Model {
         "city" => null,
         "state" => null,
         "lat" => null,
-        "lon" => null
+        "lon" => null,
+        "img" => null
     ];
 
     public function setId($id){
@@ -46,6 +47,10 @@ class BeachResort extends Model {
 
     public function setLon(string $lon) {
         $this -> fields["lon"] = $lon;
+    }
+
+    public function setImg(string $img) {
+        $this -> fields["img"] = $img;
     }
 
     public function set(array $values) {

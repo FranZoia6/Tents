@@ -2,13 +2,16 @@
 
 {% block main %}
     <h1>Nuevo balneario</h1>
-    <form class="newBeachResort" action="/submitBeachResort" method = "POST">  
+    <form class="newBeachResort" action="/submitBeachResort" method ="POST" enctype="multipart/form-data">  
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
     
         <label for="description">Descripción:</label>
         <textarea id="description" name="description" required></textarea>
-    
+
+        <label for="imagen">Selecciona una imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*">
+
         <label for="ciudad">Ciudad:</label>
         <select id="city" name="city" onchange="cargarMapa()" required>
             <option value="">Seleccione una ciudad</option>
@@ -16,6 +19,7 @@
                 <option data-name="{{ city.fields.name }}" data-lat="{{ city.fields.lat }}" data-lon="{{ city.fields.lon }}" value="{{ city.fields.id }}">{{ city.fields.name }}</option>
             {% endfor %}
         </select>
+
         <input type="hidden" id="longitud" name="longitud" value="0">
         <input type="hidden" id="latitud" name="latitud" value="0">
 
@@ -26,13 +30,13 @@
         <section class="conteinerBtnLocalizar">
             <button type='button' style="display:none;" id="btnLocalizar" class="btnLocalizar">Localizar</button>
         </section>
+        
         <section style="width:100%; height:300px; display:none;" class="map" id="map"></section>
-
+ 
         <section>
             <button class="bReserva" type="submit">Envíar</button>
         </section>
     </form>
-    </section>
 {% endblock %}
 
 {% block javascript %}
@@ -66,8 +70,8 @@
             }
         }
 
-        const longitud = document.getElementById("latitud");
-        const latitud = document.getElementById("longitud");
+        const longitud = document.getElementById("longitud");
+        const latitud = document.getElementById("latitud");
         
         var markers = [];
         // Función para limpiar todos los marcadores del mapa
@@ -103,6 +107,5 @@
             nro = document.getElementById('number').value;
             geoLocalizacion = await apiNominatim(calle, nro, city, 'Buenos Aires', 'Argentina');
         });
-
     </script>
 {% endblock %}
