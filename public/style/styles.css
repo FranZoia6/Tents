@@ -116,6 +116,7 @@ nav ul li a:hover {
 h3{
   font-family: "Abril Fatface", serif;
 	font-size: var(--article-header-title-size);
+  color: var(--principal-color1);
   text-decoration: none;
 }
 
@@ -155,6 +156,7 @@ h1 {
 p, ol {
 	font-family: 'Century Gothic', sans-serif;
 	font-size: var(--section-description-size);
+  color: var(--text);
 }
 
 h2{
