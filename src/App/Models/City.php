@@ -14,7 +14,8 @@ class City extends Model {
         "id" => null,
         "name" => null,
         "lat" => null,
-        "lon" => null
+        "lon" => null,
+        "img" => null
     ];
 
     public function setName(string $nombre) {
@@ -32,6 +33,10 @@ class City extends Model {
         $this -> fields["lon"] = $lon;
     }
 
+    public function setImg(string $img) {
+        $this -> fields["img"] = $img;
+    }
+    
     public function setId(int $id) {
         $this -> fields["id"] = $id;
     }

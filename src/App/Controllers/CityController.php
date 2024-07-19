@@ -70,19 +70,32 @@ class CityController extends Controller {
     }
 
     public function new() {
-        $menu = $this->menu;
+        $menu = $this->menuAdmin;
         echo $this->twig->render('/portal-admin/newCity.view.twig', compact('menu'));
     }
 
     public function submit() {
         $city = new City;
         $city->setName($_POST['name']);
+        $city->setLat($_POST['latitud']);
+        $city->setLon($_POST['longitud']);
+        // Directorio donde se guardarán las imágenes subidas
+        $uploadDir = '././imagenes/cities/';
+        
+        $fileExtension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+        // Nombre del archivo subido con la extensión original
+        $uploadFile = $uploadDir . $_POST['name'] . '.' . $fileExtension;
+    
+        // Mover el archivo subido al directorio deseado
+        move_uploaded_file($_FILES['imagen']['tmp_name'], $uploadFile);
+
+        $city->setImg($uploadFile);
         $this->model->insertCity($city);
-        $this->adminCity();
+        header("Location: /adminCity");
+        exit();
     }
 
     public function edit() {
-
         $cityId = $this->request->get('id');
         $cityName = $this->request->get('name');
         $menu = $this->menuAdmin;
@@ -91,7 +104,6 @@ class CityController extends Controller {
     }
 
     public function editCity() {
-
         $idCity = $_POST['id'];
         $nameCity = $_POST['name'];
 
@@ -101,7 +113,8 @@ class CityController extends Controller {
 
         $this->model->updateCity($city);
         
-        $this->adminCity();
+        header("Location: /adminCity");
+        exit();
 
     }
 

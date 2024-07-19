@@ -2,12 +2,13 @@
 
 {% block main %}
     <h1>Edición de ciudad</h1>
-    <form class="editCity" action="/portal-admin/cities/edit" method = "POST">  
-        <input value='{{ cityId }}' name="id" type="hidden" required>
+    <form class="newCity" action="/portal-admin/cities/edit" method = "POST" enctype="multipart/form-data">  
         <label for="name">Nombre:</label>
-        <input value='{{ cityName }}' type="text" name="name" required>
-        <div>
-            <button class="bBuscarCity" type="submit">Envíar</button>
-        </div>
+        <input type="text" id="name" name="name" required>
+        <label for="imagen">Selecciona una imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*">
+        <section>
+            <button class="bReserva" type="submit">Envíar</button>
+        </section>
     </form>
 {% endblock %}
