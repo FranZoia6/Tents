@@ -10,11 +10,11 @@
             <section style="width:100%; height:300px" class="map" id="map"></section> 
 
             {% for beachResort in beachResorts %}
-                <a href="/beachResort/{{ beachResort.id }}">
+                <a href="/beachResort?id={{ beachResort.id }}">
                     <article class="card">    
                         <h3>{{ beachResort.name }}</h3>
                         <figure>
-                            <img src="./../imagenes/beachResorts/{{ beachResort.id }}/beachresort.jpg" alt="beach resort">
+                            <img src="{{ beachResort.img }}" alt="beach resort">
                         </figure>
                         <p>{{ beachResort.description }}</p>
                     </article> 
@@ -26,15 +26,26 @@
 
 {% block javascript %}
     <script>
-        const latitud = document.getElementById('cityLat').value;
-        const longitud = document.getElementById('cityLon').value;
-       
-       console.log(latitud);
-       console.log(longitud);
-        // Create a map centered on Chivilcoy, Buenos Aires, Argentina
-        var map = L.map('map').setView([latitud, longitud], 13);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
+        document.addEventListener('DOMContentLoaded', function() {
+            const latitud = document.getElementById('cityLat').value;
+            const longitud = document.getElementById('cityLon').value;
+        
+            // Create a map centered on City, Buenos Aires, Argentina
+            var map = L.map('map').setView([latitud, longitud], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+
+            // Convertir los datos de Twig en un array de objetos JavaScript
+            var beachResorts = {{ beachResorts|json_encode|raw }};
+         
+            // Agregar markers para cada establecimiento
+            beachResorts.forEach(function(beachResort) {
+                if ((beachResort.lat !== null) || (beachResort.lon !== null)) {
+                    var marker = L.marker([beachResort.lat, beachResort.lon]).addTo(map);
+                    marker.bindPopup(`<b>${beachResort.name}</b><br>${beachResort.description}`);
+                }
+            });
+        });
     </script>
 {% endblock %}

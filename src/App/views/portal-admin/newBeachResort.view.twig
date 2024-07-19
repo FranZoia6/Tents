@@ -2,22 +2,110 @@
 
 {% block main %}
     <h1>Nuevo balneario</h1>
-    <form class="newBeachResort" action="/submitBeachResort" method = "POST">  
+    <form class="newBeachResort" action="/submitBeachResort" method ="POST" enctype="multipart/form-data">  
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
     
         <label for="description">Descripción:</label>
         <textarea id="description" name="description" required></textarea>
-    
+
+        <label for="imagen">Selecciona una imagen:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/*">
+
         <label for="ciudad">Ciudad:</label>
-        <select id="city" name="city" required>
+        <select id="city" name="city" onchange="cargarMapa()" required>
+            <option value="">Seleccione una ciudad</option>
             {% for city in cities %}
-                <option value="{{ city.fields.id }}">{{ city.fields.name }}</option>
+                <option data-name="{{ city.fields.name }}" data-lat="{{ city.fields.lat }}" data-lon="{{ city.fields.lon }}" value="{{ city.fields.id }}">{{ city.fields.name }}</option>
             {% endfor %}
         </select>
-        <div>
+
+        <input type="hidden" id="longitud" name="longitud" value="0">
+        <input type="hidden" id="latitud" name="latitud" value="0">
+
+        <label style="display:none;" id="lbStreet" for="street">Calle:</label>
+        <input style="display:none;" type="text" id="street" name="street" required>
+        <label style="display:none;" id="lbNumber" for="number">Numero:</label>
+        <input style="display:none;" type="text" id="number" name="number" required>
+        <section class="conteinerBtnLocalizar">
+            <button type='button' style="display:none;" id="btnLocalizar" class="btnLocalizar">Localizar</button>
+        </section>
+        
+        <section style="width:100%; height:300px; display:none;" class="map" id="map"></section>
+ 
+        <section>
             <button class="bReserva" type="submit">Envíar</button>
-        </div>
+        </section>
     </form>
-    </section>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        var city;
+        var map = L.map('map');
+        function cargarMapa() {
+            var valueSelect = document.getElementById('city');
+            if (valueSelect.value != "") {
+                document.getElementById('map').style.display = 'block';
+                document.getElementById('btnLocalizar').style.display = 'block';
+                document.getElementById('lbStreet').style.display = 'block';
+                document.getElementById('lbNumber').style.display = 'block';
+                document.getElementById('street').style.display = 'block';
+                document.getElementById('number').style.display = 'block';
+                const selectedOption = valueSelect.options[valueSelect.selectedIndex];
+                const latitudCity = parseFloat(selectedOption.dataset.lat);
+                const longitudCity = parseFloat(selectedOption.dataset.lon);
+                const cityName = selectedOption.dataset.name;
+                city = cityName;
+                // Create a map centered on City, Buenos Aires, Argentina
+                map.setView([latitudCity, longitudCity], 13);
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                }).addTo(map);
+            } else {
+                document.getElementById('map').style.display = 'none';
+                document.getElementById('btnLocalizar').style.display = 'none';
+                document.getElementById('lbStreet').style.display = 'none';
+                document.getElementById('lbNumber').style.display = 'none';
+            }
+        }
+
+        const longitud = document.getElementById("longitud");
+        const latitud = document.getElementById("latitud");
+        
+        var markers = [];
+        // Función para limpiar todos los marcadores del mapa
+        function clearMarkers() {
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+        }
+        const apiNominatim = async (calle, nro, ciudad, provincia, pais) => {
+            const response = await fetch('https://nominatim.openstreetmap.org/search?street='+calle+'+'+nro+'&city='+ciudad+'&state='+provincia+'&country='+pais+'&format=json');
+            const responseJSON = await response.json(); //extract JSON from the http response
+            if (responseJSON.length !== 0) {
+                longitud.value = responseJSON[0].lon;
+                latitud.value = responseJSON[0].lat;
+                clearMarkers();
+                map.setView([latitud.value, longitud.value], 16);
+                var marker = L.marker([latitud.value, longitud.value], {draggable:true}).addTo(map);
+                marker.on('dragend', function(event){
+                    var newLocation = this.getLatLng();
+                    latitud.value = newLocation.lat;
+                    longitud.value = newLocation.lng;
+                });
+                markers.push(marker);
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        const btnLocalizar = document.getElementById('btnLocalizar');
+
+        btnLocalizar.addEventListener('click', async function() {
+            calle = document.getElementById('street').value;
+            nro = document.getElementById('number').value;
+            geoLocalizacion = await apiNominatim(calle, nro, city, 'Buenos Aires', 'Argentina');
+        });
+    </script>
 {% endblock %}

@@ -20,7 +20,19 @@ class BeachResortCollection extends Model {
             $newBeachResort -> set($beach_resort);
             $beach_resorts_collection[] = $newBeachResort;
         }
-    
+        return $beach_resorts_collection;
+    }
+
+    public function getEnable() {
+        $beach_resorts = $this -> queryBuilder -> select('beach_resort',['state' => 1]);
+        $beach_resorts_collection = [];
+        
+        foreach ($beach_resorts as $beach_resort) {
+            $newBeachResort = new BeachResort;
+            $newBeachResort->setQueryBuilder($this->queryBuilder);
+            $newBeachResort -> set($beach_resort);
+            $beach_resorts_collection[] = $newBeachResort;
+        }
         return $beach_resorts_collection;
     }
 
@@ -32,7 +44,7 @@ class BeachResortCollection extends Model {
     }
 
     public function getByCity($cityId) {
-        return $this->queryBuilder->select('beach_resort', ['city' => $cityId]);
+        return $this->queryBuilder->select('beach_resort', ['city' => $cityId, 'state' => 1]);
     }
 
     public function insertBeachResort($values) {
@@ -53,7 +65,7 @@ class BeachResortCollection extends Model {
     public function updateBeachResortState($id, $newState) {
         try {
             // Asumiendo que $this->queryBuilder tiene un método update
-            $this->queryBuilder->update($this->table, ['state' => $newState], ['id' => $id]);
+            $this->queryBuilder->update($this->table, ['state' => $newState, 'id' => $id]);
         } catch (DatabaseException $e) {
             // Manejar el error de la base de datos, mostrar mensaje, registrar, etc.
             echo "Ocurrió un error al actualizar el estado del resort: " . $e->getMessage();

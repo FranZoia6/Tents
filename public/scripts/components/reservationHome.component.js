@@ -2,8 +2,8 @@ class ReservationHomeComponent {
 
     constructor() {
         const botonReservar = document.querySelector('.bReserva');
-        // const fechaEntradaInput = document.getElementById('fecha_entrada');
-        // const fechaSalidaInput = document.getElementById('fecha_salida');
+        // const fechaEntradaInput = document.getElementById('startDate');
+        // const fechaSalidaInput = document.getElementById('endDate');
 
         // // Agrega un evento de escucha para el cambio en la fecha de entrada
         // fechaEntradaInput.addEventListener('change', function(event) {

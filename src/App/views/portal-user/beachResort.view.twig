@@ -18,35 +18,30 @@
                     <label>
                         Llegada:
                     </label>
-                    <input type="date" id="fecha_entrada" name="fecha_entrada" {% if start_date is not null %}value="{{ start_date }}" {% endif %}/>
+                    <input type="date" id="startDate" name="startDate" {% if start_date is not null %}value="{{ start_date }}" {% endif %}/>
                 </p>
                 <p>
                     <label>
                         Salida:
                     </label>
-                    <input type="date" id="fecha_salida" name="fecha_salida" {% if end_date is not null %}value="{{ end_date }}" {% endif %}/>
-                </p>
-                <p>
-                    <input type="button" value="Buscar" class="bBuscar" id="botonBuscar"></input>
-                </p>
-                <p>
-                    <label for="reservesList">Seleccione una reserva:</label>
-                    <select id="reservesList" class="reserveUnit">
-                        <!-- Las opciones se generarán dinámicamente aquí -->
-                    </select>
+                    <input type="date" id="endDate" name="endDate" {% if end_date is not null %}value="{{ end_date }}" {% endif %}/>
                 </p>
             </fieldset>
         </form>
         <object type="image/svg+xml" data="./../imagenes/beachResorts/{{ beachResort.fields.id }}/complejo.svg" id="svgImage"></object>
 
-        <input type="button" value="Continuar" class="bContinuar" id="botonContinuar"></input>
+        <p id="lastUnit"></p>
+        <p id="ticket"></p>
+
+        <input type="button" value="Continuar" class="bContinuar" id="continueBtn"></input>
 
 
     </section>
 {% endblock %}
 
 {% block javascript %}
-
+<script>
    const beachResortId = {{ beachResort.fields.id }};
+</script>
 
 {% endblock %}
