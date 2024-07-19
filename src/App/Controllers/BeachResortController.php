@@ -125,7 +125,13 @@ class BeachResortController extends Controller {
         $menu = $this->menuAdmin;
         //var_dump($beachResortId);
         
-        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('beachResortId'));
+        // $beachResort = new BeachResort();
+        // $beachResort.setId($beachResortId);
+
+        $beachResort = $this -> model -> obtenerCiudad($beachResortId);
+        // var_dump($beachResort);
+        // die;
+        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('beachResort'));
 
     }
 

@@ -80,4 +80,23 @@ class BeachResortCollection extends Model {
         return $resultado;
     }
 
+    public function obtenerCiudad($beachResortId) {
+
+        // Definición de los joins
+        $joins = [
+            ['table' => 'city', 'condition' => 'beach_resort.city = city.id', 'type' => 'INNER'],
+        ];
+    
+        // Llamada a la función join
+        $resultado = $this->queryBuilder->join(
+            'beach_resort', 
+            $joins, 
+            ['beach_resort.id AS beach_resort_id', 'beach_resort.name AS beach_resort_name', 'city.name AS city_name'],
+            ['beach_resort.id' => $beachResortId]
+        );
+        
+        return $resultado;
+    }
+    
+
 }

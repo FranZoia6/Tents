@@ -96,41 +96,52 @@ class QueryBuilder {
         $statement->execute();
     }
 
+    // Definición de la función join
     public function join($table, $joins, $selectColumns = ['*'], $params = []) {
         $where = "1 = 1";
-        $bindings = [];
-    
+        //  $bindings = [];
+
+        // Construcción de la cláusula WHERE y vinculación de parámetros
         foreach ($params as $column => $value) {
-            $where .= " AND $column = :$column";
-            $bindings[":$column"] = $value;
+            $where .= " AND $column = $value";
+         //   $bindings[":$column"] = $value;
         }
-    
+
+        // Construcción de la consulta SELECT con los JOINs
         $selectColumnsString = implode(', ', $selectColumns);
         $query = "SELECT $selectColumnsString FROM $table";
-    
-        // Construir los JOINs
+
         foreach ($joins as $join) {
             $joinTable = $join['table'];
             $joinCondition = $join['condition'];
-            $joinType = isset($join['type']) ? strtoupper($join['type']) : 'LEFT'; // LEFT JOIN por defecto
-    
+            $joinType = isset($join['type']) ? strtoupper($join['type']) : 'LEFT';
             $query .= " $joinType JOIN $joinTable ON $joinCondition";
         }
-    
+
+        // Agregar la cláusula WHERE al final de la consulta
         $query .= " WHERE $where";
 
-        $sentencia = $this->pdo->prepare($query);
-        $sentencia->setFetchMode(PDO::FETCH_ASSOC);
-        
-        // Bind de los parámetros
-        foreach ($bindings as $param => $value) {
-            $sentencia->bindValue($param, $value);
-        }
+        // Preparar la consulta
+        $statement = $this->pdo->prepare($query);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
 
-        $sentencia->execute();
-    
-        return $sentencia->fetchAll();
+        // var_dump($bindings);
+
+        // // Vincular los parámetros
+        // foreach ($bindings as $param => $value) {
+        //     $statement->bindValue($param, $value);
+        // }
+
+       // var_dump($statement);
+        //  die;
+
+        // Ejecutar la consulta
+        $statement->execute();
+
+        // Retornar los resultados
+        return $statement->fetchAll();
     }
+
     
 
     public function querySql($query, $params = []) {
