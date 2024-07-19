@@ -1,13 +1,22 @@
 {% extends "base.view.twig" %}
 
 {% block main %}
-    <h1>Edición de ciudad</h1>
-    <form class="editCity" action="/portal-admin/cities/edit" method = "POST">  
-        <input value='{{ cityId }}' name="id" type="hidden" required>
+    <h1>Edición de Balneario</h1>
+    <form class="newBeachResort" action="/submitBeachResort" method = "POST">  
         <label for="name">Nombre:</label>
-        <input value='{{ cityName }}' type="text" name="name" required>
+        <input type="text" value="{{ beachResort[0].beach_resort_name }}" id="name" name="name" required>
+    
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" required></textarea>
+    
+        <label for="ciudad">Ciudad:</label>
+        <select id="city" name="city" required>
+            {% for city in cities %}
+                <option value="{{ city.fields.id }}">{{ city.fields.name }}</option>
+            {% endfor %}
+        </select>
         <div>
-            <button class="bBuscarCity" type="submit">Envíar</button>
+            <button class="bReserva" type="submit">Envíar</button>
         </div>
     </form>
 {% endblock %}
