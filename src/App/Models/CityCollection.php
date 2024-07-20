@@ -48,11 +48,10 @@ class CityCollection extends Model {
     }
 
     public function updateCity($city) {
-       // var_dump($city);
-       // die;
         $params = [
             "id" => $city -> fields['id'],
-            "name" => $city -> fields['name']
+            "name" => $city -> fields['name'],
+            "img" => $city -> fields['img']
         ];
 
         try {

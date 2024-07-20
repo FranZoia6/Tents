@@ -3,8 +3,9 @@
 {% block main %}
     <h1>Edición de ciudad</h1>
     <form class="newCity" action="/portal-admin/cities/edit" method = "POST" enctype="multipart/form-data">  
+        <input type="hidden" id="id" name="id" value= "{{ cityId }}" required>
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" value = "{{cityName}}" required>
         <label for="imagen">Selecciona una imagen:</label>
         <input type="file" id="imagen" name="imagen" accept="image/*">
         <section>

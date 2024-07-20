@@ -111,7 +111,20 @@ class CityController extends Controller {
         $city -> setId($idCity);
         $city -> setName($nameCity);
 
+           // Directorio donde se guardarán las imágenes subidas
+           $uploadDir = '././imagenes/cities/';
+        
+           $fileExtension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+           // Nombre del archivo subido con la extensión original
+           $uploadFile = $uploadDir . $_POST['name'] . '.' . $fileExtension;
+       
+           // Mover el archivo subido al directorio deseado
+           move_uploaded_file($_FILES['imagen']['tmp_name'], $uploadFile);
+   
+           $city->setImg($uploadFile);
+
         $this->model->updateCity($city);
+        
         
         header("Location: /adminCity");
         exit();
