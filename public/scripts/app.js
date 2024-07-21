@@ -3,6 +3,11 @@ class appPAW {
         
         document.addEventListener("DOMContentLoaded", () => {
 
+            //Inicializar la funcionalidad Menu
+		    PAW.cargarScript("Hamburguesa", "scripts/components/hamburguesa.component.js", () => {	
+                new Hamburguesa();
+            });
+
             let contenedor = document.querySelector(".carousel");
 
             if (contenedor) {

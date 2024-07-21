@@ -27,10 +27,6 @@ class Controller {
                 "href" => "/",
                 "name" => "Home",
             ],
-            [
-                "href" => "/servicies",
-                "name" => "Servicios",
-            ],
             [    
                 "href" => "/contact",
                 "name" => "Contactos",

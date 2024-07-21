@@ -1,4 +1,4 @@
-<nav>
+<nav class="menu">
     <ul>
         <li class="logo-item">
             <img src="./../../imagenes/logo.png" alt="logo">
@@ -6,9 +6,17 @@
         </li>
         {% for item in menu %}
             {% if item.name == 'Acceso' %}
-                <li class="botonLogin"><a href="{{ item.href }}">{{ item.name }}</a></li>
+                <li class="botonLogin">
+                    <a href="{{ item.href }}">
+                        {{ item.name }}
+                    </a>
+                </li>
             {% else %}
-                <li><a href="{{ item.href }}">{{ item.name }}</a></li>
+                <li class="dropdown">
+                    <a href="{{ item.href }}">
+                        {{ item.name }}
+                    </a>
+                </li>
             {% endif %}
         {% endfor %}
     </ul>

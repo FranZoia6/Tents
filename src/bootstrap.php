@@ -36,7 +36,6 @@ $request = new Request;
 $router = new Router;
 $router -> setLogger($log);
 $router->get('/','PageController@index');
-$router->get('/servicies','PageController@servicies');
 $router->get('/contact','PageController@contact');
 $router->get('/beachResortIndex','BeachResortController@index');
 $router->get('/beachResort','BeachResortController@get');
