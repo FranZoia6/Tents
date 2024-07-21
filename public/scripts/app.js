@@ -46,14 +46,6 @@ class appPAW {
                 });
             }
 
-            contenedor = document.querySelector(".bContinuar");
-
-            if (contenedor) {
-                PAW.cargarScript("ReservationPersonalDataComponent", "scripts/components/reservationPersonalData.component.js", () => {
-                    new ReservationPersonalDataComponent();
-                });
-            }
-
         });
     }
 }

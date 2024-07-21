@@ -8,6 +8,7 @@ class ReservationsBeachResortComponent {
         const lastUnit = document.getElementById("lastUnit");
         const ticket = document.getElementById("ticket");
         const continueBtn = document.getElementById("continueBtn");
+        const objeto = document.getElementsByTagName('object');
         let selectedUnits = [];
 
         // Si se especificaron ambas fechas, disparamos la consulta.
@@ -77,8 +78,33 @@ class ReservationsBeachResortComponent {
             spinner.remove();
             svgImage.style.display = "block";
 
-        }
-    }
+            }
+        }        
+
+        // Agrega un evento de escucha para el clic en el botón
+        continueBtn.addEventListener('click', function(event) {
+
+            startDate.disabled = true;
+            endDate.disabled = true;
+            // svgImage.style.fill = 'rgba(0, 0, 0, 0.75)';
+            fetch(`/searchReservations?id=${beachResortId}&start_date=${startDate.value}&end_date=${endDate.value}`)
+            .then(response => response.json())
+            .then(data => {
+                /*
+                * "data" es un array de objetos con las unidades del balneario.
+                * Dentro de cada objeto, la propiedad "free" indica si la unidad
+                 * está disponible o no.
+                */
+               data.forEach(unit => {
+                        const svgUnit = svgImage.contentDocument.getElementById(unit.id);
+                        if (svgUnit.onclick) {
+                            svgUnit.onclick = null 
+                            svgUnit.style.cursor = "auto";
+                        }
+                    });
+                })
+                
+        });
 
     startDate.addEventListener('change', actualizar);
     endDate.addEventListener('change', actualizar);
