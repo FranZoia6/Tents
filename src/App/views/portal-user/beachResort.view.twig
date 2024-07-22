@@ -12,8 +12,8 @@
         </ol>
     </section>
     <section class="reserveUnit">
-        <form>
-            <fieldset>
+        <form id="reservationForm">
+            <fieldset id = "reservation">
                 <p>
                     <label>
                         Llegada:
@@ -26,17 +26,19 @@
                     </label>
                     <input type="date" id="endDate" name="endDate" {% if end_date is not null %}value="{{ end_date }}" {% endif %}/>
                 </p>
+                <object  type="image/svg+xml" data="./../imagenes/beachResorts/{{ beachResort.fields.id }}/complejo.svg" id="svgImage"></object>
+
+                <p id="lastUnit"></p>
+                <p id="ticket"></p>
+
+                <input type="button" value="Continuar" class="bContinuar" id="continueBtn"></input>
+            
+            
             </fieldset>
         </form>
-        <object  type="image/svg+xml" data="./../imagenes/beachResorts/{{ beachResort.fields.id }}/complejo.svg" id="svgImage"></object>
-
-        <p id="lastUnit"></p>
-        <p id="ticket"></p>
-
-        <input type="button" value="Continuar" class="bContinuar" id="continueBtn"></input>
-
 
     </section>
+    
 {% endblock %}
 
 {% block javascript %}

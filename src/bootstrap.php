@@ -39,6 +39,7 @@ $router->get('/','PageController@index');
 $router->get('/contact','PageController@contact');
 $router->get('/beachResortIndex','BeachResortController@index');
 $router->get('/beachResort','BeachResortController@get');
+$router->post('/beachResort','ReservationController@datosReservation');
 $router->get('/beachResortsCity','BeachResortController@getAllByCity');
 $router->post('/contact','PageController@contactProccess');
 $router ->get('/login', 'PageController@login');

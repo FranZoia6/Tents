@@ -34,6 +34,10 @@ class ReservationController extends Controller {
         echo json_encode($occupatedTents, JSON_UNESCAPED_UNICODE);
     }
 
+    public function datosReservation(){
+        var_dump($POST);
+        die();
+    }
 
 
     public function edit() {

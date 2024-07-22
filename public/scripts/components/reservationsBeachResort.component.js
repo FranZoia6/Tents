@@ -8,6 +8,7 @@ class ReservationsBeachResortComponent {
         const lastUnit = document.getElementById("lastUnit");
         const ticket = document.getElementById("ticket");
         const continueBtn = document.getElementById("continueBtn");
+        const datosReservation = document.getElementById("reservation");
         const objeto = document.getElementsByTagName('object');
         let selectedUnits = [];
 
@@ -81,30 +82,59 @@ class ReservationsBeachResortComponent {
             }
         }        
 
-        // Agrega un evento de escucha para el clic en el botón
         continueBtn.addEventListener('click', function(event) {
-
             startDate.disabled = true;
             endDate.disabled = true;
-            // svgImage.style.fill = 'rgba(0, 0, 0, 0.75)';
+        
             fetch(`/searchReservations?id=${beachResortId}&start_date=${startDate.value}&end_date=${endDate.value}`)
-            .then(response => response.json())
-            .then(data => {
-                /*
-                * "data" es un array de objetos con las unidades del balneario.
-                * Dentro de cada objeto, la propiedad "free" indica si la unidad
-                 * está disponible o no.
-                */
-               data.forEach(unit => {
+                .then(response => response.json())
+                .then(data => {
+                    /*
+                     * "data" es un array de objetos con las unidades del balneario.
+                     * Dentro de cada objeto, la propiedad "free" indica si la unidad está disponible o no.
+                     */
+                    data.forEach(unit => {
                         const svgUnit = svgImage.contentDocument.getElementById(unit.id);
                         if (svgUnit.onclick) {
-                            svgUnit.onclick = null 
+                            svgUnit.onclick = null;
                             svgUnit.style.cursor = "auto";
                         }
                     });
+        
+                    // Crear el formulario y agregarlo al documento
+                    const newSection = document.createElement('section');
+                    newSection.innerHTML = `
+                        <h2>Reservar Unidad</h2>
+                            <label for="name">Nombre:</label>
+                            <input type="text" id="name" name="name" required>
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                            <label for="phone">Teléfono:</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        
+                            <button type="submit">Enviar Reserva</button>
+                    `;
+        
+                    datosReservation.appendChild(newSection);
+        
+                    // Aquí podrías añadir lógica adicional para manejar el envío del formulario
+                    const reservationForm = newSection.querySelector('#reservationForm');
+                    reservationForm.addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        // Aquí podrías manejar el envío del formulario (por ejemplo, enviar datos al servidor)
+                        // Ejemplo básico:
+                        const formData = new FormData(reservationForm);
+                        // Aquí podrías enviar los datos al servidor usando fetch u otro método
+                        console.log('Formulario enviado:',formData);
+                    });
+        
                 })
-                
+                .catch(error => {
+                    console.error('Error al obtener datos:', error);
+                    // Aquí podrías manejar el error de la solicitud fetch
+                });
         });
+        
 
     startDate.addEventListener('change', actualizar);
     endDate.addEventListener('change', actualizar);
