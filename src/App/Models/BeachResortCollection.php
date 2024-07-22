@@ -103,7 +103,7 @@ class BeachResortCollection extends Model {
         $resultado = $this->queryBuilder->join(
             'beach_resort', 
             $joins, 
-            ['beach_resort.id AS beach_resort_id', 'beach_resort.name AS beach_resort_name', 'city.name AS city_name'],
+            ['beach_resort.id AS beach_resort_id', 'beach_resort.name AS beach_resort_name', 'city.name AS city_name,beach_resort.description AS beach_resort_description'],
             ['beach_resort.id' => $beachResortId]
         );
         

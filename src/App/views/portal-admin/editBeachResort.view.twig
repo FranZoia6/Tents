@@ -5,10 +5,10 @@
     <form class="newBeachResort" action="/submitBeachResort" method = "POST">  
         <label for="name">Nombre:</label>
         <input type="text" value="{{ beachResort[0].beach_resort_name }}" id="name" name="name" required>
-    
+        
         <label for="description">Descripción:</label>
-        <textarea id="description" name="description" required></textarea>
-    
+        <textarea id="description" name="description" required>{{ beachResort[0].beach_resort_description }}</textarea>
+
         <label for="ciudad">Ciudad:</label>
         <select id="city" name="city" required>
             {% for city in cities %}

@@ -77,8 +77,8 @@ class BeachResortController extends Controller {
             $menu = $this->menuAdmin;
            // $beachResorts = $this->model->getAll();
             $beachResorts = $this->model->obtenerNombres();
-          //  var_dump($beachResorts[0]);
-          //  die;
+        //    var_dump(cities);
+        //    die;
             echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
         }else {
             $mensajeError = 'Prueba';
@@ -144,10 +144,14 @@ class BeachResortController extends Controller {
         // $beachResort = new BeachResort();
         // $beachResort.setId($beachResortId);
 
+        $cityCollection = new CityCollection;
+        $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+        $cities = $cityCollection->getAll();
+
         $beachResort = $this -> model -> obtenerCiudad($beachResortId);
         // var_dump($beachResort);
         // die;
-        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('beachResort'));
+        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('cities','beachResort'));
 
     }
 
