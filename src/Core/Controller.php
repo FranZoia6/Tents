@@ -23,10 +23,6 @@ class Controller {
 		$this->twig =new \Twig\Environment($this->loader,[]);
         @$this-> menu = [
 
-            [
-                "href" => "/",
-                "name" => "Home",
-            ],
             [    
                 "href" => "/contact",
                 "name" => "Contactos",
