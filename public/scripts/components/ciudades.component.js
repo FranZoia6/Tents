@@ -46,7 +46,6 @@ class Ciudades {
                 optionItem.classList.add('ciudad-option');
                 this.ciudadList.appendChild(optionItem);
             });
-
             // Asegúrate de mostrar la lista si hay resultados
             this.ciudadList.style.display = filteredCities.length > 0 ? 'block' : 'none';
         } else {
