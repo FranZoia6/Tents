@@ -8,7 +8,7 @@ class ReservationsBeachResortComponent {
         const lastUnit = document.getElementById("lastUnit");
         const ticket = document.getElementById("ticket");
         const continueBtn = document.getElementById("continueBtn");
-        const datosReservation = document.getElementById("reservation");
+        const datosReservation = document.getElementById("reservationForm");
         const objeto = document.getElementsByTagName('object');
         let selectedUnits = [];
 
@@ -102,7 +102,7 @@ class ReservationsBeachResortComponent {
                     });
         
                     // Crear el formulario y agregarlo al documento
-                    const newSection = document.createElement('section');
+                    const newSection = document.createElement('fieldset');
                     newSection.innerHTML = `
                         <h2>Reservar Unidad</h2>
                             <label for="name">Nombre:</label>
@@ -111,19 +111,31 @@ class ReservationsBeachResortComponent {
                             <input type="email" id="email" name="email" required>
                             <label for="phone">Teléfono:</label>
                             <input type="tel" id="phone" name="phone" required>
-                        
-                            <button type="submit">Enviar Reserva</button>
                     `;
         
                     datosReservation.appendChild(newSection);
+
+                    const button = document.createElement('button')
+                    button.textContent = 'Reservar';
+                    datosReservation.appendChild(button);
         
                     // Aquí podrías añadir lógica adicional para manejar el envío del formulario
-                    const reservationForm = newSection.querySelector('#reservationForm');
+                    const reservationForm = document.querySelector('#reservationForm');
                     reservationForm.addEventListener('submit', function(event) {
+                        console.log(reservationForm);
                         event.preventDefault();
                         // Aquí podrías manejar el envío del formulario (por ejemplo, enviar datos al servidor)
                         // Ejemplo básico:
-                        const formData = new FormData(reservationForm);
+                        const data = new FormData(reservationForm);
+                        const formData =  {
+                            startDate: startDate.value,
+                            endDate: endDate.value,
+                            selectedUnits: selectedUnits,
+                            name: data.get('name'),
+                            email: data.get('email'),
+                            phone: data.get('phone'),
+
+                        };
                         // Aquí podrías enviar los datos al servidor usando fetch u otro método
                         console.log('Formulario enviado:',formData);
                     });
