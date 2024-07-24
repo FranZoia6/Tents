@@ -527,10 +527,6 @@ section a {
   text-decoration: none;
 }
 
-section {
-  padding: 2em;
-}
-
 @media (max-width: 768px) {
     body {
         padding: 10px;

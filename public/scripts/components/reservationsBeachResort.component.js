@@ -35,7 +35,7 @@ class ReservationsBeachResortComponent {
                  * está disponible o no.
                  */
                 data.forEach(unit => {
-                        const svgUnit = svgImage.contentDocument.getElementById(unit.id);
+                        const svgUnit = svgImage.contentDocument.getElementById(unit.number);
                         if (unit.free) {
                             svgUnit.style.fill = "#8ce189";
                             svgUnit.style.cursor = "pointer";
@@ -95,7 +95,7 @@ class ReservationsBeachResortComponent {
                      * Dentro de cada objeto, la propiedad "free" indica si la unidad está disponible o no.
                      */
                     data.forEach(unit => {
-                        const svgUnit = svgImage.contentDocument.getElementById(unit.id);
+                        const svgUnit = svgImage.contentDocument.getElementById(unit.number);
                         if (svgUnit.onclick) {
                             svgUnit.onclick = null;
                             svgUnit.style.cursor = "auto";
