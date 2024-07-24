@@ -2,15 +2,18 @@
 
 {% block main %}
     <h1 class="balneario">{{ beachResort.fields.name }}</h1>
-    <section>
-        <p>{{ beachResort.fields.description }}</p>
-        <p>Ciudad: {{ city.fields.name }}</p>
-        <ol>Servicios:
+<section class="resort-section">
+    <p class="resort-description">{{ beachResort.fields.description }}</p>
+    <p class="resort-city">Ciudad: {{ city.fields.name }}</p>
+    <ol class="resort-services">
+        <li>Servicios:
             {% for service in service_colection %}
-                <li>{{ service.name }}</li>
+                <li class="service-item">∙ {{ service.name }}</li>
             {% endfor %}
-        </ol>
-    </section>
+        </li>
+    </ol>
+</section>
+
     <section class="reserveUnit">
         <form id="reservationForm">
             <fieldset id = "reservation">

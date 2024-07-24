@@ -137,16 +137,21 @@ h3{
   color: #fff;
 } */
 
-.bNew {
-  display: inline-block;
+.bNew, .bContinuar, button {
+  display: block;
   text-decoration: none;
   padding: 1em;
-  margin-left: 80%;
-  margin-bottom: 2%;
+  margin-top: 1em;
   border-radius: 10px;
   background-color:  var(--principal-color1);
   box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
   color: #fff;
+}
+
+.bNew{
+  display: inline-block;
+  margin-left: 80%;
+  margin-bottom: 2%;
 }
 
 
@@ -155,6 +160,7 @@ h1 {
     font-size: var(--main-header-title-size); /* Asegúrate de definir esta variable según tu necesidad */
     color: #0077b6; /* Cambia el color a uno más vibrante */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    padding-left: 2rem;
 }
 
 .titulo {
@@ -521,6 +527,10 @@ section a {
   text-decoration: none;
 }
 
+section {
+  padding: 2em;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -560,6 +570,7 @@ section a {
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
@@ -766,3 +777,42 @@ section a {
     margin-top: 0.5rem;
   }
 }
+
+
+/* General Section Styles */
+.resort-section {
+  padding: 20px;
+  margin: 20px;
+}
+
+/* Description Paragraph */
+.resort-description {
+  color: #333;
+  margin-bottom: 10px;
+  font-family: 'Century Gothic', sans-serif;
+}
+
+/* City Paragraph */
+.resort-city {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+
+
+/* Service Item */
+.service-item {
+  padding-left: 3em;
+  margin-bottom: 5px;
+}
+
+fieldset{
+  padding: 2em;
+}
+
+fieldset p{
+  display: inline-block;
+  padding: 1em;
+}
+
+

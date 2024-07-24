@@ -85,6 +85,7 @@ class ReservationsBeachResortComponent {
         continueBtn.addEventListener('click', function(event) {
             startDate.disabled = true;
             endDate.disabled = true;
+            continueBtn.style.display = 'none';
         
             fetch(`/searchReservations?id=${beachResortId}&start_date=${startDate.value}&end_date=${endDate.value}`)
                 .then(response => response.json())
