@@ -106,12 +106,16 @@ class ReservationsBeachResortComponent {
                     const newSection = document.createElement('fieldset');
                     newSection.innerHTML = `
                         <h2>Reservar Unidad</h2>
-                            <label for="name">Nombre:</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="firstName">Nombre:</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                            <label for="lastName">Apellido:</label>
+                            <input type="text" id="lastName" name="lastName" required>
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" required>
                             <label for="phone">Teléfono:</label>
                             <input type="tel" id="phone" name="phone" required>
+                            <label for="promo">Código promocional:</label>
+                            <input type="text" id="promo" name="promo">
                     `;
         
                     datosReservation.appendChild(newSection);
@@ -129,16 +133,24 @@ class ReservationsBeachResortComponent {
                         // Ejemplo básico:
                         const data = new FormData(reservationForm);
                         const formData =  {
+                            beachResortId: beachResortId,
                             startDate: startDate.value,
                             endDate: endDate.value,
                             selectedUnits: selectedUnits,
-                            name: data.get('name'),
+                            firstName: data.get('firstName'),
+                            lastName: data.get('lastName'),
                             email: data.get('email'),
                             phone: data.get('phone'),
+                            promo: data.get('promo')
 
                         };
                         // Aquí podrías enviar los datos al servidor usando fetch u otro método
                         console.log('Formulario enviado:',formData);
+
+                        fetch("/beachResort", {
+                            method: "POST",
+                            body: JSON.stringify(formData)
+                          });
                     });
         
                 })

@@ -815,4 +815,7 @@ fieldset p{
   padding: 1em;
 }
 
-
+#beachResortData {
+  display: flex;
+  flex-direction: column;
+}
