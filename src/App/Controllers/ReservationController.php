@@ -37,6 +37,9 @@ class ReservationController extends Controller {
 
     public function datosReservation(){
         $data = json_decode(file_get_contents("php://input"), true);
+        var_dump($_POST);
+        var_dump($data);
+        die("feliz");
         /*
          * $data = [
          *   "beachResortId" => 2,

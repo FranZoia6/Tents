@@ -120,15 +120,15 @@ class ReservationsBeachResortComponent {
         
                     datosReservation.appendChild(newSection);
 
-                    const button = document.createElement('button')
-                    button.textContent = 'Reservar';
+                    const button = document.createElement('input')
+                    button.type = "submit";
+                    button.value = 'Reservar';
                     datosReservation.appendChild(button);
         
                     // Aquí podrías añadir lógica adicional para manejar el envío del formulario
                     const reservationForm = document.querySelector('#reservationForm');
                     reservationForm.addEventListener('submit', function(event) {
                         console.log(reservationForm);
-                        event.preventDefault();
                         // Aquí podrías manejar el envío del formulario (por ejemplo, enviar datos al servidor)
                         // Ejemplo básico:
                         const data = new FormData(reservationForm);
@@ -144,13 +144,6 @@ class ReservationsBeachResortComponent {
                             promo: data.get('promo')
 
                         };
-                        // Aquí podrías enviar los datos al servidor usando fetch u otro método
-                        console.log('Formulario enviado:',formData);
-
-                        fetch("/beachResort", {
-                            method: "POST",
-                            body: JSON.stringify(formData)
-                          });
                     });
         
                 })
