@@ -83,7 +83,7 @@ class QueryBuilder {
             $values[':' . $key] = $value;
         }
     
-        $columnString = implode(', ', $columns);
+        $columnString = "`".implode('`, `', $columns)."`";
         $placeholderString = implode(', ', $placeholders);
     
         $query = "INSERT INTO $table ($columnString) VALUES ($placeholderString)";
@@ -93,7 +93,10 @@ class QueryBuilder {
             $statement->bindValue($placeholder, $value);
         }
         
+
+
         $statement->execute();
+        return $this->pdo->lastInsertId();
     }
 
     // Definición de la función join

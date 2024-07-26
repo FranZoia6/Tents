@@ -18,9 +18,9 @@ class Reservation extends Model {
         "lastName" => null,
         "email" => null,
         "phone" => null,
-        "reservation_amount" => null,
-        "promotion_id" => null,
-        "discount_amount" => null,
+        "reservationAmount" => null,
+        "promotion" => null,
+        "discountAmount" => null,
         "payed" => null,
         "voucher" => null,
         "manual" => null,
@@ -62,22 +62,22 @@ class Reservation extends Model {
     }    
     
     public function setReservationAmount(float $reservation_amount) {
-        $this -> fields["reservation_amount"] = $reservation_amount;
+        $this -> fields["reservationAmount"] = $reservation_amount;
     }
 
     public function setPromotion(int $promotion_id) {
-        $this -> fields["promotion_id"] = $promotion_id;
+        $this -> fields["promotion"] = $promotion_id;
     }
 
     public function setDiscountAmount(float $discount_amount) {
-        $this -> fields["discount_amount"] = $discount_amount;
+        $this -> fields["discountAmount"] = $discount_amount;
     }
 
     public function setIsPayed($isPayed) {
-        if (!is_bool($isPayed)) {
-            throw new InvalidValueFormatException("El campo debe ser booleano.");
-        }
-        $this -> fields["isPayed"] = $isPayed;
+        // if (!is_bool($isPayed)) {
+        //     throw new InvalidValueFormatException("El campo debe ser booleano.");
+        // }
+        $this -> fields["payed"] = $isPayed;
     }
 
     public function setVoucher(string $voucher) {
@@ -85,9 +85,9 @@ class Reservation extends Model {
     }
 
     public function setManual($manual) {
-        if (!is_bool($manual)) {
-            throw new InvalidValueFormatException("El campo debe ser booleano.");
-        }
+        // if (!is_bool($manual)) {
+        //     throw new InvalidValueFormatException("El campo debe ser booleano.");
+        // }
         $this -> fields["manual"] = $manual;
     }
 

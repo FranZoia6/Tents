@@ -131,19 +131,11 @@ class ReservationsBeachResortComponent {
                         console.log(reservationForm);
                         // Aquí podrías manejar el envío del formulario (por ejemplo, enviar datos al servidor)
                         // Ejemplo básico:
-                        const data = new FormData(reservationForm);
-                        const formData =  {
-                            beachResortId: beachResortId,
-                            startDate: startDate.value,
-                            endDate: endDate.value,
-                            selectedUnits: selectedUnits,
-                            firstName: data.get('firstName'),
-                            lastName: data.get('lastName'),
-                            email: data.get('email'),
-                            phone: data.get('phone'),
-                            promo: data.get('promo')
+                        startDate.disabled = false;
+                        endDate.disabled = false;   
+                        document.getElementById('selectedUnits').value = selectedUnits;   
+                        document.getElementById('reservationAmount').value = Number (ticket.innerHTML);                     
 
-                        };
                     });
         
                 })
