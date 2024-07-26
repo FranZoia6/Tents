@@ -10,7 +10,13 @@
         <textarea id="description" name="description" required></textarea>
 
         <label for="imagen">Selecciona una imagen:</label>
-        <input type="file" id="imagen" name="imagen" accept="image/*">
+        <input type="file" id="imagen" name="archivo" accept="image/*">
+
+        <label for="precioCarpas">Precio carpas:</label>
+        <input type="text" name="precioCarpas" required>
+
+        <label for="precioSombrillas">Precio sombrillas:</label>
+        <input type="text" name="precioSombrillas" required>
 
         <label for="ciudad">Ciudad:</label>
         <select id="city" name="city" onchange="cargarMapa()" required>

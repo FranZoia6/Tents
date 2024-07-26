@@ -9,6 +9,11 @@ use Tents\App\Models\BeachResort;
 use Tents\App\Models\CityCollection;
 use Tents\App\Models\ServiceBeachResortCollection;
 use Tents\App\Models\ServiceCollection;
+use Tents\App\Models\UnitCollection;
+use Tents\App\Models\Unit;
+use Exception;
+
+use SimpleXMLElement;
 
 
 class BeachResortController extends Controller {
@@ -96,27 +101,119 @@ class BeachResortController extends Controller {
     }
 
     public function submit() {
+        
         // Directorio donde se guardarán las imágenes subidas
         $uploadDir = '././imagenes/beachResorts/';
 
-        $fileExtension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+        try {
+            // Verificar si se subió un archivo
+            if (empty($_FILES['archivo']['tmp_name'])) {
+                throw new Exception("Debes adjuntar un archivo");
+            }
+        
+            // Validar la extensión del archivo
+            $formatos_permitidos = ['svg'];
+            $archivo = $_FILES['archivo']['name'];
+            $extension = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+        
+            if (!in_array($extension, $formatos_permitidos)) {
+                throw new Exception("Formato no permitido");
+            }
+        
+            // Nombre del archivo subido con la extensión original
+            $uploadFile = $uploadDir . $_POST['name'] . '.' . $extension;
+        
+            // Mover el archivo subido al directorio de destino
+            if (!move_uploaded_file($_FILES['archivo']['tmp_name'], $uploadFile)) {
+                throw new Exception("Error al mover el archivo subido");
+            }
+        
+            echo "El archivo " . htmlspecialchars(basename($_FILES['archivo']['name'])) . " ha sido subido correctamente.<br>";
+        
+            // Procesar el SVG para contar elementos
+            $svg_content = file_get_contents($uploadFile); // Obtener contenido del archivo SVG
+        
+            // Crear objeto SimpleXMLElement desde el contenido del SVG
+            $svg = new SimpleXMLElement($svg_content);
+        
+            // Contador para <ellipse>
+            $sombrillas_count = 0;
+        
+            // Contar todos los elementos <ellipse> dentro del SVG
+            foreach ($svg->xpath('//svg:ellipse') as $sombrilla) {
+                // Incrementar el contador de elipses
+                $sombrillas_count++;
+            }
+        
+            echo "Número de sombrillas: " . $sombrillas_count . "<br>";
+        
+            // Contador para <rect> con id de un solo caracter
+            $carpas_count = 0;
+        
+            // Contar todos los <rect> dentro del SVG que tienen un id compuesto únicamente por dígitos
+            foreach ($svg->xpath('//svg:rect') as $rect) {
+                // Verificar si el id del rect es un número utilizando preg_match
+                $id = (string) $rect['id'];
+                if (preg_match('/^\d+$/', $id)) {
+                    // Incrementar el contador de rects con id que es solo un número
+                    $carpas_count++;
+                }
+            }
 
-        // Nombre del archivo subido con la extensión original
-        $uploadFile = $uploadDir . $_POST['name'] . '.' . $fileExtension;
+            echo "Número de carpas: " . $carpas_count . "<br>";
+
+            // Aquí puedes guardar los resultados en la base de datos u hacer cualquier otra operación necesaria
+            
+            $beachResort = new BeachResort;
+            $beachResort->setName($_POST['name']);
+            $beachResort->setDescription($_POST['description']);
+            $beachResort->setCity($_POST['city']);
+            $beachResort->setState(1);
+            $beachResort->setLat($_POST['latitud']);
+            $beachResort->setLon($_POST['longitud']);
+            $beachResort->setImg($uploadFile);
+            $this->model->insertBeachResort($beachResort);
+
+            $newBeachResort = $this -> model -> getByName($beachResort -> fields['name']);
+
+            // Insertar unidades de carpas
+
+            $unitCollection = new UnitCollection;
+            $unitCollection ->setQueryBuilder($this->model->queryBuilder);
+
+            $number = 1;
+
+            // Iterar $carpas_count veces
+            for ($i = 1; $i <= $carpas_count; $i++) {
+                
+                $carpa = new Unit;
+                $carpa -> setBeachResort($newBeachResort[0]['id']);
+                $carpa -> setShade(1);
+                $carpa -> setNumber($number);
+                $carpa -> setPrice($_POST['precioCarpas']);
+                $unitCollection -> insertUnit($carpa);
+                $number++;
+            }
+
+            // Iterar $sombrillas_count veces
+            for ($i = 1; $i <= $sombrillas_count; $i++) {
     
-        // Mover el archivo subido al directorio deseado
-        move_uploaded_file($_FILES['imagen']['tmp_name'], $uploadFile);
+                $sombrilla = new Unit;
+                $sombrilla -> setBeachResort($newBeachResort[0]['id']);
+                $sombrilla -> setShade(2);
+                $sombrilla -> setNumber($number);
+                $sombrilla -> setPrice($_POST['precioSombrillas']);
+                $unitCollection -> insertUnit($sombrilla);
+                $number++;
+                
+            }
 
-        $beachResort = new BeachResort;
-        $beachResort->setName($_POST['name']);
-        $beachResort->setDescription($_POST['description']);
-        $beachResort->setCity($_POST['city']);
-        $beachResort->setState(1);
-        $beachResort->setLat($_POST['latitud']);
-        $beachResort->setLon($_POST['longitud']);
-        $beachResort->setImg($uploadFile);
-        $this->model->insertBeachResort($beachResort);
-        $this->adminBeachResor();
+            $this->adminBeachResor();
+
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        
     }
 
     public function enable() {

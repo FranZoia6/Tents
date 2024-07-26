@@ -47,6 +47,14 @@ class BeachResortCollection extends Model {
         return $this->queryBuilder->select('beach_resort', ['city' => $cityId, 'state' => 1]);
     }
 
+    public function getByName($name){
+     //   $newBeachResort = new BeachResort;
+     //   $newBeachResort->setQueryBuilder($this->queryBuilder);
+     //   $beachResort->load($id);
+        return $this->queryBuilder->select('beach_resort', ['name' => $name]);
+     //   return $newBeachResort;
+    }
+
     public function insertBeachResort($values) {
         try {
             $this->queryBuilder->insert($this->table, $values);

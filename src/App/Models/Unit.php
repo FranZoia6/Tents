@@ -11,18 +11,18 @@ class Unit extends Model {
     public $table = 'unit';
 
     public $fields = [
-        "beachresort_id" => null,
-        "shade_id" => null,
+        "beachResort" => null,
+        "shade" => null,
         "number" => null,
         "price" => null,
     ];
 
     public function setBeachResort(int $beachresort_id) {
-        $this -> fields["beachresort_id"] = $beachresort_id;
+        $this -> fields["beachResort"] = $beachresort_id;
     }
 
     public function setShade(int $shade_id) {
-        $this -> fields["shade_id"] = $shade_id;
+        $this -> fields["shade"] = $shade_id;
     }
 
     public function setNumber(int $number) {
