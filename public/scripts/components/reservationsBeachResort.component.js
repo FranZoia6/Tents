@@ -35,7 +35,7 @@ class ReservationsBeachResortComponent {
                  * está disponible o no.
                  */
                 data.forEach(unit => {
-                        const svgUnit = svgImage.contentDocument.getElementById(unit.id);
+                        const svgUnit = svgImage.contentDocument.getElementById(unit.number);
                         if (unit.free) {
                             svgUnit.style.fill = "#8ce189";
                             svgUnit.style.cursor = "pointer";
@@ -95,7 +95,7 @@ class ReservationsBeachResortComponent {
                      * Dentro de cada objeto, la propiedad "free" indica si la unidad está disponible o no.
                      */
                     data.forEach(unit => {
-                        const svgUnit = svgImage.contentDocument.getElementById(unit.id);
+                        const svgUnit = svgImage.contentDocument.getElementById(unit.number);
                         if (svgUnit.onclick) {
                             svgUnit.onclick = null;
                             svgUnit.style.cursor = "auto";
@@ -106,39 +106,44 @@ class ReservationsBeachResortComponent {
                     const newSection = document.createElement('fieldset');
                     newSection.innerHTML = `
                         <h2>Reservar Unidad</h2>
-                            <label for="name">Nombre:</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="firstName">Nombre:</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                            <label for="lastName">Apellido:</label>
+                            <input type="text" id="lastName" name="lastName" required>
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" required>
                             <label for="phone">Teléfono:</label>
                             <input type="tel" id="phone" name="phone" required>
+                            <label for="promo">Código promocional:</label>
+                            <input type="text" id="promo" name="promo">
                     `;
         
                     datosReservation.appendChild(newSection);
 
-                    const button = document.createElement('button')
-                    button.textContent = 'Reservar';
+                    const button = document.createElement('input')
+                    button.type = "submit";
+                    button.value = 'Reservar';
                     datosReservation.appendChild(button);
         
                     // Aquí podrías añadir lógica adicional para manejar el envío del formulario
                     const reservationForm = document.querySelector('#reservationForm');
                     reservationForm.addEventListener('submit', function(event) {
                         console.log(reservationForm);
-                        event.preventDefault();
                         // Aquí podrías manejar el envío del formulario (por ejemplo, enviar datos al servidor)
                         // Ejemplo básico:
                         const data = new FormData(reservationForm);
                         const formData =  {
+                            beachResortId: beachResortId,
                             startDate: startDate.value,
                             endDate: endDate.value,
                             selectedUnits: selectedUnits,
-                            name: data.get('name'),
+                            firstName: data.get('firstName'),
+                            lastName: data.get('lastName'),
                             email: data.get('email'),
                             phone: data.get('phone'),
+                            promo: data.get('promo')
 
                         };
-                        // Aquí podrías enviar los datos al servidor usando fetch u otro método
-                        console.log('Formulario enviado:',formData);
                     });
         
                 })

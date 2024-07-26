@@ -4,6 +4,7 @@ namespace Tents\App\Controllers;
 
 use Tents\Core\Controller;
 use Tents\Core\Database\QueryBuilder;
+use Tents\App\Models\BeachResortCollection;
 use Tents\App\Models\ReservationCollection;
 use Tents\App\Models\Reservation;
 
@@ -35,8 +36,29 @@ class ReservationController extends Controller {
     }
 
     public function datosReservation(){
-        var_dump($POST);
-        die();
+        $data = json_decode(file_get_contents("php://input"), true);
+        var_dump($_POST);
+        var_dump($data);
+        die("feliz");
+        /*
+         * $data = [
+         *   "beachResortId" => 2,
+         *   "startDate" => "2024-07-16",
+         *   "endDate" => "2024-07-16",
+         *   "selectedUnits" => ["tspan16"],
+         *   "firstName" => "franco",
+         *   "lastName" => "parzanese",
+         *   "email" => "franco@example.com",
+         *   "phone" => "2346-492180",
+         *   "promo" => ""
+         * ];
+         */
+        $menu = $this->menu;
+        $titulo = "Confirmar reserva";
+        $beachResort = new BeachResortCollection;
+        $beachResort->setQueryBuilder($this->model->queryBuilder);
+        $data["beachResortName"] = $beachResort->get($data["beachResortId"])->fields["name"];
+        echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data"));
     }
 
 
