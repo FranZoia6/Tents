@@ -45,7 +45,8 @@ class ReservationsBeachResortComponent {
                                      * Vamos por acá. Está el problema de q se carga el listener
                                      * cada vez q cambiamos las fechas. Debe cargarse una sola vez.
                                      */
-                                    const idUnit = event.target.id;
+                                    const idUnit = unit.id;
+                                    console.log(unit);
                                     const idInArray = selectedUnits.indexOf(idUnit);
                                     if (idInArray >= 0) {
                                         // Lo está soltando...

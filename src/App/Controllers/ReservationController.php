@@ -59,25 +59,7 @@ class ReservationController extends Controller {
         $reservation->setDiscountAmount(0);
 
 
-        // public $fields = [
-        //     "date" => null,
-        //     "from" => null,
-        //     "to" => null,
-        //     "firstName" => null,
-        //     "lastName" => null,
-        //     "email" => null,
-        //     "phone" => null,
-        //     "reservationAmount" => null,
-        //     "promotion" => null,
-        //     "discountAmount" => null,
-        //     "payed" => null,
-        //     "voucher" => null,
-        //     "manual" => null,
-        // ];
-
         $reservationId = $this->model->insertReservation($reservation);
-        var_dump($reservationId);
-        die();
 
         echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data"));
     }
