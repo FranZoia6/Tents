@@ -5,6 +5,8 @@ namespace Tents\App\Controllers;
 use Tents\Core\Controller;
 use Tents\Core\Database\QueryBuilder;
 use Tents\App\Models\BeachResortCollection;
+use Tents\App\Models\UnitReservation;
+use Tents\App\Models\UnitReservationCollection;
 use Tents\App\Models\ReservationCollection;
 use Tents\App\Models\Reservation;
 
@@ -41,8 +43,6 @@ class ReservationController extends Controller {
         $data = $_POST;
         $menu = $this->menu;
         $titulo = "Confirmar reserva";
-        $beachResort = new BeachResortCollection;
-        $beachResort->setQueryBuilder($this->model->queryBuilder);
         $reservation = new Reservation;
         // $date = new DateTime();
 
@@ -57,11 +57,18 @@ class ReservationController extends Controller {
         $reservation->setIsPayed(0);
         $reservation->setManual(0);
         $reservation->setDiscountAmount(0);
-
-
+        $data['selectedUnits']=  array_map('intval', explode(',', $data['selectedUnits']));
         $reservationId = $this->model->insertReservation($reservation);
+        foreach($data['selectedUnits'] as $unit){
+            $unitReservation = new UnitReservation;
+            $unitReservationCollection = new UnitReservationCollection;
+            $unitReservationCollection->setQueryBuilder($this->model->queryBuilder);
+            $unitReservation->setReservation($reservationId);
+            $unitReservation->setUnit($unit);
+            $unitReservationCollection->insertUnitReservation($unitReservation);
+        };
 
-        echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data"));
+        echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data", 'reservationId'));
     }
 
 

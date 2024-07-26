@@ -11,16 +11,16 @@ class UnitReservation extends Model {
     public $table = 'unit_reservation';
 
     public $fields = [
-        "reservation_id" => null,
-        "unit_id" => null,
+        "reservation" => null,
+        "unit" => null,
     ];
 
     public function setReservation(int $reservation_id) {
-        $this -> fields["reservation_id"] = $reservation_id;
+        $this -> fields["reservation"] = $reservation_id;
     }
 
     public function setUnit(int $unit_id) {
-        $this -> fields["unit_id"] = $unit_id;
+        $this -> fields["unit"] = $unit_id;
     }
 
     public function set(array $values) {
