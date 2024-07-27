@@ -3,8 +3,16 @@
 {% block main %}
 <h1>{{ titulo }}</h1>
 <section id="beachResortData" class="ticket">
+  <label>Numero de reserva: {{ reservationId }}</label>
   <label>Balneario: {{ data.beachResortName }}</label>
   <label>Fecha desde: {{ data.startDate }}</label>
+  <label>Fecha Hasta: {{ data.endDate }}</label>
+   {% for unit in data.selectedUnits %}
+  <label>Unidad: {{ unit }}</label>
+   {%endfor%}
+  <label>Precio:  ${{ data.reservationAmount }}</label>
+  
+
 </section>
 
 {% endblock main %}

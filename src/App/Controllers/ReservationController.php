@@ -5,6 +5,8 @@ namespace Tents\App\Controllers;
 use Tents\Core\Controller;
 use Tents\Core\Database\QueryBuilder;
 use Tents\App\Models\BeachResortCollection;
+use Tents\App\Models\UnitReservation;
+use Tents\App\Models\UnitReservationCollection;
 use Tents\App\Models\ReservationCollection;
 use Tents\App\Models\Reservation;
 
@@ -35,30 +37,38 @@ class ReservationController extends Controller {
         echo json_encode($occupatedTents, JSON_UNESCAPED_UNICODE);
     }
 
+
+    
     public function datosReservation(){
-        $data = json_decode(file_get_contents("php://input"), true);
-        var_dump($_POST);
-        var_dump($data);
-        die("feliz");
-        /*
-         * $data = [
-         *   "beachResortId" => 2,
-         *   "startDate" => "2024-07-16",
-         *   "endDate" => "2024-07-16",
-         *   "selectedUnits" => ["tspan16"],
-         *   "firstName" => "franco",
-         *   "lastName" => "parzanese",
-         *   "email" => "franco@example.com",
-         *   "phone" => "2346-492180",
-         *   "promo" => ""
-         * ];
-         */
+        $data = $_POST;
         $menu = $this->menu;
         $titulo = "Confirmar reserva";
-        $beachResort = new BeachResortCollection;
-        $beachResort->setQueryBuilder($this->model->queryBuilder);
-        $data["beachResortName"] = $beachResort->get($data["beachResortId"])->fields["name"];
-        echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data"));
+        $reservation = new Reservation;
+        // $date = new DateTime();
+
+        $reservation->setDate(date('Y-m-d'));  //($date->formate('Y-m-d'));
+        $reservation->setFrom($data['startDate']);
+        $reservation->setTo($data['endDate']);
+        $reservation->setFirstName($data['firstName']);
+        $reservation->setLastName($data['lastName']);
+        $reservation->setEmail($data['email']);
+        $reservation->setPhone($data['phone']);
+        $reservation->setReservationAmount($data['reservationAmount']);
+        $reservation->setIsPayed(0);
+        $reservation->setManual(0);
+        $reservation->setDiscountAmount(0);
+        $data['selectedUnits']=  array_map('intval', explode(',', $data['selectedUnits']));
+        $reservationId = $this->model->insertReservation($reservation);
+        foreach($data['selectedUnits'] as $unit){
+            $unitReservation = new UnitReservation;
+            $unitReservationCollection = new UnitReservationCollection;
+            $unitReservationCollection->setQueryBuilder($this->model->queryBuilder);
+            $unitReservation->setReservation($reservationId);
+            $unitReservation->setUnit($unit);
+            $unitReservationCollection->insertUnitReservation($unitReservation);
+        };
+
+        echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data", 'reservationId'));
     }
 
 
