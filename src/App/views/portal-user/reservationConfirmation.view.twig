@@ -16,7 +16,6 @@
       <input type="hidden" name="reservationAmount" value="{{ data.reservationAmount }}" />
       <input type="submit"  id="mercadoPago" value = "Pagar"></input>
     </fieldset>
-     <div id="wallet_container"></div>
      
   </form>            
   
@@ -24,10 +23,4 @@
 </section>
 
 {% endblock main %}
-{% {% block javascript %}
-  <script src="https://sdk.mercadopago.com/js/v2">
-      const mp = new MercadoPago('YOUR_PUBLIC_KEY');
-      const bricksBuilder = mp.bricks();
-  </script>
 
-{% endblock %} %}
