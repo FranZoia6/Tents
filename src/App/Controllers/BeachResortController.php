@@ -80,10 +80,7 @@ class BeachResortController extends Controller {
         if (isset($_SESSION['logueado'])) {
             $titulo = "Balnearios";
             $menu = $this->menuAdmin;
-           // $beachResorts = $this->model->getAll();
             $beachResorts = $this->model->obtenerNombres();
-        //    var_dump(cities);
-        //    die;
             echo $this->twig->render('/portal-admin/adminBeachResor.view.twig',compact('menu','titulo','beachResorts'));
         }else {
             $mensajeError = 'Prueba';
@@ -92,76 +89,95 @@ class BeachResortController extends Controller {
         }
     }
 
-    public function new() {
+    public function new($error='') {
         $menu = $this->menu;
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
-        echo $this->twig->render('/portal-admin/newBeachResort.view.twig', compact('menu','cities'));
+        if ($error) {
+            echo $this->twig->render('/portal-admin/newBeachResort.view.twig', compact('menu','cities', 'error'));
+        } else {
+            echo $this->twig->render('/portal-admin/newBeachResort.view.twig', compact('menu','cities'));
+        }
     }
 
     public function submit() {
-        
-        // Directorio donde se guardarán las imágenes subidas
-        $uploadDir = '././imagenes/beachResorts/';
-
+        // Directorios donde se guardarán las imágenes subidas
+        $uploadDirPerfil = '././imagenes/beachResorts/perfiles/';
+        $uploadDirSvg = '././imagenes/beachResorts/svgs/';
+    
         try {
-            // Verificar si se subió un archivo
-            if (empty($_FILES['archivo']['tmp_name'])) {
-                throw new Exception("Debes adjuntar un archivo");
+            // Verificar si se subió la imagen de perfil
+            if (empty($_FILES['imagen_perfil']['tmp_name'])) {
+                throw new Exception("Debes adjuntar una imagen de perfil");
             }
-        
-            // Validar la extensión del archivo
-            $formatos_permitidos = ['svg'];
-            $archivo = $_FILES['archivo']['name'];
-            $extension = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
-        
-            if (!in_array($extension, $formatos_permitidos)) {
-                throw new Exception("Formato no permitido");
+    
+            // Verificar si se subió el archivo SVG
+            if (empty($_FILES['imagen_svg']['tmp_name'])) {
+                throw new Exception("Debes adjuntar el archivo SVG de distribución");
             }
-        
-            // Nombre del archivo subido con la extensión original
-            $uploadFile = $uploadDir . $_POST['name'] . '.' . $extension;
-        
-            // Mover el archivo subido al directorio de destino
-            if (!move_uploaded_file($_FILES['archivo']['tmp_name'], $uploadFile)) {
-                throw new Exception("Error al mover el archivo subido");
+    
+            // Validar la extensión de la imagen de perfil
+            $imagenPerfil = $_FILES['imagen_perfil']['name'];
+            $extensionPerfil = strtolower(pathinfo($imagenPerfil, PATHINFO_EXTENSION));
+            $formatos_permitidos_perfil = ['jpg', 'jpeg', 'png', 'gif'];
+    
+            if (!in_array($extensionPerfil, $formatos_permitidos_perfil)) {
+                throw new Exception("Formato de imagen de perfil no permitido");
             }
-        
-            echo "El archivo " . htmlspecialchars(basename($_FILES['archivo']['name'])) . " ha sido subido correctamente.<br>";
-        
+    
+            // Validar la extensión del archivo SVG
+            $imagenSvg = $_FILES['imagen_svg']['name'];
+            $extensionSvg = strtolower(pathinfo($imagenSvg, PATHINFO_EXTENSION));
+            $formatos_permitidos_svg = ['svg'];
+    
+            if (!in_array($extensionSvg, $formatos_permitidos_svg)) {
+                throw new Exception("Formato del archivo SVG no permitido");
+            }
+    
+            // Ruta y nombre del archivo de imagen de perfil
+            $uploadFilePerfil = $uploadDirPerfil . $_POST['name'] . '_perfil.' . $extensionPerfil;
+    
+            // Ruta y nombre del archivo SVG
+            $uploadFileSvg = $uploadDirSvg . $_POST['name'] . '.' . $extensionSvg;
+    
+            // Mover los archivos subidos al directorio de destino
+            if (!move_uploaded_file($_FILES['imagen_perfil']['tmp_name'], $uploadFilePerfil)) {
+                throw new Exception("Error al mover la imagen de perfil");
+            }
+    
+            if (!move_uploaded_file($_FILES['imagen_svg']['tmp_name'], $uploadFileSvg)) {
+                throw new Exception("Error al mover el archivo SVG");
+            }
+    
+            echo "La imagen de perfil " . htmlspecialchars(basename($_FILES['imagen_perfil']['name'])) . " ha sido subida correctamente.<br>";
+            echo "El archivo SVG " . htmlspecialchars(basename($_FILES['imagen_svg']['name'])) . " ha sido subido correctamente.<br>";
+    
             // Procesar el SVG para contar elementos
-            $svg_content = file_get_contents($uploadFile); // Obtener contenido del archivo SVG
-        
+            $svg_content = file_get_contents($uploadFileSvg); // Obtener contenido del archivo SVG
+    
             // Crear objeto SimpleXMLElement desde el contenido del SVG
             $svg = new SimpleXMLElement($svg_content);
-        
+    
             // Contador para <ellipse>
             $sombrillas_count = 0;
-        
+    
             // Contar todos los elementos <ellipse> dentro del SVG
             foreach ($svg->xpath('//svg:ellipse') as $sombrilla) {
-                // Incrementar el contador de elipses
                 $sombrillas_count++;
             }
-        
-            echo "Número de sombrillas: " . $sombrillas_count . "<br>";
-        
+    
             // Contador para <rect> con id de un solo caracter
             $carpas_count = 0;
-        
+    
             // Contar todos los <rect> dentro del SVG que tienen un id compuesto únicamente por dígitos
             foreach ($svg->xpath('//svg:rect') as $rect) {
-                // Verificar si el id del rect es un número utilizando preg_match
                 $id = (string) $rect['id'];
                 if (preg_match('/^\d+$/', $id)) {
-                    // Incrementar el contador de rects con id que es solo un número
                     $carpas_count++;
                 }
             }
-
-            echo "Número de carpas: " . $carpas_count . "<br>";
-
+    
             // Aquí puedes guardar los resultados en la base de datos u hacer cualquier otra operación necesaria
             
             $beachResort = new BeachResort;
@@ -171,51 +187,48 @@ class BeachResortController extends Controller {
             $beachResort->setState(1);
             $beachResort->setLat($_POST['latitud']);
             $beachResort->setLon($_POST['longitud']);
-            $beachResort->setImg($uploadFile);
+            $beachResort->setImg($uploadFilePerfil); // Guardar la imagen de perfil en el modelo
             $this->model->insertBeachResort($beachResort);
-
-            $newBeachResort = $this -> model -> getByName($beachResort -> fields['name']);
-
+    
+            $newBeachResort = $this->model->getByName($beachResort->fields['name']);
+    
             // Insertar unidades de carpas
-
             $unitCollection = new UnitCollection;
-            $unitCollection ->setQueryBuilder($this->model->queryBuilder);
-
+            $unitCollection->setQueryBuilder($this->model->queryBuilder);
+    
             $number = 1;
-
+    
             // Iterar $carpas_count veces
             for ($i = 1; $i <= $carpas_count; $i++) {
-                
                 $carpa = new Unit;
-                $carpa -> setBeachResort($newBeachResort[0]['id']);
-                $carpa -> setShade(1);
-                $carpa -> setNumber($number);
-                $carpa -> setPrice($_POST['precioCarpas']);
-                $unitCollection -> insertUnit($carpa);
+                $carpa->setBeachResort($newBeachResort[0]['id']);
+                $carpa->setShade(1);
+                $carpa->setNumber($number);
+                $carpa->setPrice($_POST['precioCarpas']);
+                $unitCollection->insertUnit($carpa);
                 $number++;
             }
-
+    
             // Iterar $sombrillas_count veces
             for ($i = 1; $i <= $sombrillas_count; $i++) {
-    
                 $sombrilla = new Unit;
-                $sombrilla -> setBeachResort($newBeachResort[0]['id']);
-                $sombrilla -> setShade(2);
-                $sombrilla -> setNumber($number);
-                $sombrilla -> setPrice($_POST['precioSombrillas']);
-                $unitCollection -> insertUnit($sombrilla);
+                $sombrilla->setBeachResort($newBeachResort[0]['id']);
+                $sombrilla->setShade(2);
+                $sombrilla->setNumber($number);
+                $sombrilla->setPrice($_POST['precioSombrillas']);
+                $unitCollection->insertUnit($sombrilla);
                 $number++;
-                
             }
-
+    
             $this->adminBeachResor();
-
+    
         } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
+            session_start();
+            $error = $e -> getMessage();
+            $this -> new($error);
         }
-        
     }
-
+    
     public function enable() {
         $id = $_POST['idbeachresort'];
         $state = 1;
@@ -236,20 +249,14 @@ class BeachResortController extends Controller {
 
         $beachResortId = $this->request->get('beachResort');
         $menu = $this->menuAdmin;
-        //var_dump($beachResortId);
-        
-        // $beachResort = new BeachResort();
-        // $beachResort.setId($beachResortId);
 
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
 
         $beachResort = $this -> model -> obtenerCiudad($beachResortId);
-        // var_dump($beachResort);
-        // die;
-        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('cities','beachResort'));
 
+        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('cities','beachResort'));
     }
 
     public function set() {

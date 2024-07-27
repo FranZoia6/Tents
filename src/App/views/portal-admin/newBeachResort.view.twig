@@ -9,8 +9,11 @@
         <label for="description">Descripción:</label>
         <textarea id="description" name="description" required></textarea>
 
-        <label for="imagen">Selecciona una imagen:</label>
-        <input type="file" id="imagen" name="archivo" accept="image/*">
+        <label for="imagen">Aquí debes cargar la imagen de perfil del balneario:</label>
+        <input type="file" id="imagen" name="imagen_perfil" accept="image/*">
+
+        <label for="imagen">Aquí debes cargar la imagen de distribucion de carpas y sombrillas en formato SVG:</label>
+        <input type="file" id="imagen" name="imagen_svg" accept="image/*">
 
         <label for="precioCarpas">Precio carpas:</label>
         <input type="text" name="precioCarpas" required>
@@ -39,10 +42,18 @@
         
         <section style="width:100%; height:300px; display:none;" class="map" id="map"></section>
  
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
         <section>
             <button class="bReserva" type="submit">Envíar</button>
         </section>
+
     </form>
+
 {% endblock %}
 
 {% block javascript %}

@@ -815,3 +815,22 @@ fieldset p{
   display: flex;
   flex-direction: column;
 }
+
+.error-message {
+  background-color: #f8d7da; /* Rojo claro, color común para errores */
+  color: #721c24;            /* Texto rojo oscuro para buen contraste */
+  border: 1px solid #f5c6cb; /* Borde rojo claro para definir el área del mensaje */
+  border-radius: 4px;        /* Bordes redondeados para suavizar el diseño */
+  padding: 10px 15px;        /* Espaciado interno para que el texto no esté pegado al borde */
+  margin-bottom: 15px;       /* Margen inferior para separar del contenido siguiente */
+  font-size: 16px;           /* Tamaño de fuente legible */
+  font-family: Arial, sans-serif; /* Fuente legible */
+  display: flex;             /* Usar flexbox para centrar el ícono y el texto (si se añade) */
+  align-items: center;       /* Alinear verticalmente el ícono y el texto */
+}
+
+.error-message::before {
+  content: "\26A0";          /* Unicode para el ícono de advertencia ⚠️ */
+  margin-right: 10px;        /* Espaciado entre el ícono y el texto */
+  font-size: 18px;           /* Tamaño del ícono */
+}
