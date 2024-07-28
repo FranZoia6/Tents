@@ -6,53 +6,80 @@ use Tents\Core\Controller;
 use Tents\Core\Database\QueryBuilder;
 use Tents\App\Models\CityCollection;
 
-use MercadoPago\Client\Common\RequestOptions;
-use MercadoPago\Client\Payment\PaymentClient;
-use MercadoPago\Exceptions\MPApiException;
 use MercadoPago\MercadoPagoConfig;
+use MercadoPago\Client\Preference\PreferenceClient;
+use MercadoPago\Exceptions\MPApiException;
 
 
 
-// Step 2: Set production or sandbox access token
-MercadoPagoConfig::setAccessToken("APP_USR-1339194868701317-072717-88afb019330b743a3baab55eaa8df448-236518782");
-// Step 2.1 (optional - default is SERVER): Set your runtime enviroment from MercadoPagoConfig::RUNTIME_ENVIROMENTS
-// In case you want to test in your local machine first, set runtime enviroment to LOCAL
+$mpAccessToken = getenv('mercado_pago_access_token');
+// Set the token the SDK's config
+MercadoPagoConfig::setAccessToken($mpAccessToken);
+// (Optional) Set the runtime enviroment to LOCAL if you want to test on localhost
+// Default value is set to SERVER
 MercadoPagoConfig::setRuntimeEnviroment(MercadoPagoConfig::LOCAL);
 
 
 
+
 class MercadoLibreController extends Controller {
-    
+
     // Step 3: Initialize the API client
-    
-	public function makePayment() {
+    public function makePayment() {
 
-
-      
-
-      
+        {
+            // Fill the data about the product(s) being pruchased
+            $product1 = array(
+                "id" => "1234567890",
+                "title" => "Product 1 Title",
+                "description" => "Product 1 Description",
+                "currency_id" => "BRL",
+                "quantity" => 12,
+                "unit_price" => 9.90
+            );
         
+            $product2 = array(
+                "id" => "9012345678",
+                "title" => "Product 2 Title",
+                "description" => "Product 2 Description",
+                "currency_id" => "BRL",
+                "quantity" => 5,
+                "unit_price" => 19.90
+            );
+        
+            // Mount the array of products that will integrate the purchase amount
+            $items = array($product1, $product2);
+            $preference->items;
+        
+            // Retrieve information about the user (use your own function)
+            $user = getSessionUser();
+        
+            $payer = array(
+                "name" => $user->name,
+                "surname" => $user->surname,
+                "email" => $user->email,
+            );
+        
+            // Create the request object to be sent to the API when the preference is created
 
-$client = new PreferenceClient();
-
-$preference = $client->create([
-
-    "items" => [
-
-        [
-
-            "title" => "Mi producto",
-
-            "quantity" => 1,
-
-            "unit_price" => 2000
-
-        ]
-
-    ]
-
-]);
-   
+            $request = createPreferenceRequest($item, $payer);
+        
+            // Instantiate a new Preference Client
+            $client = new PreferenceClient();
+        
+            try {
+                // Send the request that will create the new preference for user's checkout flow
+                $preference = $client->create($request);
+        
+                // Useful props you could use from this object is 'init_point' (URL to Checkout Pro) or the 'id'
+                return $preference;
+            } catch (MPApiException $error) {
+                // Here you might return whatever your app needs.
+                // We are returning null here as an example.
+                return null;
+            }
         }
 
+    }
 }
+    
