@@ -10,16 +10,22 @@
    {% for unit in data.selectedUnits %}
   <label>Unidad: {{ unit }}</label>
    {%endfor%}
-  <label>Precio:  ${{ data.reservationAmount }}</label>
-  <form  method="post" action="/makePayment">
-    <fieldset id = "reservation">
-      <input type="hidden" name="reservationAmount" value="{{ data.reservationAmount }}" />
-      <input type="submit"  id="mercadoPago" value = "Pagar"></input>
-    </fieldset>
-  </form>            
-  
+  <label>Precio:  ${{ data.reservationAmount }}</label>        
+
+ <div id="wallet_container">
+    </div>
+    <script>
+      const mp = new MercadoPago('APP_USR-8e3ffee4-3787-49e9-817e-a6b76c0dcc5c', {
+        locale: 'es-AR'
+      });
+
+      mp.bricks().create("wallet", "wallet_container", {
+        initialization: {
+            preferenceId: "{{preference.id}}",
+        },
+      });
+  </script>
 
 </section>
 
 {% endblock main %}
-
