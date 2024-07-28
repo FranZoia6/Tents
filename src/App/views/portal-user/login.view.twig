@@ -18,7 +18,9 @@
                     </label>
                     <input name="login" type="submit" value="Ingresar">
                     {% if mensajeError %}
-                        <p> {{ mensajeError }}</p>
+                        <div class="error-message">
+                            {{ mensajeError }}
+                        </div>
                     {% endif %}
                 </form>
             {% endif %}

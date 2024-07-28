@@ -816,6 +816,55 @@ fieldset p{
   flex-direction: column;
 }
 
+/* Estilo general del formulario */
+.fLogin {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de las etiquetas */
+.fLogin label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Estilo de los campos de entrada */
+.fLogin input[type="text"],
+.fLogin input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Estilo del botón de envío */
+.fLogin input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fLogin input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
 .error-message {
   background-color: #f8d7da; /* Rojo claro, color común para errores */
   color: #721c24;            /* Texto rojo oscuro para buen contraste */
@@ -823,6 +872,7 @@ fieldset p{
   border-radius: 4px;        /* Bordes redondeados para suavizar el diseño */
   padding: 10px 15px;        /* Espaciado interno para que el texto no esté pegado al borde */
   margin-bottom: 15px;       /* Margen inferior para separar del contenido siguiente */
+  margin-top: 15px;
   font-size: 16px;           /* Tamaño de fuente legible */
   font-family: Arial, sans-serif; /* Fuente legible */
   display: flex;             /* Usar flexbox para centrar el ícono y el texto (si se añade) */
