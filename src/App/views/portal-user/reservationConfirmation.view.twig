@@ -11,8 +11,16 @@
   <label>Unidad: {{ unit }}</label>
    {%endfor%}
   <label>Precio:  ${{ data.reservationAmount }}</label>
+  <form  method="post" action="/makePayment">
+    <fieldset id = "reservation">
+      <input type="hidden" name="reservationAmount" value="{{ data.reservationAmount }}" />
+      <input type="submit"  id="mercadoPago" value = "Pagar"></input>
+    </fieldset>
+     
+  </form>            
   
 
 </section>
 
 {% endblock main %}
+

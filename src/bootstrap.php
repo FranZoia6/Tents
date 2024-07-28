@@ -43,6 +43,7 @@ $router->post('/beachResort','ReservationController@datosReservation');
 $router->get('/beachResortsCity','BeachResortController@getAllByCity');
 $router->post('/contact','PageController@contactProccess');
 $router ->get('/login', 'PageController@login');
+$router->post('/makePayment','MercadoLibreController@makePayment');
 
 $router ->get('/cities', 'CityController@getAll');
 $router ->get('/portal-admin/cities/edit', 'CityController@edit');
