@@ -96,6 +96,7 @@ class QueryBuilder {
 
 
         $statement->execute();
+        
         return $this->pdo->lastInsertId();
     }
 

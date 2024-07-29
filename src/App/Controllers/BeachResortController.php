@@ -11,6 +11,8 @@ use Tents\App\Models\ServiceBeachResortCollection;
 use Tents\App\Models\ServiceCollection;
 use Tents\App\Models\UnitCollection;
 use Tents\App\Models\Unit;
+use Tents\App\Models\ServiceBeachResort;
+
 use Exception;
 
 use SimpleXMLElement;
@@ -140,7 +142,7 @@ class BeachResortController extends Controller {
     
             // Ruta y nombre del archivo SVG
             $uploadFileSvg = $uploadDirSvg . $_POST['name'] . '.' . $extensionSvg;
-    
+
             // Mover los archivos subidos al directorio de destino
             if (!move_uploaded_file($_FILES['imagen_perfil']['tmp_name'], $uploadFilePerfil)) {
                 throw new Exception("Error al mover la imagen de perfil");
@@ -191,7 +193,26 @@ class BeachResortController extends Controller {
             $this->model->insertBeachResort($beachResort);
     
             $newBeachResort = $this->model->getByName($beachResort->fields['name']);
-    
+            
+            // Insertar servicios
+
+            $services = $_POST['services']; // Esto será un array con los servicios seleccionados.
+
+            // Convertir los valores a enteros
+            $servicesInt = array_map('intval', $services);
+
+            $serviceBeachResortCollection = new ServiceBeachResortCollection;
+            $serviceBeachResortCollection->setQueryBuilder($this->model->queryBuilder);
+
+            foreach ($servicesInt as $service) {
+                // var_dump($service);
+                // die;
+                $newServiceBeachResort = new ServiceBeachResort();
+                $newServiceBeachResort -> setBeachResort($newBeachResort[0]['id']);
+                $newServiceBeachResort -> setService($service);
+                $id = $serviceBeachResortCollection -> insert($newServiceBeachResort);
+            }
+
             // Insertar unidades de carpas
             $unitCollection = new UnitCollection;
             $unitCollection->setQueryBuilder($this->model->queryBuilder);
