@@ -1,0 +1,31 @@
+{% extends "base.view.twig" %}
+{% block main %}
+        <h1>{{ titulo }}</h1>
+        <section>
+            <table class="tents-table">
+                <thead>
+                    <th>Fecha de reserva</th>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Acciones</th>
+                </thead>
+                <tbody>
+                    {% for reservation in reservations %}
+                        <tr class="ABM row-{{ loop.index is odd ? "odd" : "even" }}">
+                            <td>{{ reservation.fields.date }}</td>
+                            <td>{{ reservation.fields.from }}</td>
+                            <td>{{ reservation.fields.to }}</td>
+                            <td>{{ reservation.fields.firstName }}</td>
+                            <td>{{ reservation.fields.lastName }}</td>
+                            <td>
+                                <a href="adminReservation/reservation?reservation={{ reservation.fields.id }}"> Ver más <i class="fa-solid fa-plus"></i></a>
+                           
+                            </td
+                        </tr>
+                    {% endfor %}                            
+                </tbody>
+            </table> 
+        </section>
+{% endblock main %}

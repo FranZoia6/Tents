@@ -1,4 +1,19 @@
 {% extends "base.view.twig" %}
 {% block main %}
-    <h1>{{ titulo }}</h1>
+    <section>
+        <article>
+            <h1>{{ numberOfBeachResorts }}</h1>
+            <p>Balnearios</p>
+        </article>
+
+        <article>
+            <h1>{{ numberOfCities }}</h1>
+            <p>Ciudades</p>
+        </article>
+
+        <article>
+            <h1>{{ numberOfReservations }}</h1>
+            <p>Reservas</p>
+        </article>
+    </section>
 {% endblock main %}

@@ -6,6 +6,12 @@ use Tents\Core\Controller;
 use Tents\App\Models\User;
 use Tents\App\Models\UserCollection;
 use Tents\Core\Database\QueryBuilder;
+use Tents\App\Models\BeachResortCollection;
+use Tents\App\Models\BeachResort;
+use Tents\App\Models\CityCollection;
+use Tents\App\Models\City;
+use Tents\App\Models\Reservation;
+use Tents\App\Models\ReservationCollection;
 
 class UserController extends Controller {
 
@@ -49,7 +55,22 @@ class UserController extends Controller {
         }
         $titulo = "Admin";
         $menu = $this->menuAdmin;
-        echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo'));
+        $cityCollection = new CityCollection;
+        $cityCollection->setQueryBuilder($this->model->queryBuilder);
+        $cities = $cityCollection->getAll();
+        $numberOfCities = count($cities);
+        
+        $beachResortCollection = new BeachResortCollection;
+        $beachResortCollection->setQueryBuilder($this->model->queryBuilder);
+        $beachResorts = $beachResortCollection->getAll();
+        $numberOfBeachResorts = count($beachResorts);
+        
+        $reservationCollection = new ReservationCollection;
+        $reservationCollection->setQueryBuilder($this->model->queryBuilder);
+        $reservations = $reservationCollection->getAll();
+        $numberOfReservations = count($reservations);
+
+        echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo','numberOfCities','numberOfBeachResorts','numberOfReservations'));
     }
 
 

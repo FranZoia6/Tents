@@ -1,0 +1,24 @@
+{% extends "base.view.twig" %}
+{% block main %}
+    <h1>{{ titulo }}</h1>
+    <section class="reservationData">
+        <fieldset>
+            <p>
+                Fecha: {{ reservation.fields.date }} <br>
+                Desde: {{ reservation.fields.from }} <br>
+                Hasta: {{ reservation.fields.to }} <br>
+                Nombre: {{ reservation.fields.firstName }} <br>
+                Apellido: {{ reservation.fields.lastName }} <br>
+                Email: {{ reservation.fields.email }} <br>
+                Teléfono: {{ reservation.fields.phone }} <br>
+                Monto: {{ reservation.fields.reservationAmount }} <br>
+                Pagada: {% if reservation.fields.payed == 1 %}Si{% else %}No{% endif %} <br> 
+            </p>
+        </fieldset>
+        <fieldset>
+            <p>
+                Unidad
+            </p>
+        </fieldset>  
+    </section>
+{% endblock main %}
