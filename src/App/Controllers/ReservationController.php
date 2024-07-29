@@ -8,11 +8,13 @@ use Tents\App\Models\BeachResortCollection;
 use Tents\App\Models\UnitReservation;
 use Tents\App\Models\UnitReservationCollection;
 use Tents\App\Models\ReservationCollection;
+use Tents\App\Models\UnitCollection;
 use Tents\App\Models\Reservation;
+use Tents\App\Models\MercadoPago;
 
-use MercadoPago\Client\Preference\PreferenceClient;
-use MercadoPago\MercadoPagoConfig;
-use MercadoPago\Client\Common\RequestOptions;
+// use MercadoPago\Client\Preference\PreferenceClient;
+// use MercadoPago\MercadoPagoConfig;
+// use MercadoPago\Client\Common\RequestOptions;
 
 class ReservationController extends Controller {
 
@@ -62,33 +64,47 @@ class ReservationController extends Controller {
         $reservation->setDiscountAmount(0);
         $data['selectedUnits']=  array_map('intval', explode(',', $data['selectedUnits']));
         $reservationId = $this->model->insertReservation($reservation);
+
+        $unitCollection = new UnitCollection;
+        $unitCollection -> setQueryBuilder($this->model->queryBuilder);
+        $units = [];
+
         foreach($data['selectedUnits'] as $unit){
             $unitReservation = new UnitReservation;
             $unitReservationCollection = new UnitReservationCollection;
             $unitReservationCollection->setQueryBuilder($this->model->queryBuilder);
             $unitReservation->setReservation($reservationId);
             $unitReservation->setUnit($unit);
+            $unitFromCollection = $unitCollection->get($unit);
+            if ($unitFromCollection) {
+                $units[] = $unitFromCollection;
+            }
+
             $unitReservationCollection->insertUnitReservation($unitReservation);
         };
 
 
-        $mpAccessToken = getenv('mercado_pago_access_token');
-        MercadoPagoConfig::setAccessToken($mpAccessToken);
+        $mercadoPago = new MercadoPago;
+
+        $preference  = $mercadoPago->crearPreferencia($reservation, $units);
+
+        // $mpAccessToken = getenv('mercado_pago_access_token');
+        // MercadoPagoConfig::setAccessToken($mpAccessToken);
         
-          $client = new PreferenceClient();
-          $request_options = new RequestOptions();
-          $request_options->setCustomHeaders(["X-Idempotency-Key: <SOME_UNIQUE_VALUE>"]);
-          error_reporting(E_ERROR | E_PARSE);
-          $preference = $client->create([
-            "items"=> array(
-              array(
-                "title" => "My product",
-                "quantity" => 1,
-                "unit_price" => 2000
-              )
-            ),
-            false
-          ]);
+        //   $client = new PreferenceClient();
+        //   $request_options = new RequestOptions();
+        //   $request_options->setCustomHeaders(["X-Idempotency-Key: <SOME_UNIQUE_VALUE>"]);
+        //   error_reporting(E_ERROR | E_PARSE);
+        //   $preference = $client->create([
+        //     "items"=> array(
+        //       array(
+        //         "title" => "My product",
+        //         "quantity" => 1,
+        //         "unit_price" => 2000
+        //       )
+        //     ),
+        //     false
+        //   ]);
 
         echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data", 'reservationId', 'preference'));
     }
