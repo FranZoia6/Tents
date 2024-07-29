@@ -66,6 +66,9 @@ $router->post('/disableBeachResort', 'BeachResortController@disable');
 $router -> post('/portal-admin', 'UserController@loginValidar');
 $router -> get('/adminBeachResor', 'BeachResortController@adminBeachResor');
 $router -> get('/adminCity', 'CityController@adminCity');
+$router -> get('/adminReservation', 'ReservationController@adminReservation');
+$router -> get('/adminReservation/reservation', 'ReservationController@getReservation');
+
 
 $router -> get('/reservationPersonalData', 'PageController@reservationPersonalData');
 

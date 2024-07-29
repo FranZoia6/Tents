@@ -93,6 +93,36 @@ class ReservationController extends Controller {
         echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data", 'reservationId', 'preference'));
     }
 
+    public function adminReservation() {
+        session_start();
+        if (isset($_SESSION['logueado'])) {
+            $titulo = "Reservas";
+            $menu = $this->menuAdmin;
+            $reservationCollection = new ReservationCollection;
+            $reservationCollection ->setQueryBuilder($this->model->queryBuilder);
+            $reservations = $reservationCollection->getAll();
+
+            echo $this->twig->render('/portal-admin/adminReservation.view.twig',compact('menu','titulo','reservations'));
+        }else {
+            $mensajeError = 'Prueba';
+            $menu = $this->menu;
+            echo $this->twig->render('/portal-user/login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
+        }
+    }
+
+    public function getReservation() {
+        $reservationId = $this->request->get('reservation');
+        $menu = $this->menuAdmin;
+        $titulo = "Reserva";
+        $reservation = $this->model->get($reservationId);
+
+        $unitReservationCollection = new ReservationCollection;
+        $unitReservationCollection ->setQueryBuilder($this->model->queryBuilder);
+        $unitReservations = $unitReservationCollection->getAll();
+
+        echo $this->twig->render('/portal-admin/reservation.view.twig', compact('titulo','menu','reservation'));
+    }
+
 
     public function edit() {
 

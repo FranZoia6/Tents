@@ -47,6 +47,10 @@ class Controller {
                 "name" => "Balnearios",
             ],
             [
+                "href" => "/adminReservation",
+                "name" => "Reservas",
+            ],
+            [
                 "href" => "/?sesion=cerrar",
                 "name" => "Cerrar sesión",
             ]

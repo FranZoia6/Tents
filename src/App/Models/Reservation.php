@@ -11,6 +11,7 @@ class Reservation extends Model {
     public $table = 'reservation';
 
     public $fields = [
+        "id" => null,
         "date" => null,
         "from" => null,
         "to" => null,
@@ -25,6 +26,10 @@ class Reservation extends Model {
         "voucher" => null,
         "manual" => null,
     ];
+
+    public function setId(int $id) {
+        $this -> fields["id"] = $id;
+    }
 
     public function setDate($date) {
         $this -> fields["date"] = $date;
@@ -73,7 +78,7 @@ class Reservation extends Model {
         $this -> fields["discountAmount"] = $discount_amount;
     }
 
-    public function setIsPayed($isPayed) {
+    public function setPayed($isPayed) {
         // if (!is_bool($isPayed)) {
         //     throw new InvalidValueFormatException("El campo debe ser booleano.");
         // }
