@@ -45,7 +45,7 @@ class ReservationController extends Controller {
     public function datosReservation(){
         $data = $_POST;
         $menu = $this->menu;
-        $titulo = "Confirmar reserva";
+        $titulo = "Resumen de la reserva";
         $reservation = new Reservation;
         // $date = new DateTime();
 

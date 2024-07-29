@@ -811,11 +811,6 @@ fieldset p{
   padding: 1em;
 }
 
-#beachResortData {
-  display: flex;
-  flex-direction: column;
-}
-
 /* Estilo general del formulario */
 .fLogin {
   width: 100%;
@@ -884,3 +879,65 @@ fieldset p{
   margin-right: 10px;        /* Espaciado entre el ícono y el texto */
   font-size: 18px;           /* Tamaño del ícono */
 }
+
+/* Añadir un poco de espacio y cambiar el fondo del contenedor principal */
+.ticket {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Espaciado entre las etiquetas */
+.ticket label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Resaltar el título */
+.ticket h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+/* Añadir estilo al contenedor de la billetera */
+#wallet_container {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para la etiqueta de precio */
+.ticket .price-label {
+  font-weight: bold;
+  font-size: 18px;
+  color: #d9534f;
+}
+
+/* Añadir estilo para el botón de reserva (si decides agregar uno en el futuro) */
+.ticket button {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ticket button:hover {
+  background-color: #0056b3;
+}
+
