@@ -88,24 +88,6 @@ class ReservationController extends Controller {
 
         $preference  = $mercadoPago->crearPreferencia($reservation, $units);
 
-        // $mpAccessToken = getenv('mercado_pago_access_token');
-        // MercadoPagoConfig::setAccessToken($mpAccessToken);
-        
-        //   $client = new PreferenceClient();
-        //   $request_options = new RequestOptions();
-        //   $request_options->setCustomHeaders(["X-Idempotency-Key: <SOME_UNIQUE_VALUE>"]);
-        //   error_reporting(E_ERROR | E_PARSE);
-        //   $preference = $client->create([
-        //     "items"=> array(
-        //       array(
-        //         "title" => "My product",
-        //         "quantity" => 1,
-        //         "unit_price" => 2000
-        //       )
-        //     ),
-        //     false
-        //   ]);
-
         echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data", 'reservationId', 'preference'));
     }
 

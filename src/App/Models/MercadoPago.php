@@ -18,10 +18,6 @@ class MercadoPago extends Model {
         // var_dump($reservation);
         // die();
 
-        $client = new PreferenceClient();
-        $request_options = new RequestOptions();
-        $request_options->setCustomHeaders(["X-Idempotency-Key: <SOME_UNIQUE_VALUE>"]);
-
         foreach($units as $unit){
             $items[] = [
                 "title" => "Unidad N" . $unit->fields['number'],
@@ -51,7 +47,7 @@ class MercadoPago extends Model {
           $preference = $client->create([
             "items"=> $items ,
             "player" => $payer,
-            "backUrls" => $backUrls,
+            "back_urls" => $backUrls,
             false
           ]);
 
