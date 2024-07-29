@@ -57,7 +57,7 @@ class ReservationController extends Controller {
         $reservation->setEmail($data['email']);
         $reservation->setPhone($data['phone']);
         $reservation->setReservationAmount($data['reservationAmount']);
-        $reservation->setIsPayed(0);
+        $reservation->setPayed(0);
         $reservation->setManual(0);
         $reservation->setDiscountAmount(0);
         $data['selectedUnits']=  array_map('intval', explode(',', $data['selectedUnits']));
