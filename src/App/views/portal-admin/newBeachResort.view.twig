@@ -12,11 +12,21 @@
         <label for="description">Descripción:</label>
         <textarea id="description" name="description" required></textarea>
 
-        <label for="imagen">Imagen de perfil del balneario:</label>
-        <input type="file" id="imagen" name="imagen_perfil" accept="image/*" required>
+        <label for="imagen_perfil">Imagen de perfil del balneario:</label>
+        <div class="drop-zone" id="dropZoneProfile">
+            <span>Arrastra y suelta aquí la imagen de perfil</span>
+            <input type="file" id="imagen_perfil" name="imagen_perfil" accept="image/*" required style="display:none;">
+            <img id="previewProfile" style="display:none; width:100px; height:auto;" alt="Vista previa de la imagen de perfil">
+            <div id="filenameProfile" style="display:none;"></div>
+        </div>
 
-        <label for="imagen">Imagen de distribucion de carpas y sombrillas en formato SVG:</label>
-        <input type="file" id="imagen" name="imagen_svg" accept="image/*" required>
+        <label for="imagen_svg">Imagen de distribución de carpas y sombrillas en formato SVG:</label>
+        <div class="drop-zone" id="dropZoneSVG">
+            <span>Arrastra y suelta aquí la imagen SVG</span>
+            <input type="file" id="imagen_svg" name="imagen_svg" accept=".svg" required style="display:none;">
+            <img id="previewSVG" style="display:none; width:100px; height:auto;" alt="Vista previa de la imagen SVG">
+            <div id="filenameSVG" style="display:none;"></div>
+        </div>
 
         <section>
             <label for="servicios">Servicios disponibles:</label>
@@ -49,10 +59,10 @@
         </section>
 
         <label for="precioCarpas">Precio carpas:</label>
-        <input type="text" name="precioCarpas" required>
+        <input type="text" id="precioCarpas" name="precioCarpas" required pattern="\d+(\.\d{2})?">
 
         <label for="precioSombrillas">Precio sombrillas:</label>
-        <input type="text" name="precioSombrillas" required>
+        <input type="text" id="precioSombrillas" name="precioSombrillas" required pattern="\d+(\.\d{2})?">
 
         <label for="ciudad">Ciudad:</label>
         <select id="city" name="city" onchange="cargarMapa()" required>
@@ -151,11 +161,24 @@
         };
 
         const btnLocalizar = document.getElementById('btnLocalizar');
-
         btnLocalizar.addEventListener('click', async function() {
-            calle = document.getElementById('street').value;
-            nro = document.getElementById('number').value;
-            geoLocalizacion = await apiNominatim(calle, nro, city, 'Buenos Aires', 'Argentina');
+            let calle = document.getElementById('street').value;
+            let nro = document.getElementById('number').value;
+            let geoLocalizacion = await apiNominatim(calle, nro, city, 'Buenos Aires', 'Argentina');
+            if (!geoLocalizacion) {
+                alert('No se encontró la ubicación. Por favor, verifique la dirección.');
+            }
         });
+
+        document.getElementById('beachResortForm').addEventListener('submit', function(event) {
+            let precios = document.querySelectorAll('input[name="precioCarpas"], input[name="precioSombrillas"]');
+            precios.forEach(input => {
+                if (isNaN(input.value) || input.value < 0) {
+                    event.preventDefault();
+                    alert('Los precios deben ser números positivos.');
+                }
+            });
+        });
+
     </script>
 {% endblock %}

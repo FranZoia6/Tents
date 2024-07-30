@@ -404,7 +404,7 @@ p, ol {
   color: var(--text);
 }
 
-h2{
+h1, h2{
   font-family: "Abril Fatface", serif;
 	font-size: var(--section-title-size);
 	text-align: left;
@@ -420,7 +420,7 @@ h2{
 }
 
   /* Estilos del formulario */
-  form.newBeachResort {
+  form {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -466,22 +466,22 @@ h2{
 
 /* Contenedor principal para las tarjetas de ciudades */
 .card-container {
-  padding: 40px 20px; /* Espacio alrededor del contenedor */
-  background-color: #f4f4f4; /* Fondo claro para contraste */
-  border-radius: 12px; /* Bordes redondeados */
-  margin-bottom: 60px; /* Espacio debajo del contenedor */
+  padding: 40px 20px;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  margin-bottom: 60px;
 }
 
 /* Estilo para el título de la sección */
 .card-container .titulo {
-  margin-bottom: 40px; /* Espacio debajo del título */
-  text-align: center; /* Centra el título */
+  margin-bottom: 40px;
+  text-align: center;
   justify-content: center;
 }
 
 .card-container h1 {
-  font-size: 2.5rem; /* Tamaño de fuente grande para el título */
-  color: #333; /* Color oscuro para el texto */
+  font-size: 2.5rem;
+  color: #333;
   font-weight: 700;
   margin: 0;
 }
@@ -489,17 +489,17 @@ h2{
 /* Contenedor de tarjetas con flexbox */
 .card-container {
   display: flex;
-  flex-wrap: wrap; /* Permite que las tarjetas se envuelvan a la siguiente línea */
-  gap: 20px; /* Espacio entre tarjetas */
-  justify-content: center; /* Centra las tarjetas horizontalmente */
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 /* Estilo para cada enlace de tarjeta */
 .card-container .card-link {
-  text-decoration: none; /* Elimina el subrayado de los enlaces */
-  color: inherit; /* Hereda el color del texto del contenedor */
-  max-width: calc(25% - 20px); /* Ancho máximo de la tarjeta */
-  box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+  text-decoration: none;
+  color: inherit;
+  max-width: calc(25% - 20px);
+  box-sizing: border-box;
 }
 
 /* Estilo para cada tarjeta */
@@ -507,17 +507,17 @@ h2{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffffff; /* Fondo blanco para las tarjetas */
+  background: #ffffff;
   padding: 20px;
-  border-radius: 12px; /* Bordes redondeados */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
-  overflow: hidden; /* Asegura que el contenido no se desborde */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 .card-container .card:hover {
-  transform: translateY(-8px); /* Sutil elevación al pasar el ratón */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo para la imagen en la tarjeta */
@@ -525,46 +525,46 @@ h2{
   margin: 0;
   position: relative;
   width: 100%;
-  height: 200px; /* Altura fija para las imágenes */
+  height: 200px;
   overflow: hidden;
-  border-radius: 8px; /* Bordes redondeados para las imágenes */
+  border-radius: 8px;
 }
 
 .card-container .card img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Asegura que la imagen cubra el contenedor */
-  transition: transform 0.3s ease; /* Transición suave para el zoom */
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .card-container .card:hover img {
-  transform: scale(1.1); /* Zoom en la imagen al pasar el ratón */
+  transform: scale(1.1);
 }
 
 /* Estilo para el título y el párrafo en la tarjeta */
 .card-container .card h3 {
-  font-size: 1.5rem; /* Tamaño de fuente del título */
-  color: #007bff; /* Color del texto para destacar */
-  margin: 15px 0; /* Espacio arriba y abajo del título */
+  font-size: 1.5rem;
+  color: #007bff;
+  margin: 15px 0;
 }
 
 .card-container .card p {
-  font-size: 1rem; /* Tamaño de fuente del párrafo */
-  color: #666; /* Color gris para el texto */
+  font-size: 1rem;
+  color: #666;
   margin: 0;
 }
 
 /* Resto del formulario */
-form.newBeachResort label {
+form label {
     display: block;
     margin: 10px 0 5px;
     font-weight: bold;
 }
 
-form.newBeachResort input[type="text"],
-form.newBeachResort textarea,
-form.newBeachResort select,
-form.newBeachResort input[type="file"] {
+form input[type="text"],
+form textarea,
+form select,
+form input[type="file"] {
     width: 100%;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -574,7 +574,7 @@ form.newBeachResort input[type="file"] {
     padding-left: 5px;
 }
 
-form.newBeachResort textarea {
+form textarea {
     resize: vertical;
     height: 100px;
 }
@@ -1273,23 +1273,23 @@ fieldset p{
 }
 
 .error-message {
-  background-color: #f8d7da; /* Rojo claro, color común para errores */
-  color: #721c24;            /* Texto rojo oscuro para buen contraste */
-  border: 1px solid #f5c6cb; /* Borde rojo claro para definir el área del mensaje */
-  border-radius: 4px;        /* Bordes redondeados para suavizar el diseño */
-  padding: 10px 15px;        /* Espaciado interno para que el texto no esté pegado al borde */
-  margin-bottom: 15px;       /* Margen inferior para separar del contenido siguiente */
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
   margin-top: 15px;
-  font-size: 16px;           /* Tamaño de fuente legible */
-  font-family: Arial, sans-serif; /* Fuente legible */
-  display: flex;             /* Usar flexbox para centrar el ícono y el texto (si se añade) */
-  align-items: center;       /* Alinear verticalmente el ícono y el texto */
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
 }
 
 .error-message::before {
-  content: "\26A0";          /* Unicode para el ícono de advertencia ⚠️ */
-  margin-right: 10px;        /* Espaciado entre el ícono y el texto */
-  font-size: 18px;           /* Tamaño del ícono */
+  content: "\26A0";
+  margin-right: 10px;
+  font-size: 18px;
 }
 
 /* Añadir un poco de espacio y cambiar el fondo del contenedor principal */
@@ -1351,4 +1351,29 @@ fieldset p{
 
 .ticket button:hover {
   background-color: #0056b3;
+}
+
+.drop-zone {
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.drop-zone.drag-over {
+  border-color: #333;
+  background-color: #f0f0f0;
+}
+
+.drop-zone span {
+  display: block;
+  margin: 10px 0;
+}
+
+.drop-zone img {
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
 }

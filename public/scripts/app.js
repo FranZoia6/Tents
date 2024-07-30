@@ -46,6 +46,15 @@ class appPAW {
                 });
             }
 
+            contenedor = document.querySelector(".drop-zone");
+
+            if (contenedor) {
+                PAW.cargarScript("DragAndDrop", "scripts/components/draganddrop.component.js", () => {
+                    new DragAndDrop('dropZoneProfile', 'imagen_perfil', 'previewProfile', 'filenameProfile');
+                    new DragAndDrop('dropZoneSVG', 'imagen_svg', 'previewSVG', 'filenameSVG');
+                });
+            }
+
         });
     }
 }

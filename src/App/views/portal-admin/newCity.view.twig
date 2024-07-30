@@ -3,10 +3,13 @@
 {% block main %}
     <h1>Nueva Ciudad</h1>
     <form class="newCity" action="/submitCity" method = "POST" enctype="multipart/form-data">  
+        
+        <p class="required-message">Todos los campos son obligatorios.</p>
+
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
         <label for="imagen">Selecciona una imagen:</label>
-        <input type="file" id="imagen" name="imagen" accept="image/*">
+        <input type="file" id="imagen" name="imagen_ciudad" accept="image/*">
 
         <input type="hidden" id="longitud" name="longitud" value="0">
         <input type="hidden" id="latitud" name="latitud" value="0">
@@ -16,6 +19,12 @@
         </section>
         
         <section style="width:100%; height:300px;" class="map" id="map"></section>
+
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
 
         <section>
             <button class="bReserva" type="submit">Envíar</button>
@@ -62,8 +71,12 @@
         const btnLocalizar = document.getElementById('btnLocalizar');
 
         btnLocalizar.addEventListener('click', async function() {
-            city = document.getElementById('name').value;
-            geoLocalizacion = await apiNominatim(city, 'Buenos Aires', 'Argentina');
+            let city = document.getElementById('name').value;
+            let geoLocalizacion = await apiNominatim(city, 'Buenos Aires', 'Argentina');
+            if (!geoLocalizacion) {
+                alert('No se encontró la ubicación. Por favor, verifique la dirección.');
+            }
         });
+        
     </script>
 {% endblock %}

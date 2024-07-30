@@ -92,7 +92,7 @@ class BeachResortController extends Controller {
     }
 
     public function new($error='') {
-        $menu = $this->menu;
+        $menu = $this->menuAdmin;
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
@@ -151,9 +151,6 @@ class BeachResortController extends Controller {
             if (!move_uploaded_file($_FILES['imagen_svg']['tmp_name'], $uploadFileSvg)) {
                 throw new Exception("Error al mover el archivo SVG");
             }
-    
-            echo "La imagen de perfil " . htmlspecialchars(basename($_FILES['imagen_perfil']['name'])) . " ha sido subida correctamente.<br>";
-            echo "El archivo SVG " . htmlspecialchars(basename($_FILES['imagen_svg']['name'])) . " ha sido subido correctamente.<br>";
     
             // Procesar el SVG para contar elementos
             $svg_content = file_get_contents($uploadFileSvg); // Obtener contenido del archivo SVG

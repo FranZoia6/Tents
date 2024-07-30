@@ -7,6 +7,8 @@ use Tents\App\Models\CityCollection;
 use Tents\Core\Database\QueryBuilder;
 use Tents\App\Models\City;
 
+use Exception;
+
 
 class CityController extends Controller {
 
@@ -69,30 +71,56 @@ class CityController extends Controller {
         }
     }
 
-    public function new() {
+    public function new($error='') {
         $menu = $this->menuAdmin;
-        echo $this->twig->render('/portal-admin/newCity.view.twig', compact('menu'));
+
+        if ($error) {
+            echo $this->twig->render('/portal-admin/newCity.view.twig', compact('menu','error'));
+        } else {
+            echo $this->twig->render('/portal-admin/newCity.view.twig', compact('menu'));
+        }
+
     }
 
     public function submit() {
-        $city = new City;
-        $city->setName($_POST['name']);
-        $city->setLat($_POST['latitud']);
-        $city->setLon($_POST['longitud']);
-        // Directorio donde se guardarán las imágenes subidas
-        $uploadDir = '././imagenes/cities/';
         
-        $fileExtension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-        // Nombre del archivo subido con la extensión original
-        $uploadFile = $uploadDir . $_POST['name'] . '.' . $fileExtension;
-    
-        // Mover el archivo subido al directorio deseado
-        move_uploaded_file($_FILES['imagen']['tmp_name'], $uploadFile);
+        $uploadDir = '././imagenes/cities/';
 
-        $city->setImg($uploadFile);
-        $this->model->insertCity($city);
-        header("Location: /adminCity");
-        exit();
+        try {
+            if (empty($_FILES['imagen_ciudad']['tmp_name'])) {
+                throw new Exception("Debes adjuntar una imagen de la ciudad");
+            }
+
+            $imagenCiudad = $_FILES['imagen_ciudad']['name'];
+            $extensionCiudad = strtolower(pathinfo($imagenCiudad, PATHINFO_EXTENSION));
+            $formatos_permitidos_ciudad = ['jpg', 'jpeg', 'png', 'gif'];
+
+            if (!in_array($extensionCiudad, $formatos_permitidos_ciudad)) {
+                throw new Exception("Formato de imagen de perfil no permitido");
+            }
+
+            // Nombre del archivo subido con la extensión original
+            $uploadFile = $uploadDir . $_POST['name'] . '.' . $extensionCiudad;
+    
+            // Mover el archivo subido al directorio deseado
+            move_uploaded_file($_FILES['imagen_ciudad']['tmp_name'], $uploadFile);
+
+            $city = new City;
+            $city->setName($_POST['name']);
+            $city->setLat($_POST['latitud']);
+            $city->setLon($_POST['longitud']);
+
+            $city->setImg($uploadFile);
+            $this->model->insertCity($city);
+            header("Location: /adminCity");
+            exit();
+
+        } catch (Exception $e) {
+            session_start();
+            $error = $e -> getMessage();
+            $this -> new($error);
+        }
+
     }
 
     public function edit() {
