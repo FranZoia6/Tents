@@ -31,6 +31,11 @@ class UnitReservationCollection extends Model {
         return $newUnitReservation;
     }
 
+    public function unitsFronREservation($reservation){
+        return  $this->queryBuilder->select($this->table, ['reservation' => $reservation]);
+
+    }
+
     public function insertUnitReservation($values) {
         try {
             $this->queryBuilder->insert($this->table, $values);

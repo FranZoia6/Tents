@@ -64,6 +64,7 @@ class ReservationController extends Controller {
         $reservation->setDiscountAmount(0);
         $data['selectedUnits']=  array_map('intval', explode(',', $data['selectedUnits']));
         $reservationId = $this->model->insertReservation($reservation);
+        $reservation->setId($reservationId);        
 
         $unitCollection = new UnitCollection;
         $unitCollection -> setQueryBuilder($this->model->queryBuilder);
@@ -119,6 +120,49 @@ class ReservationController extends Controller {
         $unitReservations = $unitReservationCollection->getAll();
 
         echo $this->twig->render('/portal-admin/reservation.view.twig', compact('titulo','menu','reservation'));
+    }
+
+
+    public function reservation() {
+        $reservationId = $this->request->get('id');
+        $menu = $this->menu;
+        $titulo = "Reserva";
+        $reservation = $this->reservationData($reservationId);
+
+
+        echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservation'));
+    }
+
+    public function reservationData($reservationId){
+
+        $reservation = $this->model->get($reservationId);
+        $reservation->fields['reservationId'] = $reservationId;
+        $unitReservationCollection = new UnitReservationCollection;
+        $unitReservationCollection -> setQueryBuilder($this->model->queryBuilder);
+        $unitReservations = $unitReservationCollection->unitsFronREservation($reservationId);
+
+
+        foreach ($unitReservations as $unitReservation) {
+            $units[] = $unitReservation['unit'];
+        }
+        
+        $unitCollection = new UnitCollection;
+        $unitCollection -> setQueryBuilder($this->model->queryBuilder);
+        $unit = $unitCollection->get($units[0]);
+        $beachResortId = $unit ->fields['beachResort'];
+
+        $beachResortCollection = new BeachResortCollection; 
+        $beachResortCollection -> setQueryBuilder($this->model->queryBuilder);
+        $beachResort = $beachResortCollection->get($beachResortId);
+
+
+        $reservation->fields['beachResortName'] = $beachResort->fields['name'];    
+
+
+
+        $reservation->fields['units'] = $units;
+
+        return $reservation;
     }
 
 

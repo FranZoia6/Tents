@@ -1,0 +1,17 @@
+{% extends "base.view.twig" %}
+
+{% block main %}
+<h1>{{ titulo }}</h1>
+<section id="beachResortData" class="ticket">
+  <label>Numero de reserva: {{ reservation.fields.reservationId }}</label>
+  <label>Balneario: {{ reservation.fields.beachResortName }}</label>
+  <label>Fecha desde: {{ reservation.fields.from }}</label>
+  <label>Fecha Hasta: {{ reservation.fields.to }}</label>
+    {% for unit in reservation.fields.units %}
+  <label>Unidad: {{ unit }}</label>
+   {%endfor%}
+  <label class="price-label">Precio:  ${{ reservation.fields.reservationAmount }}</label>        
+
+</section>
+
+{% endblock main %}
