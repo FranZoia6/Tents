@@ -22,18 +22,9 @@ class Controller {
         $this->loader = new \Twig\Loader\FilesystemLoader($this->viewsDir);
 		$this->twig =new \Twig\Environment($this->loader,[]);
         @$this-> menu = [
-
-            [    
-                "href" => "/contact",
-                "name" => "Contactos",
-            ],
             [    
                 "href" => "/beachResortIndex",
                 "name" => "Balnearios",
-            ],
-            [
-                "href" => "/login",
-                "name" => "Acceso",
             ]
         ];
         @$this->menuAdmin = [

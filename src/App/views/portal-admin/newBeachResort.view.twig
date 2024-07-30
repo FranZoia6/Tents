@@ -3,46 +3,50 @@
 {% block main %}
     <h1>Nuevo balneario</h1>
     <form class="newBeachResort" action="/submitBeachResort" method ="POST" enctype="multipart/form-data">  
+        
+        <p class="required-message">Todos los campos son obligatorios.</p>
+
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
     
         <label for="description">Descripción:</label>
         <textarea id="description" name="description" required></textarea>
 
-        <label for="imagen">Aquí debes cargar la imagen de perfil del balneario:</label>
-        <input type="file" id="imagen" name="imagen_perfil" accept="image/*">
+        <label for="imagen">Imagen de perfil del balneario:</label>
+        <input type="file" id="imagen" name="imagen_perfil" accept="image/*" required>
 
-        <label for="imagen">Aquí debes cargar la imagen de distribucion de carpas y sombrillas en formato SVG:</label>
-        <input type="file" id="imagen" name="imagen_svg" accept="image/*">
+        <label for="imagen">Imagen de distribucion de carpas y sombrillas en formato SVG:</label>
+        <input type="file" id="imagen" name="imagen_svg" accept="image/*" required>
 
         <section>
-            <h2>Servicios Disponibles:</h2>
-            <div>
-                <input type="checkbox" id="pileta" name="services[]" value="1">
-                <label for="pileta">Pileta</label>
-            </div>
-            <div>
-                <input type="checkbox" id="spa" name="services[]" value="2">
-                <label for="spa">SPA</label>
-            </div>
-            <div>
-                <input type="checkbox" id="masajes" name="services[]" value="3">
-                <label for="masajes">Masajes</label>
-            </div>
-            <div>
-                <input type="checkbox" id="barra" name="services[]" value="4">
-                <label for="barra">Barra</label>
-            </div>
-            <div>
-                <input type="checkbox" id="restaurant" name="services[]" value="5">
-                <label for="restaurant">Restaurant</label>
-            </div>
-            <div>
-                <input type="checkbox" id="bano" name="services[]" value="6">
-                <label for="bano">Baño</label>
+            <label for="servicios">Servicios disponibles:</label>
+            <div class="services-container">
+                <div class="service-card">
+                    <input type="checkbox" id="pileta" name="services[]" value="1">
+                    <label for="pileta">Pileta</label>
+                </div>
+                <div class="service-card">
+                    <input type="checkbox" id="spa" name="services[]" value="2">
+                    <label for="spa">SPA</label>
+                </div>
+                <div class="service-card">
+                    <input type="checkbox" id="masajes" name="services[]" value="3">
+                    <label for="masajes">Masajes</label>
+                </div>
+                <div class="service-card">
+                    <input type="checkbox" id="barra" name="services[]" value="4">
+                    <label for="barra">Barra</label>
+                </div>
+                <div class="service-card">
+                    <input type="checkbox" id="restaurant" name="services[]" value="5">
+                    <label for="restaurant">Restaurant</label>
+                </div>
+                <div class="service-card">
+                    <input type="checkbox" id="bano" name="services[]" value="6">
+                    <label for="bano">Baño</label>
+                </div>
             </div>
         </section>
-
 
         <label for="precioCarpas">Precio carpas:</label>
         <input type="text" name="precioCarpas" required>
