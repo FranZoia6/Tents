@@ -15,8 +15,7 @@ use MercadoPago\Client\Common\RequestOptions;
 class MercadoPago extends Model {
 
     public function crearPreferencia($reservation, $units){
-        // var_dump($reservation);
-        // die();
+
 
         foreach($units as $unit){
             $items[] = [
@@ -26,14 +25,14 @@ class MercadoPago extends Model {
             ];
         }
 
-
         $payer = [
             "name" => $reservation->fields['firstName'],
             "surname" => $reservation->fields['lastName'],
             "email" => $reservation->fields['email'],
         ];
+
         $backUrls = [
-            'success' => 'http://localhost:8888/',
+            'success' => 'http://localhost:8888/reservation?id=' . $reservation->fields['id'],
             'failure' => '/failure'
         ];
  
