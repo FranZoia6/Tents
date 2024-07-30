@@ -224,24 +224,25 @@ nav ul li a:hover {
 
 /* Estilos para la sección de pasos de reserva */
 .reservar-pasos {
-  padding: 40px 20px; /* Añadido padding generoso */
-  background-color: #f9f9f9; /* Fondo claro para contraste */
-  border-radius: 12px; /* Bordes redondeados */
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
   text-align: center;
-  margin-bottom: 60px; /* Espacio abajo */
+  margin-bottom: 60px;
 }
 
 .reservar-pasos .titulo {
   justify-content: center;
   text-align: center;
-  margin-bottom: 40px; /* Espacio debajo del título */
+  margin-bottom: 40px;
 }
 
 .reservar-pasos h1 {
-  font-size: 2.5rem; /* Tamaño de fuente más grande */
-  color: #333; /* Color oscuro para el texto */
+  font-size: 2.5rem;
+  color: #333;
   font-weight: 700;
   margin: 0;
+  text-align: center;
 }
 
 .pasos-container {
@@ -253,33 +254,33 @@ nav ul li a:hover {
 .paso {
   display: flex;
   align-items: center;
-  background: #ffffff; /* Fondo blanco para cada paso */
-  padding: 20px 30px; /* Padding más amplio para mejor separación */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
-  max-width: 800px; /* Max width para contener el contenido */
-  margin: 0 auto; /* Centramos el paso */
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .paso:hover {
-  transform: translateY(-8px); /* Sutil elevación al pasar el ratón */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .paso-icon {
   flex-shrink: 0;
-  width: 50px; /* Tamaño mayor para iconos */
+  width: 50px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #007bff; /* Fondo colorido para iconos */
-  border-radius: 50%; /* Iconos redondeados */
-  color: white; /* Color blanco para el icono */
-  font-size: 1.5rem; /* Tamaño del icono */
-  margin-right: 20px; /* Espacio a la derecha del icono */
+  background-color: #007bff;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 20px;
 }
 
 .paso-info {
@@ -287,16 +288,16 @@ nav ul li a:hover {
 }
 
 .paso-info h3 {
-  font-size: 1.8rem; /* Tamaño de fuente más grande */
+  font-size: 1.8rem;
   margin: 0 0 10px;
-  color: #333; /* Color de texto oscuro */
-  font-weight: 600; /* Un poco más pesado */
+  color: #333;
+  font-weight: 600;
 }
 
 .paso-info p {
-  font-size: 1.1rem; /* Tamaño de fuente ligeramente mayor */
-  color: #555; /* Color gris más oscuro */
-  line-height: 1.6; /* Mayor altura de línea para mejor lectura */
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
 }
 
 
@@ -310,21 +311,21 @@ h3{
 /* Contenedor de la sección de testimonios */
 .testimonials {
   padding: 40px 20px;
-  background-color: #f4f4f4; /* Fondo claro para contraste */
-  border-radius: 12px; /* Bordes redondeados */
-  margin-bottom: 60px; /* Espacio debajo del contenedor */
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  margin-bottom: 60px;
 }
 
 /* Estilo para el título de la sección */
 .testimonials .titulo {
   justify-content: center;
-  text-align: center; /* Centra el título */
-  margin-bottom: 40px; /* Espacio debajo del título */
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .testimonials h1 {
-  font-size: 2.5rem; /* Tamaño de fuente grande para el título */
-  color: #333; /* Color oscuro para el texto */
+  font-size: 2.5rem;
+  color: #333;
   font-weight: 700;
   margin: 0;
 }
@@ -332,41 +333,41 @@ h3{
 /* Contenedor de las tarjetas de testimonios */
 .testimonials-container {
   display: flex;
-  flex-direction: column; /* Coloca las tarjetas en una columna en pantallas pequeñas */
-  gap: 20px; /* Espacio entre testimonios */
-  align-items: center; /* Centra las tarjetas horizontalmente */
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 }
 
 /* Estilo para cada tarjeta de testimonio */
 .testimonial {
-  background: #ffffff; /* Fondo blanco para las tarjetas */
+  background: #ffffff;
   padding: 20px;
-  border-radius: 12px; /* Bordes redondeados */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  text-align: center; /* Centra el texto */
-  max-width: 600px; /* Ancho máximo para las tarjetas */
-  margin: 0 auto; /* Centra las tarjetas horizontalmente */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Estilo para el testimonio en hover */
 .testimonial:hover {
-  transform: translateY(-8px); /* Sutil elevación al pasar el ratón */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo para el párrafo del testimonio */
 .testimonial p {
-  font-size: 1.2rem; /* Tamaño de fuente del testimonio */
-  color: #333; /* Color del texto */
-  margin: 0 0 10px; /* Espacio debajo del párrafo */
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0 0 10px;
 }
 
 /* Estilo para el nombre del cliente */
 .testimonial cite {
-  font-size: 1rem; /* Tamaño de fuente del nombre */
-  color: #007bff; /* Color del texto para destacar */
-  font-weight: 500; /* Peso de fuente ligeramente negrita */
+  font-size: 1rem;
+  color: #007bff;
+  font-weight: 500;
 }
 
 .bNew, .bContinuar, button {
