@@ -71,7 +71,7 @@ final class PrimerasTablas extends AbstractMigration
             ->create();
         if ($this->isMigratingUp()) {
             $tableUser->insert([
-                ['id' => 1, 'user' => 'admin', 'password' => 'admin']
+                ['id' => 1, 'user' => 'admin', 'password' => password_hash("admin", PASSWORD_BCRYPT)]
             ])->saveData();
         }
 

@@ -12,42 +12,38 @@ use Tents\App\Models\CityCollection;
 use Tents\App\Models\City;
 use Tents\App\Models\Reservation;
 use Tents\App\Models\ReservationCollection;
+use Exception;
 
 class UserController extends Controller {
 
     public ?string $modelName = UserCollection::class;
 
     public function loginValidar() {
-        try {
-            $user = new User();
-            $user->setUser($_POST['usuario']);
-            $user->setPassword($_POST['password']);
-    
-            $userExist = $this->model->checkExists($user->getUser(), $user->getPassword());
-            $menu = $this->menu;
-    
-            if ($userExist) {
+        $username = $this->request->get("usuario");
+        $password = $this->request->get("password");
+        if ($username && $password) {
+            try {
+                $user = $this->model->getUser($username);
+                if (!password_verify($password, $user["password"])) {
+                    throw new Exception("La contraseña es incorrecta");
+                }
                 session_start();
                 $_SESSION['logueado'] = true;
-                if (isset($_POST['usuario'])) {
-                    $_SESSION['login'] = $_POST['usuario'];
-                }
+                $_SESSION['login'] = $user["user"];
                 $this->inicioUsuario();
-            } else {
-                $mensajeError = 'Credenciales incorrectas. Inténtelo nuevamente.';
-                echo $this->twig->render('/portal-user/login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
+            } catch (Exception $e) {
+                echo $this->twig->render("/portal-user/login.view.twig", [
+                    "mensajeError" => "Credenciales incorrectas. Inténtelo nuevamente.",
+                    "menu" => $this->menu
+                ]);
             }
-        } catch (InvalidValueFormatException $e) {
-            // Captura de excepciones específicas
-            $mensajeError = $e->getCustomMessage();
-            echo $this->twig->render('/portal-user/login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
-        } catch (Exception $e) {
-            // Captura de cualquier otra excepción
-            $mensajeError = 'Ocurrió un error inesperado. Por favor, inténtelo más tarde.';
-            echo $this->twig->render('/portal-user/login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
+        } else {
+            echo $this->twig->render("/portal-user/login.view.twig", [
+                "mensajeError" => "Se debe especificar un usuario y su contraseña.",
+                "menu" => $this->menu
+            ]);
         }
     }
-    
 
     public function inicioUsuario() {
         if (session_status() == PHP_SESSION_NONE) {
