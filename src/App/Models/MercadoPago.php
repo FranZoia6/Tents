@@ -32,8 +32,8 @@ class MercadoPago extends Model {
         ];
 
         $backUrls = [
-            'success' => 'http://localhost:8888/reservation?id=' . $reservation->fields['id'],
-            'failure' => '/failure'
+            'success' => 'http://localhost:8888/approvedReservation?id=' . $reservation->fields['id'],
+            'failure' => 'http://localhost:8888/reservationDenied?id=' . $reservation->fields['id']
         ];
  
         $mpAccessToken = getenv('mercado_pago_access_token');

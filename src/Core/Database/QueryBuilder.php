@@ -181,7 +181,19 @@ class QueryBuilder {
         $sentencia->execute($values);
     }
 
-    public function delete() {
-        
+    public function delete($table, $values = []) {
+        $where = "1 = 1";
+        foreach ($values as $key => $value) {
+            $where .= " AND {$key} = :{$key}";
+        }
+    
+        $query = "DELETE FROM {$table} WHERE {$where}";
+    
+        $sentencia = $this->pdo->prepare($query);
+    
+        $sentencia->setFetchMode(PDO::FETCH_ASSOC);
+    
+        $sentencia->execute($values);
     }
+    
 }

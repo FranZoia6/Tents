@@ -44,7 +44,9 @@ $router->get('/beachResortsCity','BeachResortController@getAllByCity');
 $router->post('/contact','PageController@contactProccess');
 $router ->get('/login', 'PageController@login');
 $router->post('/createPaymentPreference','MercadoLibreController@createPaymentPreference');
-$router->get('/reservation', 'ReservationController@reservation');
+$router->get('/approvedReservation', 'ReservationController@approvedReservation');
+$router->get('/reservationDenied', 'ReservationController@reservationDenied');
+
 
 $router ->get('/cities', 'CityController@getAll');
 $router ->get('/portal-admin/cities/edit', 'CityController@edit');

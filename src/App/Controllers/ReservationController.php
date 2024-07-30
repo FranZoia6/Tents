@@ -123,14 +123,24 @@ class ReservationController extends Controller {
     }
 
 
-    public function reservation() {
+    public function approvedReservation() {
+        $reservationId = $this->request->get('id');
+        $status = $this->request->get('collection_status');
+        $menu = $this->menu;
+        $titulo = "Pago Aceptado";
+        $this->model->updateReservation($reservationId,1);
+        $reservationData = $this->reservationData($reservationId);
+        echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
+
+    }
+
+    public function reservationDenied(){
         $reservationId = $this->request->get('id');
         $menu = $this->menu;
-        $titulo = "Reserva";
-        $reservation = $this->reservationData($reservationId);
-
-
-        echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservation'));
+        $titulo = "Pago Denegado";
+        $reservationData = $this->reservationData($reservationId);
+        $this->model->deleteReservation($reservationId);
+        echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
     }
 
     public function reservationData($reservationId){
