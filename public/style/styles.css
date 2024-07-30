@@ -118,6 +118,53 @@ nav ul li a:hover {
   position: relative;
 }
 
+/* Hero Section */
+.hero {
+  background: #f7f7f7; /* Color de fondo claro */
+  color: #333; /* Color de texto oscuro para buen contraste */
+  text-align: center;
+  padding: 50px 20px; /* Ajusta el padding según el diseño */
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 700;
+  color: #333; /* Color oscuro para el texto */
+}
+
+.cta-button {
+  background: #ff6f61; /* Color llamativo */
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 50px; /* Bordes redondeados */
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background 0.3s, transform 0.3s;
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  background: #e55e5a; /* Color más oscuro al pasar el ratón */
+  transform: scale(1.05);
+}
+
+.cta-button:focus {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
 .selectCiudades {
   width: 100%;
   padding: 12px;
@@ -175,43 +222,64 @@ nav ul li a:hover {
   background-color: #0056b3;
 }
 
+/* Estilos para la sección de pasos de reserva */
 .reservar-pasos {
-  padding-top: 20px;
-  border-radius: 10px;
+  padding: 40px 20px; /* Añadido padding generoso */
+  background-color: #f9f9f9; /* Fondo claro para contraste */
+  border-radius: 12px; /* Bordes redondeados */
   text-align: center;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-bottom: 60px; /* Espacio abajo */
+}
+
+.reservar-pasos .titulo {
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 40px; /* Espacio debajo del título */
+}
+
+.reservar-pasos h1 {
+  font-size: 2.5rem; /* Tamaño de fuente más grande */
+  color: #333; /* Color oscuro para el texto */
+  font-weight: 700;
+  margin: 0;
 }
 
 .pasos-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px; /* Espacio entre los pasos */
 }
 
 .paso {
   display: flex;
   align-items: center;
-  background: #e1c7ae63;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  width: 50%;
+  background: #ffffff; /* Fondo blanco para cada paso */
+  padding: 20px 30px; /* Padding más amplio para mejor separación */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  width: 100%;
+  max-width: 800px; /* Max width para contener el contenido */
+  margin: 0 auto; /* Centramos el paso */
 }
 
 .paso:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px); /* Sutil elevación al pasar el ratón */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
 }
 
 .paso-icon {
   flex-shrink: 0;
-  margin-right: 20px;
-  width: 30px;
+  width: 50px; /* Tamaño mayor para iconos */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff; /* Fondo colorido para iconos */
+  border-radius: 50%; /* Iconos redondeados */
+  color: white; /* Color blanco para el icono */
+  font-size: 1.5rem; /* Tamaño del icono */
+  margin-right: 20px; /* Espacio a la derecha del icono */
 }
 
 .paso-info {
@@ -219,16 +287,18 @@ nav ul li a:hover {
 }
 
 .paso-info h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem; /* Tamaño de fuente más grande */
   margin: 0 0 10px;
-  color: #007bff;
-  font-weight: 500;
+  color: #333; /* Color de texto oscuro */
+  font-weight: 600; /* Un poco más pesado */
 }
 
 .paso-info p {
-  font-size: 1rem;
-  color: #666;
+  font-size: 1.1rem; /* Tamaño de fuente ligeramente mayor */
+  color: #555; /* Color gris más oscuro */
+  line-height: 1.6; /* Mayor altura de línea para mejor lectura */
 }
+
 
 h3{
   font-family: "Abril Fatface", serif;
@@ -237,47 +307,67 @@ h3{
   text-decoration: none;
 }
 
-/* article a{
-  display: inline-block;
-  padding: 1em;
-  border-radius: 10px;
-  background-color:  var(--principal-color1);
-  box-shadow: -20px 13px 40px -11px rgba(0, 0, 0, 0.75);
-  color: #fff;
-} */
-
+/* Contenedor de la sección de testimonios */
 .testimonials {
-  background: linear-gradient(to right, #e1c7ae63, #f8f9fa);
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px 20px;
+  background-color: #f4f4f4; /* Fondo claro para contraste */
+  border-radius: 12px; /* Bordes redondeados */
+  margin-bottom: 60px; /* Espacio debajo del contenedor */
 }
 
+/* Estilo para el título de la sección */
+.testimonials .titulo {
+  justify-content: center;
+  text-align: center; /* Centra el título */
+  margin-bottom: 40px; /* Espacio debajo del título */
+}
+
+.testimonials h1 {
+  font-size: 2.5rem; /* Tamaño de fuente grande para el título */
+  color: #333; /* Color oscuro para el texto */
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Contenedor de las tarjetas de testimonios */
+.testimonials-container {
+  display: flex;
+  flex-direction: column; /* Coloca las tarjetas en una columna en pantallas pequeñas */
+  gap: 20px; /* Espacio entre testimonios */
+  align-items: center; /* Centra las tarjetas horizontalmente */
+}
+
+/* Estilo para cada tarjeta de testimonio */
 .testimonial {
-  max-width: 800px;
-  margin: 0 auto;
+  background: #ffffff; /* Fondo blanco para las tarjetas */
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  background-color: #fff;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  text-align: center; /* Centra el texto */
+  max-width: 600px; /* Ancho máximo para las tarjetas */
+  margin: 0 auto; /* Centra las tarjetas horizontalmente */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
 }
 
+/* Estilo para el testimonio en hover */
+.testimonial:hover {
+  transform: translateY(-8px); /* Sutil elevación al pasar el ratón */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
+/* Estilo para el párrafo del testimonio */
 .testimonial p {
-  font-style: italic;
-  font-size: 1rem;
+  font-size: 1.2rem; /* Tamaño de fuente del testimonio */
+  color: #333; /* Color del texto */
+  margin: 0 0 10px; /* Espacio debajo del párrafo */
 }
 
+/* Estilo para el nombre del cliente */
 .testimonial cite {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
-  color: #555;
+  font-size: 1rem; /* Tamaño de fuente del nombre */
+  color: #007bff; /* Color del texto para destacar */
+  font-weight: 500; /* Peso de fuente ligeramente negrita */
 }
-
 
 .bNew, .bContinuar, button {
   display: block;
@@ -372,6 +462,96 @@ h2{
 .service-card label {
     font-size: 16px;
     color: #333;
+}
+
+/* Contenedor principal para las tarjetas de ciudades */
+.card-container {
+  padding: 40px 20px; /* Espacio alrededor del contenedor */
+  background-color: #f4f4f4; /* Fondo claro para contraste */
+  border-radius: 12px; /* Bordes redondeados */
+  margin-bottom: 60px; /* Espacio debajo del contenedor */
+}
+
+/* Estilo para el título de la sección */
+.card-container .titulo {
+  margin-bottom: 40px; /* Espacio debajo del título */
+  text-align: center; /* Centra el título */
+  justify-content: center;
+}
+
+.card-container h1 {
+  font-size: 2.5rem; /* Tamaño de fuente grande para el título */
+  color: #333; /* Color oscuro para el texto */
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Contenedor de tarjetas con flexbox */
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las tarjetas se envuelvan a la siguiente línea */
+  gap: 20px; /* Espacio entre tarjetas */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+}
+
+/* Estilo para cada enlace de tarjeta */
+.card-container .card-link {
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  color: inherit; /* Hereda el color del texto del contenedor */
+  max-width: calc(25% - 20px); /* Ancho máximo de la tarjeta */
+  box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+}
+
+/* Estilo para cada tarjeta */
+.card-container .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff; /* Fondo blanco para las tarjetas */
+  padding: 20px;
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  overflow: hidden; /* Asegura que el contenido no se desborde */
+}
+
+.card-container .card:hover {
+  transform: translateY(-8px); /* Sutil elevación al pasar el ratón */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
+/* Estilo para la imagen en la tarjeta */
+.card-container .card figure {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: 200px; /* Altura fija para las imágenes */
+  overflow: hidden;
+  border-radius: 8px; /* Bordes redondeados para las imágenes */
+}
+
+.card-container .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+  transition: transform 0.3s ease; /* Transición suave para el zoom */
+}
+
+.card-container .card:hover img {
+  transform: scale(1.1); /* Zoom en la imagen al pasar el ratón */
+}
+
+/* Estilo para el título y el párrafo en la tarjeta */
+.card-container .card h3 {
+  font-size: 1.5rem; /* Tamaño de fuente del título */
+  color: #007bff; /* Color del texto para destacar */
+  margin: 15px 0; /* Espacio arriba y abajo del título */
+}
+
+.card-container .card p {
+  font-size: 1rem; /* Tamaño de fuente del párrafo */
+  color: #666; /* Color gris para el texto */
+  margin: 0;
 }
 
 /* Resto del formulario */

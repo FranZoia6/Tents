@@ -2,15 +2,19 @@
 
 {% block main %}
     <main>
+
+        <section class="hero">
+            <p>Explora, elige y reserva el mejor balneario para disfrutar de tus días de sol.</p>
+            <a href="#reservar" class="cta-button">¡Reserva Ahora!</a>
+        </section>
+
         <section class="center">
             <section class="carousel"></section>
         </section>
 
         <section class="reservar-pasos">
-            <section class="titulo">
-                <h1>Cómo realizar una reserva</h1>      
-            </section>
-            <div class="paso">
+            <h1>Cómo realizar una reserva</h1>      
+            <article>
                 <div class="paso-icon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
@@ -18,8 +22,8 @@
                     <h3>1. Buscar Balneario</h3>
                     <p>Utiliza nuestro buscador para encontrar el balneario que mejor se ajuste a tus necesidades.</p>
                 </div>
-            </div>
-            <div class="paso">
+            </article>
+            <article>
                 <div class="paso-icon">
                     <i class="fa-solid fa-umbrella-beach"></i>
                     <i class="fa-solid fa-tents"></i>
@@ -28,8 +32,8 @@
                     <h3>2. Elegir Carpa o Sombrilla</h3>
                     <p>Selecciona la carpa o sombrilla que prefieras para tu día de playa.</p>
                 </div>
-            </div>
-            <div class="paso">
+            </article>
+            <article>
                 <div class="paso-icon">
                     <i class="fa-regular fa-credit-card"></i>
                 </div>
@@ -37,26 +41,27 @@
                     <h3>3. Pagar por Mercado Pago</h3>
                     <p>Realiza el pago a través de Mercado Pago para completar tu reserva.</p>
                 </div>
-            </div>
+            </article>
         </section>
 
-        <section class= "card-container">
+        <section class="card-container">
             <section class="titulo">
                 <h1>Conocé las ciudades y sus balnearios</h1>      
             </section>
-            {% for city in cities   %}
-                <a href="/beachResortsCity?id={{ city.fields.id }}">
+            {% for city in cities %}
+                <a href="/beachResortsCity?id={{ city.fields.id }}" class="card-link">
                     <article class="card">    
                         <h3>{{ city.fields.name }}</h3>
                         <figure>
-                            <img src="{{ city.fields.img }}" alt="{{ city.fields.name }}" >
+                            <img src="{{ city.fields.img }}" alt="{{ city.fields.name }}">
                         </figure>
                         <p>Balnearios: 4</p>
                     </article> 
                 </a>
             {% endfor %}                  
         </section>
-    
+
+
         <section class="testimonials">
             <section class="titulo">
                 <h1>Lo que dicen nuestros clientes</h1>
