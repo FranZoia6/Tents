@@ -23,8 +23,8 @@ use MercadoPago\Payment;
 
 
 
-    
-    
+
+
 
 // use MercadoPago\Client\Preference\PreferenceClient;
 // use MercadoPago\MercadoPagoConfig;
@@ -37,7 +37,7 @@ class ReservationController extends Controller {
     Use Loggable;
 
     public ?string $modelName = ReservationCollection::class;
-       
+
     public function searchUnitsFree() {
 
         $beachResortId = $this->request->get('id');
@@ -58,7 +58,7 @@ class ReservationController extends Controller {
     }
 
 
-    
+
     public function datosReservation(){
         $data = $_POST;
         $menu = $this->menu;
@@ -79,7 +79,7 @@ class ReservationController extends Controller {
         $reservation->setDiscountAmount(0);
         $data['selectedUnits']=  array_map('intval', explode(',', $data['selectedUnits']));
         $reservationId = $this->model->insertReservation($reservation);
-        $reservation->setId($reservationId);        
+        $reservation->setId($reservationId);
 
         $unitCollection = new UnitCollection;
         $unitCollection -> setQueryBuilder($this->model->queryBuilder);
@@ -140,26 +140,38 @@ class ReservationController extends Controller {
     }
 
 
-    public function approvedReservation() {    
-
-
-        $logFile = '/tmp/webhook.log'; // Archivo donde se guardarán los logs
+    public function approvedReservation() {       
+       
         
-        // Lee el cuerpo de la solicitud
-        // $body = file_get_contents('php://input');
+        $body = file_get_contents('php://input');
         
-        // Registra el contenido del cuerpo en el archivo de log
-        // file_put_contents($logFile, date('Y-m-d H:i:s') . " - " . $body . PHP_EOL, FILE_APPEND);
-        // http_response_code(200);
+        $data = json_decode($body, true);
+        
+        $id = $data['data']['id'] ?? null;
+        
+        if ($id) {
+            $mercadoPago = new MercadoPago;
+            $payment = $mercadoPago->crearPago($id);
+        }
 
-        $mercadoPago = new MercadoPago;
-        $mercadoPago->crearPago('114946354749');
-
-
+        if (isset($payment->status)) {
+            if ($payment->status == 'approved') {
+                if (isset($payment->external_reference)) {
+                    $reservationId = $payment->external_reference;
+                    $this->model->updateReservation($reservationId, 1);
+                }
+            } else {
+                if (isset($payment->external_reference)) {
+                    $reservationId = $payment->external_reference;
+                    $this->model->deleteReservation($reservationId);
+                }
+            }
+        } 
+        
+        http_response_code(200);
         
 
 
-            
         // $reservationId = $this->request->get('id');
         // $status = $this->request->get('collection_status');
         // $menu = $this->menu;
@@ -175,7 +187,7 @@ class ReservationController extends Controller {
         $menu = $this->menu;
         $titulo = "Pago Denegado";
         $reservationData = $this->reservationData($reservationId);
-        $this->model->deleteReservation($reservationId);
+
         echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
     }
 
@@ -191,18 +203,18 @@ class ReservationController extends Controller {
         foreach ($unitReservations as $unitReservation) {
             $units[] = $unitReservation['unit'];
         }
-        
+
         $unitCollection = new UnitCollection;
         $unitCollection -> setQueryBuilder($this->model->queryBuilder);
         $unit = $unitCollection->get($units[0]);
         $beachResortId = $unit ->fields['beachResort'];
 
-        $beachResortCollection = new BeachResortCollection; 
+        $beachResortCollection = new BeachResortCollection;
         $beachResortCollection -> setQueryBuilder($this->model->queryBuilder);
         $beachResort = $beachResortCollection->get($beachResortId);
 
 
-        $reservation->fields['beachResortName'] = $beachResort->fields['name'];    
+        $reservation->fields['beachResortName'] = $beachResort->fields['name'];
 
 
 
