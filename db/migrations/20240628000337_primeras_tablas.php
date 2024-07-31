@@ -22,6 +22,7 @@ final class PrimerasTablas extends AbstractMigration
     {
         $tableCity = $this->table('city');
         $tableCity->addColumn('name', 'text', ['limit' => MysqlAdapter::TEXT_TINY, 'null' => false])
+            ->addColumn('province', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
             ->addColumn('lat', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
             ->addColumn('lon', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
             ->addColumn('img', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
@@ -107,6 +108,8 @@ final class PrimerasTablas extends AbstractMigration
             ->addColumn('city', 'integer', ['null' => false, 'signed' => false])
             ->addColumn('state', 'integer', ['null' => false, 'signed' => false])
             ->addColumn('img', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
+            ->addColumn('street', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
+            ->addColumn('number', 'integer', ['null' => true, 'signed' => false])
             ->addColumn('lat', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
             ->addColumn('lon', 'text', ['limit' => MysqlAdapter::TEXT_REGULAR, 'null' => true])
             ->addIndex(['name'], ['unique' => true, 'limit' => 63])

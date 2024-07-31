@@ -86,6 +86,26 @@ class BeachResortCollection extends Model {
         }
     }
 
+    public function updateBeachResort($beachResort) {
+        $params = [
+            "id" => $beachResort -> fields['id'],
+            "name" => $beachResort -> fields['name'],
+            "description" => $beachResort -> fields['description'],
+            "city" => $beachResort -> fields['city'],
+            "street" => $beachResort -> fields['street'],
+            "number" => $beachResort -> fields['number'],
+            "lat" => $beachResort -> fields['lat'],
+            "lon" => $beachResort -> fields['lon'],
+        ];
+
+        try {
+            $this->queryBuilder->update($this->table, $params);
+        } catch (DatabaseException $e) {
+            echo "Ocurrió un error al actualizar la ciudad: " . $e->getMessage();
+        }
+
+    }
+
     public function obtenerNombres() {
 
         // Definición de los joins

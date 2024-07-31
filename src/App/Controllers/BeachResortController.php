@@ -12,6 +12,7 @@ use Tents\App\Models\ServiceCollection;
 use Tents\App\Models\UnitCollection;
 use Tents\App\Models\Unit;
 use Tents\App\Models\ServiceBeachResort;
+use Tents\App\Models\Service;
 
 use Exception;
 
@@ -193,6 +194,8 @@ class BeachResortController extends Controller {
             $beachResort->setDescription($_POST['description']);
             $beachResort->setCity($_POST['city']);
             $beachResort->setState(1);
+            $beachResort->setStreet($_POST['street']);
+            $beachResort->setNumber($_POST['number']);
             $beachResort->setLat($_POST['latitud']);
             $beachResort->setLon($_POST['longitud']);
             $beachResort->setImg($uploadFilePerfil); // Guardar la imagen de perfil en el modelo
@@ -277,17 +280,107 @@ class BeachResortController extends Controller {
         $beachResortId = $this->request->get('beachResort');
         $menu = $this->menuAdmin;
 
+        $beachResortCollection = new BeachResortCollection;
+        $beachResortCollection ->setQueryBuilder($this->model->queryBuilder);
+        $beachResort = $beachResortCollection->get($beachResortId);
+        //Balneario a editar
+
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
+        //Todas las ciudades
 
-        $beachResort = $this -> model -> obtenerCiudad($beachResortId);
-
-        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('cities','beachResort'));
+        $serviceBeachResortCollection = new ServiceBeachResortCollection;
+        $serviceBeachResortCollection->setQueryBuilder($this->model->queryBuilder);
+        $servicesBeachResort = $serviceBeachResortCollection->getByBeachResort($beachResortId);
+        //Servicios del balneario
+        
+        $serviceCollection = new ServiceCollection;
+        $serviceCollection->setQueryBuilder($this->model->queryBuilder);
+        $services = $serviceCollection->getAll();
+        //Todos los servicios
+        
+        $unitCollection = new UnitCollection;
+        $unitCollection->setQueryBuilder($this->model->queryBuilder);
+        $units = $unitCollection->getByBeachResort($beachResortId);
+        //Unidades del balneario
+        
+        $precioCarpas = "";
+        $precioSombrillas = "";
+        foreach ($units as $unit) {
+            $sombra = $unit->fields['shade'];
+            if ($sombra == 1 && $precioCarpas == null) {
+                $precioCarpas = $unit->fields['price'];
+            }
+            if ($sombra == 2 && $precioSombrillas == null) {
+                $precioSombrillas = $unit->fields['price'];
+            }
+        }
+        
+        echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('menu','cities','beachResort','servicesBeachResort','services','units','precioCarpas','precioSombrillas'));
     }
 
-    public function set() {
+    public function submitEdit() {
+        try {
+            $beachResort = new BeachResort;
+            $beachResort->setId($_POST['id']);
+            $beachResort->setName($_POST['name']);
+            $beachResort->setDescription($_POST['description']);
+            $beachResort->setCity($_POST['city']);
+            $beachResort->setStreet($_POST['street']);
+            $beachResort->setNumber($_POST['number']);
+            $beachResort->setLat($_POST['latitud']);
+            $beachResort->setLon($_POST['longitud']);
+            //$this->model->updateBeachResort($beachResort);
 
+            $beachResortId = $beachResort->fields['id'];
+            
+            //Insertar servicios
+            $services = $_POST['services']; // Esto será un array con los servicios seleccionados.
+
+            // Convertir los valores a enteros
+            $servicesInt = array_map('intval', $services);
+
+            $serviceBeachResortCollection = new ServiceBeachResortCollection;
+            $serviceBeachResortCollection->setQueryBuilder($this->model->queryBuilder);
+            $servicesBeachResort = $serviceBeachResortCollection->getByBeachResort($beachResortId);
+            //Servicios del balneario
+
+            //Eliminar todos los servicios del balneario
+            foreach ($servicesBeachResort as $service) {
+                $serviceBeachResortCollection->delete($service);
+            }
+
+            //Cargar los nuevos servicios
+            foreach ($servicesInt as $service) {
+                $newServiceBeachResort = new ServiceBeachResort();
+                $newServiceBeachResort -> setBeachResort($beachResortId);
+                $newServiceBeachResort -> setService($service);
+                $id = $serviceBeachResortCollection -> insert($newServiceBeachResort);
+            }
+
+            $unitCollection = new UnitCollection;
+            $unitCollection->setQueryBuilder($this->model->queryBuilder);
+            $units = $unitCollection->getByBeachResort($beachResortId);
+            //Unidades del balneario
+            
+            foreach ($units as $unit) {
+                if ($unit->fields['shade'] == 1) {
+                    $unit->setPrice($_POST['precioCarpas']);
+                    $unitCollection->updatePriceUnit($unit); 
+                } else {
+                    $unit->setPrice($_POST['precioSombrillas']);
+                    $unitCollection->updatePriceUnit($unit); 
+                }
+            }
+
+            header("Location: /adminBeachResor");
+            exit();
+    
+        } catch (Exception $e) {
+            session_start();
+            $error = $e -> getMessage();
+            $this -> new($error);
+        }
     }
-
 }

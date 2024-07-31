@@ -31,6 +31,20 @@ class UnitCollection extends Model {
         return $newUnit;
     }
 
+    public function getByBeachResort($BeachResortId) {
+        $units = $this->queryBuilder->select($this->table, ['beachResort' => $BeachResortId]);
+        $units_collection = [];
+        
+        foreach ($units as $unit) {
+            $newUnit = new Unit;
+            //$newUnit->setQueryBuilder($this->queryBuilder);
+            $newUnit -> set($unit);
+            $units_collection[] = $newUnit;
+        }
+    
+        return $units_collection;
+    }
+
     public function insertUnit($values) {
         try {
             $this->queryBuilder->insert($this->table, $values);
@@ -44,6 +58,19 @@ class UnitCollection extends Model {
             // Manejar el error de formato de valor inválido, mostrar mensaje, registrar, etc.
             echo "El formato de un valor proporcionado es inválido: " . $e->getMessage();
         }
+    }
+
+    public function updatePriceUnit($unit) {
+        $params = [
+            "price" => $unit -> fields['price']
+        ];
+
+        try {
+            $this->queryBuilder->update($this->table, $params);
+        } catch (DatabaseException $e) {
+            echo "Ocurrió un error al actualizar la ciudad: " . $e->getMessage();
+        }
+
     }
 
 }

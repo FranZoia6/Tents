@@ -65,6 +65,7 @@ class UserController extends Controller {
         $reservationCollection->setQueryBuilder($this->model->queryBuilder);
         $reservations = $reservationCollection->getAll();
         $numberOfReservations = count($reservations);
+        
 
         echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo','numberOfCities','numberOfBeachResorts','numberOfReservations'));
     }

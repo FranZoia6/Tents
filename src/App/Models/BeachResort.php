@@ -16,6 +16,8 @@ class BeachResort extends Model {
         "description" => null,
         "city" => null,
         "state" => null,
+        "street" => null,
+        "number" => null,
         "lat" => null,
         "lon" => null,
         "img" => null
@@ -39,6 +41,14 @@ class BeachResort extends Model {
 
     public function setState(int $state) {
         $this -> fields["state"] = $state;
+    }
+
+    public function setStreet(string $street) {
+        $this -> fields["street"] = $street;
+    }
+
+    public function setNumber(int $number) {
+        $this -> fields["number"] = $number;
     }
 
     public function setLat(string $lat) {

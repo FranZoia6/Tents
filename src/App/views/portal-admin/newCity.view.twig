@@ -8,8 +8,41 @@
 
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
-        <label for="imagen">Selecciona una imagen:</label>
-        <input type="file" id="imagen" name="imagen_ciudad" accept="image/*">
+  
+        <label for="imagen_perfil">Imagen de la ciudad</label>
+        <div class="drop-zone" id="dropZoneProfile">
+            <span>Arrastra y suelta aquí la imagen de la ciudad</span>
+            <input type="file" id="imagen_perfil" name="imagen_perfil" accept="image/*" required style="display:none;">
+            <img id="previewProfile" style="display:none; width:100px; height:auto;" alt="Vista previa de la ciudad">
+            <div id="filenameProfile" style="display:none;"></div>
+        </div>
+
+        <label for="province">Provincia:</label>
+        <select id="province" name="province" required>
+            <option value="Buenos Aires">Buenos Aires</option>
+            <option value="Catamarca">Catamarca</option>
+            <option value="Chaco">Chaco</option>
+            <option value="Chubut">Chubut</option>
+            <option value="Córdoba">Córdoba</option>
+            <option value="Corrientes">Corrientes</option>
+            <option value="Entre Ríos">Entre Ríos</option>
+            <option value="Formosa">Formosa</option>
+            <option value="Jujuy">Jujuy</option>
+            <option value="La Pampa">La Pampa</option>
+            <option value="La Rioja">La Rioja</option>
+            <option value="Mendoza">Mendoza</option>
+            <option value="Misiones">Misiones</option>
+            <option value="Neuquén">Neuquén</option>
+            <option value="Río Negro">Río Negro</option>
+            <option value="Salta">Salta</option>
+            <option value="San Juan">San Juan</option>
+            <option value="San Luis">San Luis</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+            <option value="Santa Fe">Santa Fe</option>
+            <option value="Santiago del Estero">Santiago del Estero</option>
+            <option value="Tierra del Fuego">Tierra del Fuego</option>
+            <option value="Tucumán">Tucumán</option>
+        </select>
 
         <input type="hidden" id="longitud" name="longitud" value="0">
         <input type="hidden" id="latitud" name="latitud" value="0">
@@ -18,7 +51,7 @@
             <button type='button' id="btnLocalizar" class="btnLocalizar">Localizar</button>
         </section>
         
-        <section style="width:100%; height:300px;" class="map" id="map"></section>
+        <section style="width:100%; height:50vh;" class="map" id="map"></section>
 
         {% if error %}
             <div class="error-message">
@@ -26,7 +59,7 @@
             </div>
         {% endif %}
 
-        <section>
+        <section class="secctionBtn">
             <button class="bReserva" type="submit">Envíar</button>
         </section>
     </form>
@@ -72,7 +105,8 @@
 
         btnLocalizar.addEventListener('click', async function() {
             let city = document.getElementById('name').value;
-            let geoLocalizacion = await apiNominatim(city, 'Buenos Aires', 'Argentina');
+            let province = document.getElementById('province').value;
+            let geoLocalizacion = await apiNominatim(city, province, 'Argentina');
             if (!geoLocalizacion) {
                 alert('No se encontró la ubicación. Por favor, verifique la dirección.');
             }

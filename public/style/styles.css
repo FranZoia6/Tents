@@ -659,6 +659,10 @@ form textarea {
     height: 100px;
 }
 
+form.newBeachResort {
+  margin-bottom:40px;
+}
+
 form.newBeachResort .conteinerBtnLocalizar {
     text-align: center;
 }
@@ -955,17 +959,29 @@ footer p {
 
 /* Estilos de las tablas */
 .tents-table {
-  border: 2px solid black;
-  font-family: serif;
+  text-align: left;
   margin: auto;
   width: 80%;
   margin-bottom: 3em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-collapse: separate;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .tents-table thead {
   background-color: #efcf8d;
-  color: #0077b6;
+  border-bottom: solid 5px #0F362D;
+  color: white;
+}
+
+th {
   font-weight: bold;
+}
+
+td > a {
+  color: #E5992B;
+  padding: 10px;
 }
 
 .tents-table tbody .row-odd {
@@ -978,8 +994,8 @@ footer p {
 
 .tents-table th,
 .tents-table td {
-  border: 1px solid black;
-  padding: 4px 8px;
+  padding: 15px;
+  text-align: center;
 }
 
 .center {
@@ -1458,4 +1474,8 @@ fieldset p{
   margin-top: 10px;
   max-width: 100%;
   height: auto;
+}
+
+.secctionBtn {
+  text-align: center;
 }
