@@ -43,7 +43,7 @@ $router->get('/beachResortsCity','BeachResortController@getAllByCity');
 $router->post('/contact','PageController@contactProccess');
 $router ->get('/login', 'PageController@login');
 $router->post('/createPaymentPreference','MercadoLibreController@createPaymentPreference');
-$router->get('/approvedReservation', 'ReservationController@approvedReservation');
+$router->post('/approvedReservation', 'ReservationController@approvedReservation');
 $router->get('/reservationDenied', 'ReservationController@reservationDenied');
 
 $router->get('/about','PageController@about');
