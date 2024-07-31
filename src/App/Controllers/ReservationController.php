@@ -11,6 +11,20 @@ use Tents\App\Models\ReservationCollection;
 use Tents\App\Models\UnitCollection;
 use Tents\App\Models\Reservation;
 use Tents\App\Models\MercadoPago;
+use Tents\Core\Traits\Loggable;
+
+use MercadoPago\MercadoPagoConfig;
+
+use MercadoPago\SDK;
+use MercadoPago\Payment;
+
+
+
+
+
+
+    
+    
 
 // use MercadoPago\Client\Preference\PreferenceClient;
 // use MercadoPago\MercadoPagoConfig;
@@ -20,6 +34,7 @@ class ReservationController extends Controller {
 
     public string $viewsDir;
     public $menu;
+    Use Loggable;
 
     public ?string $modelName = ReservationCollection::class;
        
@@ -88,7 +103,7 @@ class ReservationController extends Controller {
         $mercadoPago = new MercadoPago;
 
         $preference  = $mercadoPago->crearPreferencia($reservation, $units);
-
+        var_dump($preference);
         echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data", 'reservationId', 'preference'));
     }
 
@@ -100,6 +115,8 @@ class ReservationController extends Controller {
             $reservationCollection = new ReservationCollection;
             $reservationCollection ->setQueryBuilder($this->model->queryBuilder);
             $reservations = $reservationCollection->getAll();
+
+
 
             echo $this->twig->render('/portal-admin/adminReservation.view.twig',compact('menu','titulo','reservations'));
         }else {
@@ -123,14 +140,33 @@ class ReservationController extends Controller {
     }
 
 
-    public function approvedReservation() {
-        $reservationId = $this->request->get('id');
-        $status = $this->request->get('collection_status');
-        $menu = $this->menu;
-        $titulo = "Pago Aceptado";
-        $this->model->updateReservation($reservationId,1);
-        $reservationData = $this->reservationData($reservationId);
-        echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
+    public function approvedReservation() {    
+
+
+        $logFile = '/tmp/webhook.log'; // Archivo donde se guardarán los logs
+        
+        // Lee el cuerpo de la solicitud
+        // $body = file_get_contents('php://input');
+        
+        // Registra el contenido del cuerpo en el archivo de log
+        // file_put_contents($logFile, date('Y-m-d H:i:s') . " - " . $body . PHP_EOL, FILE_APPEND);
+        // http_response_code(200);
+
+        $mercadoPago = new MercadoPago;
+        $mercadoPago->crearPago('114946354749');
+
+
+        
+
+
+            
+        // $reservationId = $this->request->get('id');
+        // $status = $this->request->get('collection_status');
+        // $menu = $this->menu;
+        // $titulo = "Pago Aceptado";
+        // $this->model->updateReservation($reservationId,1);
+        // $reservationData = $this->reservationData($reservationId);
+        // echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
 
     }
 

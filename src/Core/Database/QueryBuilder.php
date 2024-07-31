@@ -248,5 +248,44 @@ class QueryBuilder {
     
         $sentencia->execute($values);
     }
+
+
+    // public function delete($table, $conditions = []) {
+    //     // Valores a bindear a la query.
+    //     $args = [];
+    //     // Partes de la cláusula "where".
+    //     $where = [];
+    //     foreach ($conditions as $column => $value) {
+    //         if (is_array($value)) {
+    //             $operator = $value[0];
+    //             $args[] = $value[1];
+    //         } else {
+    //             $operator = "=";
+    //             $args[] = $value;
+    //         }
+    //         switch ($operator) {
+    //             case "=":
+    //             case "<":
+    //             case "<=":
+    //             case ">":
+    //             case ">=":
+    //             case "not":
+    //                 $where[] = "$column $operator ?";
+    //                 break;
+    //             default:
+    //                 throw new Exception("El operador '$operator' no está soportado");
+    //         }
+    //     }
+    //     $query = "DELETE * FROM $table";
+    //     if (!empty($conditions)) {
+    //         $query .= " WHERE " . implode(" AND ", $where);
+    //     }
+    //     $statement = $this->pdo->prepare($query);
+    //     $statement->setFetchMode(PDO::FETCH_ASSOC);
+    //     foreach ($args as $idx => $arg) {
+    //         $statement->bindValue($idx + 1, $arg);
+    //     }
+    //     $statement->execute();
+    // }
     
 }

@@ -10,9 +10,47 @@ use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Common\RequestOptions;
 
+use MercadoPago\SDK;
+use MercadoPago\Resources\Payment;
+use MercadoPago\Preference;
+use MercadoPago\Client\Payment\PaymentClient;
+
+
+
 
 
 class MercadoPago extends Model {
+    
+
+    public function crearPago($POST){
+
+        $mpAccessToken = getenv('mercado_pago_access_token');
+        MercadoPagoConfig::setAccessToken($mpAccessToken);
+
+        error_reporting(E_ERROR | E_PARSE);
+        $client = new PaymentClient();
+        $id = 83777584557;
+        $payment = $client->get($id);
+        var_dump($payment);
+        die();
+
+        //     case "plan":
+        //         $plan = MercadoPago\Plan::find_by_id($POST["data"]["id"]);
+        //         break;
+        //     case "subscription":
+        //         $plan = MercadoPago\Subscription::find_by_id($POST["data"]["id"]);
+        //         break;
+        //     case "invoice":
+        //         $plan = MercadoPago\Invoice::find_by_id($POST["data"]["id"]);
+        //         break;
+        //     case "point_integration_wh":
+        //         // $_POST contiene la informaciòn relacionada a la notificaciòn.
+        //         break;
+            
+        
+// Configuración de MercadoPago
+    
+}
 
     public function crearPreferencia($reservation, $units){
 
@@ -45,10 +83,12 @@ class MercadoPago extends Model {
           error_reporting(E_ERROR | E_PARSE);
           $preference = $client->create([
             "items"=> $items ,
-            "player" => $payer,
+            "payer" => $payer,
             "back_urls" => $backUrls,
-            false
+            'notification_url' => 'https://a3e5-181-230-212-69.ngrok-free.app/approvedReservation',
+            "external_reference" => "Reserva001"
           ]);
+
 
         return $preference;
 
