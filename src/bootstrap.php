@@ -36,7 +36,6 @@ $request = new Request;
 $router = new Router;
 $router -> setLogger($log);
 $router->get('/','PageController@index');
-$router->get('/contact','PageController@contact');
 $router->get('/beachResortIndex','BeachResortController@index');
 $router->get('/beachResort','BeachResortController@get');
 $router->post('/beachResort','ReservationController@datosReservation');
@@ -47,6 +46,10 @@ $router->post('/createPaymentPreference','MercadoLibreController@createPaymentPr
 $router->get('/approvedReservation', 'ReservationController@approvedReservation');
 $router->get('/reservationDenied', 'ReservationController@reservationDenied');
 
+$router->get('/about','PageController@about');
+$router->get('/privacyPolicies','PageController@privacyPolicies');
+$router->get('/termsOfServices','PageController@termsOfServices');
+$router->get('/contact','PageController@contact');
 
 $router ->get('/cities', 'CityController@getAll');
 $router ->get('/portal-admin/cities/edit', 'CityController@edit');

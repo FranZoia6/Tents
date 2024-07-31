@@ -114,6 +114,85 @@ nav ul li a:hover {
   color: #007bff;
 }
 
+/* Página de Sobre Nosotros */
+.about-us {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.about-us p {
+  margin-bottom: 20px;
+}
+
+/* Página de Política de Privacidad */
+.privacy-policy {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.privacy-policy p {
+  margin-bottom: 20px;
+}
+
+/* Página de Términos de Servicio */
+.terms-of-service {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.terms-of-service p {
+  margin-bottom: 20px;
+}
+
+/* Página de Contacto */
+.contact {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.contact input, .contact textarea {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.contact textarea {
+  resize: vertical;
+}
+
+.contact button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact button:hover {
+  background-color: #004d99;
+}
+
 .ciudad-container {
   position: relative;
 }

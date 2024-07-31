@@ -42,6 +42,28 @@ class PageController extends Controller
         echo $this->twig->render('/portal-user/contact.view.twig', compact('menu','titulo'));
     }
 
+    public function about()
+    {
+        $titulo = 'Sobre Nosotros';
+        $menu = $this->menu;
+        echo $this->twig->render('/portal-user/about.view.twig', compact('menu','titulo'));
+    }
+
+    public function privacyPolicies()
+    {
+        $titulo = 'Politicas de Privacidad';
+        $menu = $this->menu;
+        echo $this->twig->render('/portal-user/privacyPolicies.view.twig', compact('menu','titulo'));
+    }
+
+    public function termsOfServices()
+    {
+        $titulo = 'Términos de Servicio';
+        $menu = $this->menu;
+        echo $this->twig->render('/portal-user/termsOfService.view.twig', compact('menu','titulo'));
+    }
+
+
     public function login()
     {
         session_start();
@@ -61,9 +83,7 @@ class PageController extends Controller
     public function contactProccess()
     {
         $formulario = $_POST;
-        //Hacer algo
         require $this-> viewsDir . '/portal-user/contact.view.php';
-
     }
 
     public function reservationPersonalData() {

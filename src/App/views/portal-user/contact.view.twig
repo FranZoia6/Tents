@@ -2,14 +2,25 @@
     
 
 {% block main %}
-        <h1>{{ titulo }}</h1>
-        <form action="/contact" method = "POST">
-            <label for="subjet"><strong>Asunto(*)</strong></label>
-            <input type="text" name = "subject">
-            <label for="email"><strong>Correo</strong></label>
-            <input type="text"name = "mail">
-            <label for="description"><strong>Descripcion</strong></label>
-            <textarea name="description"cols="30" rows="10"></textarea>
-            <input type="submit" name="submit" value="Enviar">
-        </form>        
+        <section class="contact">
+            <h2>Contáctanos</h2>
+            <p>Si tienes alguna pregunta o necesitas asistencia, no dudes en ponerte en contacto con nosotros. Estaremos encantados de ayudarte.</p>
+
+            <form action="send_message.php" method="post">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+
+            <h3>Información de Contacto</h3>
+            <p>Teléfono: +123456789</p>
+            <p>Email: contacto@tents.com</p>
+        </section>    
 {% endblock %}
