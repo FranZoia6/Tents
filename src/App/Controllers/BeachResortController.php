@@ -70,11 +70,20 @@ class BeachResortController extends Controller {
     public function getAllByCity() {
         $menu = $this->menu;
         $cityId = $this->request->get('id');
-        $beachResorts = $this->model->getByCity($cityId);
-        $cityCollection = new CityCollection;
-        $cityCollection ->setQueryBuilder($this->model->queryBuilder);
-        $city = $cityCollection->get($cityId);
-        echo $this->twig->render('beachResortsCity.view.twig', compact('menu','beachResorts','city'));  
+        try {
+            $beachResorts = $this->model->getByCity($cityId);
+            $cityCollection = new CityCollection;
+            $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+            $city = $cityCollection->get($cityId);
+            echo $this->twig->render('beachResortsCity.view.twig', compact('menu','beachResorts','city'));  
+        } catch (Exception $e) {
+            session_start();
+            $_SESSION['error'] = $e->getMessage();
+            header("Location: /");
+            exit;
+
+        }
+
     }
 
     public function adminBeachResor() {

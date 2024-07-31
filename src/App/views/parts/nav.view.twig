@@ -21,6 +21,10 @@
                 <input type="hidden" id="cityId" name="cityId" value="">
             </div>
             <a href="#" class="bReserva">Buscar</a>
+            {% if error is defined %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+
     </section>
 
 </nav>

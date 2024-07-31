@@ -1089,17 +1089,19 @@ section a {
     flex-direction: column;
     justify-content: space-between;
     width: 2.5rem;
-    height: 2rem;  
+    height: auto;
     background-color: transparent;
     border: none;
     cursor: pointer;
   }
+  
   
   .hamburguesa span {
     width: 30px;
     height: 3px;
     background-color: #000;
     transition: all 0.3s ease-in-out;
+    margin: 4px 0; /* Añade un margen vertical */
   }
 
   /*navegación principal del sitio*/
@@ -1152,7 +1154,7 @@ section a {
   }
   
   .menu li a:hover {
-    background-color: red;
+    background-color: #007bff;
   }
   
   .menu li a p:hover {
