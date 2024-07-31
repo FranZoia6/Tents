@@ -11,7 +11,8 @@ class Service extends Model {
     public $table = 'service';
 
     public $fields = [
-        "name" => null,
+        "id" => null,
+        "name" => null
     ];
 
     public function setName(string $name) {
@@ -29,6 +30,10 @@ class Service extends Model {
             $method = "set" . ucfirst($field);
             $this -> $method($values[$field]);
         }
+    }
+
+    public function setId(int $id) {
+        $this -> fields["id"] = $id;
     }
 
 }

@@ -54,7 +54,7 @@ $router->get('/contact','PageController@contact');
 $router ->get('/cities', 'CityController@getAll');
 $router ->get('/portal-admin/cities/edit', 'CityController@edit');
 
-$router ->post('/portal-admin/cities/edit', 'CityController@editCity');
+$router ->post('/submitEditCity', 'CityController@editCity');
 
 $router ->get('/resorts', 'BeachResortController@getByCity');
 
@@ -66,6 +66,7 @@ $router->get('/newbeachresort', 'BeachResortController@new');
 $router->get('/newcity', 'CityController@new');
 $router->post('/submitCity', 'CityController@submit');
 $router->post('/submitBeachResort', 'BeachResortController@submit');
+$router->post('/submitEditBeachResort', 'BeachResortController@submitEdit');
 $router->post('/enableBeachResort', 'BeachResortController@enable');
 $router->post('/disableBeachResort', 'BeachResortController@disable');
 

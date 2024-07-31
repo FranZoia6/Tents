@@ -84,14 +84,14 @@ class CityController extends Controller {
 
     public function submit() {
         
-        $uploadDir = '././imagenes/cities/';
+        $uploadDir = '../../imagenes/cities/';
 
         try {
-            if (empty($_FILES['imagen_ciudad']['tmp_name'])) {
+            if (empty($_FILES['imagen_perfil']['tmp_name'])) {
                 throw new Exception("Debes adjuntar una imagen de la ciudad");
             }
 
-            $imagenCiudad = $_FILES['imagen_ciudad']['name'];
+            $imagenCiudad = $_FILES['imagen_perfil']['name'];
             $extensionCiudad = strtolower(pathinfo($imagenCiudad, PATHINFO_EXTENSION));
             $formatos_permitidos_ciudad = ['jpg', 'jpeg', 'png', 'gif'];
 
@@ -103,7 +103,7 @@ class CityController extends Controller {
             $uploadFile = $uploadDir . $_POST['name'] . '.' . $extensionCiudad;
     
             // Mover el archivo subido al directorio deseado
-            move_uploaded_file($_FILES['imagen_ciudad']['tmp_name'], $uploadFile);
+            move_uploaded_file($_FILES['imagen_perfil']['tmp_name'], $uploadFile);
 
             $city = new City;
             $city->setName($_POST['name']);
@@ -125,42 +125,28 @@ class CityController extends Controller {
 
     public function edit() {
         $cityId = $this->request->get('id');
-        $cityName = $this->request->get('name');
+        $cityCollection = new CityCollection;
+        $cityCollection ->setQueryBuilder($this->model->queryBuilder);
+        $city = $cityCollection->get($cityId);
         $menu = $this->menuAdmin;
-        echo $this->twig->render('/portal-admin/editCity.view.twig', compact('cityId', 'cityName', 'menu'));
+
+        echo $this->twig->render('/portal-admin/editCity.view.twig', compact('city', 'menu'));
 
     }
 
     public function editCity() {
         $idCity = $_POST['id'];
         $nameCity = $_POST['name'];
+        $provinceCity = $_POST['province'];
 
         $city = new City;
         $city -> setId($idCity);
         $city -> setName($nameCity);
-
-           // Directorio donde se guardarán las imágenes subidas
-           $uploadDir = '././imagenes/cities/';
-        
-           $fileExtension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-           // Nombre del archivo subido con la extensión original
-           $uploadFile = $uploadDir . $_POST['name'] . '.' . $fileExtension;
-       
-           // Mover el archivo subido al directorio deseado
-           move_uploaded_file($_FILES['imagen']['tmp_name'], $uploadFile);
-   
-           $city->setImg($uploadFile);
+        $city -> setProvince($provinceCity);
 
         $this->model->updateCity($city);
         
-        
         header("Location: /adminCity");
         exit();
-
     }
-
-    public function set() {
-
-    }
-
 }

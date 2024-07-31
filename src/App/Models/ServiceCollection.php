@@ -15,10 +15,10 @@ class ServiceCollection extends Model {
         $services_collection = [];
         
         foreach ($services as $service) {
-            $service = new Service;
-            $service->setQueryBuilder($this->queryBuilder);
-            $service -> set($service);
-            $services_collection[] = $service;
+            $newservice = new Service;
+            //$newservice->setQueryBuilder($this->queryBuilder);
+            $newservice -> set($service);
+            $services_collection[] = $newservice;
         }
     
         return $services_collection;
