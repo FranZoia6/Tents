@@ -11,6 +11,8 @@ use Tents\App\Models\ReservationCollection;
 use Tents\App\Models\UnitCollection;
 use Tents\App\Models\Reservation;
 use Tents\App\Models\MercadoPago;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 use Tents\Core\Traits\Loggable;
 
 use MercadoPago\MercadoPagoConfig;
@@ -136,6 +138,8 @@ class ReservationController extends Controller {
         $unitReservationCollection ->setQueryBuilder($this->model->queryBuilder);
         $unitReservations = $unitReservationCollection->getAll();
 
+      
+
         echo $this->twig->render('/portal-admin/reservation.view.twig', compact('titulo','menu','reservation'));
     }
 
@@ -159,6 +163,36 @@ class ReservationController extends Controller {
                 if (isset($payment->external_reference)) {
                     $reservationId = $payment->external_reference;
                     $this->model->updateReservation($reservationId, 1);
+                    $reservationData = $this->reservationData($reservationId);
+
+                    $mail = new PHPMailer(true);
+
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host       = 'smtp.office365.com'; 
+                        $mail->SMTPAuth   = true;
+                        $mail->Username   = 'francozoiamoque@hotmail.com';
+                        $mail->Password   = getenv("mail_password"); 
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->Port       = 587;
+            
+                        $mail->setFrom('francozoiamoque@hotmail.com', 'Franco Zoia');
+                        $mail->addAddress($reservationData->fields['email'], $reservationData->fields['firstName'] . ' ' . $reservationData->fields['lastName']);
+                        
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Ticket de Reserva 2.0';
+                        $ticketHtml = $this->createTicketHtml($reservationData);
+                        $mail->Body = $ticketHtml;
+            
+                        $mail->AltBody = 'Este es el cuerpo del correo electrónico en texto plano.';
+            
+                        $mail->send();
+                        echo 'Correo enviado correctamente.';
+                    } catch (Exception $e) {
+                        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+                    }
+
+
                 }
             } else {
                 if (isset($payment->external_reference)) {
@@ -182,6 +216,7 @@ class ReservationController extends Controller {
         $titulo = "Pago Aceptado";
         $this->model->updateReservation($reservationId,1);
         $reservationData = $this->reservationData($reservationId);
+
         echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
 
     }
@@ -225,6 +260,49 @@ class ReservationController extends Controller {
 
         return $reservation;
     }
+
+
+    function createTicketHtml($reservationData) {
+        // Accede a los campos del objeto
+        $fields = $reservationData->fields;
+    
+        ob_start();
+        ?>
+        <div style="font-family: Arial, sans-serif; margin: 20px; padding: 20px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 5px;">
+            <h1 style="font-size: 24px; color: #333;">Ticket de Reserva</h1>
+            
+            <h2 style="font-size: 18px; color: #555;">Información de la Reserva</h2>
+            <p><strong>ID de Reserva:</strong> <?php echo htmlspecialchars($fields['id']); ?></p>
+            <p><strong>Fecha de Reserva:</strong> <?php echo htmlspecialchars($fields['date']); ?></p>
+            <p><strong>Fecha de Entrada:</strong> <?php echo htmlspecialchars($fields['from']); ?></p>
+            <p><strong>Fecha de Salida:</strong> <?php echo htmlspecialchars($fields['to']); ?></p>
+            <p><strong>Nombre:</strong> <?php echo htmlspecialchars($fields['firstName'] . ' ' . $fields['lastName']); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($fields['email']); ?></p>
+            <p><strong>Teléfono:</strong> <?php echo htmlspecialchars($fields['phone']); ?></p>
+            <p><strong>Nombre del Balneario:</strong> <?php echo htmlspecialchars($fields['beachResortName']); ?></p>
+            
+            <h2 style="font-size: 18px; color: #555;">Detalles de la Reserva</h2>
+            <p><strong>Monto de la Reserva:</strong> $<?php echo number_format($fields['reservationAmount'], 2); ?></p>
+            <p><strong>Descuento:</strong> $<?php echo number_format($fields['discountAmount'], 2); ?></p>
+            <p><strong>Pagado:</strong> <?php echo $fields['payed'] ? 'Sí' : 'No'; ?></p>
+            
+            <h2 style="font-size: 18px; color: #555;">Unidades Reservadas</h2>
+            <ul style="padding-left: 20px;">
+                <?php foreach ($fields['units'] as $unit): ?>
+                    <li>Unidad <?php echo htmlspecialchars($unit); ?></li>
+                <?php endforeach; ?>
+            </ul>
+    
+            <p style="margin-top: 20px; color: #666;">Gracias por reservar con nosotros. ¡Esperamos que disfrutes tu estancia!</p>
+        </div>
+        <?php
+        return ob_get_clean();
+    }
+    
+    
+    
+    
+
 
 
     public function edit() {
