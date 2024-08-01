@@ -140,7 +140,7 @@ class ReservationController extends Controller {
     }
 
 
-    public function approvedReservation() {       
+    public function paymentStatus() {       
        
         
         $body = file_get_contents('php://input');
@@ -172,23 +172,26 @@ class ReservationController extends Controller {
         
 
 
-        // $reservationId = $this->request->get('id');
-        // $status = $this->request->get('collection_status');
-        // $menu = $this->menu;
-        // $titulo = "Pago Aceptado";
-        // $this->model->updateReservation($reservationId,1);
-        // $reservationData = $this->reservationData($reservationId);
-        // echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
+      
+
+    }
+
+    public function approvedReservation(){
+        $reservationId = $this->request->get('id');
+        $menu = $this->menu;
+        $titulo = "Pago Aceptado";
+        $this->model->updateReservation($reservationId,1);
+        $reservationData = $this->reservationData($reservationId);
+        echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
 
     }
 
     public function reservationDenied(){
-        $reservationId = $this->request->get('id');
         $menu = $this->menu;
         $titulo = "Pago Denegado";
-        $reservationData = $this->reservationData($reservationId);
-
-        echo $this->twig->render('/portal-user/reservation.view.twig', compact('titulo','menu','reservationData'));
+        $error = true; 
+        $search = true;
+        echo $this->twig->render('/portal-user/index.view.twig', compact('titulo','menu','error', 'search'));
     }
 
     public function reservationData($reservationId){

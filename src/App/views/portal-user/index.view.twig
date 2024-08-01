@@ -82,6 +82,16 @@
 {% block javascript %}
     <script>
         const ciudades = {{ cities | json_encode | raw }};
+
+        const hasError = {{ error ? 'true' : 'false' | raw }};
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if (hasError) {
+                alert('¡El pago ha sido denegado!');
+            }
+        });
+
     </script>
 {% endblock %}
 

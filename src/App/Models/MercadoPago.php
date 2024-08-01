@@ -83,7 +83,7 @@ class MercadoPago extends Model {
             "items"=> $items ,
             "payer" => $payer,
             "back_urls" => $backUrls,
-            'notification_url' => 'https://69c1-181-230-212-69.ngrok-free.app/approvedReservation',
+            'notification_url' => 'https://61b9-181-230-212-69.ngrok-free.app/paymentStatus',
             "external_reference" => $reservation->fields['id']
           ]);
 
