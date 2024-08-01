@@ -4,6 +4,8 @@ namespace  Tents\App\Controllers;
 use Tents\Core\Controller;
 use Tents\Core\Database\QueryBuilder;
 use Tents\App\Models\CityCollection;
+use Tents\App\Models\BeachResortCollection; 
+use Tents\App\Models\ReservationCollection;
 
 class PageController extends Controller
 {
@@ -32,7 +34,8 @@ class PageController extends Controller
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
-        echo $this->twig->render('/portal-user/index.view.twig', compact('menu','titulo','cities'));
+        $search = true;
+        echo $this->twig->render('/portal-user/index.view.twig', compact('menu','titulo','cities', 'search'));
     }
 
     public function contact()
@@ -74,10 +77,31 @@ class PageController extends Controller
 
         if ($hayLogin) {
             $usuario = $_SESSION['login'];
+
+            $titulo = "Admin";
+            $menu = $this->menuAdmin;
+            $cityCollection = new CityCollection;
+            $cityCollection->setQueryBuilder($this->model->queryBuilder);
+            $cities = $cityCollection->getAll();
+            $numberOfCities = count($cities);
+            
+            $beachResortCollection = new BeachResortCollection;
+            $beachResortCollection->setQueryBuilder($this->model->queryBuilder);
+            $beachResorts = $beachResortCollection->getAll();
+            $numberOfBeachResorts = count($beachResorts);
+            
+            $reservationCollection = new ReservationCollection;
+            $reservationCollection->setQueryBuilder($this->model->queryBuilder);
+            $reservations = $reservationCollection->getAll();
+            $numberOfReservations = count($reservations);
+
+            echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo','numberOfCities','numberOfBeachResorts','numberOfReservations'));
+        } else {
+            echo $this->twig->render('/portal-user/login.view.twig', ['hayLogin' => $hayLogin, 
+            'usuario' => $usuario, 'menu' => $menu],
+            );
         }
-        echo $this->twig->render('/portal-user/login.view.twig', ['hayLogin' => $hayLogin, 
-                                'usuario' => $usuario, 'menu' => $menu],
-                                );
+
     }
 
     public function contactProccess()

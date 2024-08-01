@@ -331,7 +331,7 @@ class BeachResortController extends Controller {
             $beachResort->setNumber($_POST['number']);
             $beachResort->setLat($_POST['latitud']);
             $beachResort->setLon($_POST['longitud']);
-            //$this->model->updateBeachResort($beachResort);
+            $this->model->updateBeachResort($beachResort);
 
             $beachResortId = $beachResort->fields['id'];
             

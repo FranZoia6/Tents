@@ -642,6 +642,9 @@ form label {
 }
 
 form input[type="text"],
+form input[type="date"],
+form input[type="email"],
+form input[type="tel"],
 form textarea,
 form select,
 form input[type="file"] {
@@ -794,7 +797,7 @@ footer p {
   color: #000000;
 }
 
-.reserva {
+ .reserva {
   display: flex;
   margin-right: 2em;
   justify-content: center;
@@ -812,7 +815,7 @@ footer p {
 
 .reserva > select, input{
   background-color: rgba(255, 255, 255, 0.7);
-}
+} 
 
 .login section{
   text-align: center;

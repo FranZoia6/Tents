@@ -103,7 +103,7 @@ class ReservationController extends Controller {
         $mercadoPago = new MercadoPago;
 
         $preference  = $mercadoPago->crearPreferencia($reservation, $units);
-        var_dump($preference);
+        //var_dump($preference);
         echo $this->twig->render("portal-user/reservationConfirmation.view.twig", compact("menu", "titulo", "data", 'reservationId', 'preference'));
     }
 

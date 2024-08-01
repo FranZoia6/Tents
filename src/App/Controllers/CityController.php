@@ -84,7 +84,7 @@ class CityController extends Controller {
 
     public function submit() {
         
-        $uploadDir = '../../imagenes/cities/';
+        $uploadDir = '././imagenes/cities/';
 
         try {
             if (empty($_FILES['imagen_perfil']['tmp_name'])) {

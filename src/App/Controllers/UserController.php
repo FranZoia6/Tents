@@ -66,8 +66,9 @@ class UserController extends Controller {
         $reservations = $reservationCollection->getAll();
         $numberOfReservations = count($reservations);
         
+        $search = false;
 
-        echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo','numberOfCities','numberOfBeachResorts','numberOfReservations'));
+        echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo','numberOfCities','numberOfBeachResorts','numberOfReservations', 'search'));
     }
 
 
