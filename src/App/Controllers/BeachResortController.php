@@ -363,7 +363,6 @@ class BeachResortController extends Controller {
             $unitCollection->setQueryBuilder($this->model->queryBuilder);
             $units = $unitCollection->getByBeachResort($beachResortId);
             //Unidades del balneario
-            
             foreach ($units as $unit) {
                 if ($unit->fields['shade'] == 1) {
                     $unit->setPrice($_POST['precioCarpas']);
@@ -378,7 +377,7 @@ class BeachResortController extends Controller {
             exit();
     
         } catch (Exception $e) {
-            session_start();
+          //  session_start();
             $error = $e -> getMessage();
             $this -> new($error);
         }

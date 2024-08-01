@@ -62,4 +62,24 @@ class CityCollection extends Model {
 
     }
 
+    public function getBeachResorts($id) {
+
+        // Definición de los joins
+        $joins = [
+            ['table' => 'beach_resort', 'condition' => 'beach_resort.city = city.id', 'type' => 'INNER']
+        ];
+        
+        // Llamada a la función join
+        $resultado = $this->queryBuilder->join(
+            'city', 
+            $joins,
+            [],
+            ['city.id' => $id] 
+        );
+        
+        return $resultado;
+
+
+    }
+
 }

@@ -62,13 +62,14 @@ class UnitCollection extends Model {
 
     public function updatePriceUnit($unit) {
         $params = [
-            "price" => $unit -> fields['price']
+            "id" => $unit -> fields['id'],
+            "price" => $unit -> fields['price'],
         ];
 
         try {
             $this->queryBuilder->update($this->table, $params);
         } catch (DatabaseException $e) {
-            echo "Ocurrió un error al actualizar la ciudad: " . $e->getMessage();
+            echo "Ocurrió un error al actualizar la unidad: " . $e->getMessage();
         }
 
     }

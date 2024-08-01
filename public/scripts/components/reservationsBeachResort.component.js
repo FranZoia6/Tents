@@ -64,6 +64,7 @@ class ReservationsBeachResortComponent {
                                      * en vez de "1" y "2" respectivamente.
                                      */
                                     lastUnit.innerHTML = `${unit.shade} ${unit.number} ${unit.price}`;
+                                    showUnitInfo(unit);
                                 };
                             }
                         } else {
@@ -80,8 +81,35 @@ class ReservationsBeachResortComponent {
             spinner.remove();
             svgImage.style.display = "block";
 
-            }
-        }        
+            }   
+        }   
+        
+        function showUnitInfo(unit) {
+            const shadeName = getShadeName(unit.shade);
+            const formattedPrice = formatPrice(unit.price);
+            
+            lastUnit.innerHTML = `
+                <div style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9;">
+                    <h3>Unidad ${unit.number}</h3>
+                    <p><strong>Tipo:</strong> ${shadeName}</p>
+                    <p><strong>Precio:</strong> ${formattedPrice}</p>
+                </div>
+            `;
+            lastUnit.style.display = "block";
+        }
+
+        function getShadeName(shadeId) {
+            const shadeMap = {
+                1: 'Carpa',
+                2: 'Sombrilla'
+                // Agrega más mapeos según sea necesario
+            };
+            return shadeMap[shadeId] || 'Desconocido'; // Valor por defecto si el ID no está en el mapa
+        }
+    
+        function formatPrice(price) {
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(price);
+        }
 
         continueBtn.addEventListener('click', function(event) {
             startDate.disabled = true;

@@ -55,11 +55,6 @@ class QueryBuilder {
         }
     
         $query = "SELECT * FROM $table WHERE $where";
-      //  $statement = $this->pdo->prepare($query);
-
-        
-        //$statement->execute($bindings);
-
 
         $sentencia = $this->pdo->prepare($query);
         $sentencia->setFetchMode(PDO::FETCH_ASSOC);
@@ -146,8 +141,6 @@ class QueryBuilder {
             $statement->bindValue($placeholder, $value);
         }
         
-
-
         $statement->execute();
         
         return $this->pdo->lastInsertId();
@@ -156,7 +149,6 @@ class QueryBuilder {
     // Definición de la función join
     public function join($table, $joins, $selectColumns = ['*'], $params = []) {
         $where = "1 = 1";
-        //  $bindings = [];
 
         // Construcción de la cláusula WHERE y vinculación de parámetros
         foreach ($params as $column => $value) {
@@ -181,16 +173,6 @@ class QueryBuilder {
         // Preparar la consulta
         $statement = $this->pdo->prepare($query);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
-
-        // var_dump($bindings);
-
-        // // Vincular los parámetros
-        // foreach ($bindings as $param => $value) {
-        //     $statement->bindValue($param, $value);
-        // }
-
-       // var_dump($statement);
-        //  die;
 
         // Ejecutar la consulta
         $statement->execute();
@@ -228,8 +210,8 @@ class QueryBuilder {
             $sentencia->bindValue(":id",$params['id']);
         }
         $sentencia = $this->pdo->prepare($query);
-        // var_dump($values);
-        // die();
+        // var_dump($sentencia);
+        //     die();
         $sentencia->setFetchMode(PDO::FETCH_ASSOC);
         $sentencia->execute($values);
     }

@@ -34,6 +34,15 @@ class PageController extends Controller
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
+
+        $beachResortCollection = new BeachResortCollection;
+        $beachResortCollection -> setQueryBuilder($this->model->queryBuilder);
+
+        foreach ($cities as $city) {
+            $beachResorts = $beachResortCollection->getByCity($city ->fields["id"]);
+            $city-> fields["cant_beach_resorts"] = count($beachResorts);
+        }
+
         $search = true;
         echo $this->twig->render('/portal-user/index.view.twig', compact('menu','titulo','cities', 'search'));
     }

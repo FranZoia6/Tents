@@ -11,6 +11,7 @@ class Unit extends Model {
     public $table = 'unit';
 
     public $fields = [
+        "id" => null,
         "beachResort" => null,
         "shade" => null,
         "number" => null,
@@ -31,6 +32,10 @@ class Unit extends Model {
 
     public function setPrice(float $price) {
         $this -> fields["price"] = $price;
+    }
+
+    public function setId(int $id) {
+        $this -> fields["id"] = $id;
     }
 
     public function set(array $values) {
