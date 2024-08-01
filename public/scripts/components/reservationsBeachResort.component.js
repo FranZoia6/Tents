@@ -124,6 +124,7 @@ class ReservationsBeachResortComponent {
                     const button = document.createElement('input')
                     button.type = "submit";
                     button.value = 'Reservar';
+                    button.classname = 'bReservar';
                     datosReservation.appendChild(button);
         
                     // Aquí podrías añadir lógica adicional para manejar el envío del formulario
