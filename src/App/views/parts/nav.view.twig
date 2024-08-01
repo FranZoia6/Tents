@@ -14,7 +14,9 @@
         {% endfor %}
     </ul>
 
-    <section class="reserva">
+    {% if search %}
+    
+        <section class="reserva">
             <div class="ciudad-container">
                 <input type="text" id="ciudad" name="ciudad" autocomplete="off" class="selectCiudades" placeholder="Ingrese una ciudad">
                 <ul id="cities-list" class="cities-list"></ul>
@@ -24,7 +26,10 @@
             {% if error is defined %}
                 <div class="error">{{ error }}</div>
             {% endif %}
-
     </section>
+    
+    {% endif %}
+
+
 
 </nav>
