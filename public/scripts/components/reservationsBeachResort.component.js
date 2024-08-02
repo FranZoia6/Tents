@@ -145,9 +145,9 @@ class ReservationsBeachResortComponent {
                             <input type="email" id="email" name="email" required>
                             <label for="phone">Teléfono:</label>
                             <input type="tel" id="phone" name="phone" required>
-                            <label for="promo">Código promocional:</label>
-                            <input type="text" id="promo" name="promo">
-                    `;
+                        `;
+//                          <label for="promo">Código promocional:</label>
+//                          <input type="text" id="promo" name="promo">
         
                     datosReservation.appendChild(newSection);
 
