@@ -6,6 +6,12 @@
         
         <p class="required-message">Todos los campos son obligatorios.</p>
 
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
     
@@ -76,20 +82,14 @@
         <input type="hidden" id="latitud" name="latitud" value="0">
 
         <label style="display:none;" id="lbStreet" for="street">Calle:</label>
-        <input style="display:none;" type="text" id="street" name="street" required>
+        <input style="display:none;" type="text" id="street" name="street">
         <label style="display:none;" id="lbNumber" for="number">Numero:</label>
-        <input style="display:none;" type="text" id="number" name="number" required>
+        <input style="display:none;" type="text" id="number" name="number">
         <section class="conteinerBtnLocalizar">
             <button type='button' style="display:none;" id="btnLocalizar" class="btnLocalizar">Localizar</button>
         </section>
         
         <section style="width:100%; height:50vh; display:none;" class="map" id="map"></section>
- 
-        {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
-        {% endif %}
 
         <section class="secctionBtn">
             <button class="bReserva" type="submit">Envíar</button>
@@ -98,6 +98,8 @@
     </form>
 
 {% endblock %}
+
+{% block footer %}{% endblock %}
 
 {% block javascript %}
     <script>

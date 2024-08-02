@@ -9,9 +9,59 @@
   <label>Fecha Hasta: {{ reservationData.fields.to }}</label>
     {% for unit in reservationData.fields.units %}
   <label>Unidad: {{ unit }}</label>
-   {%endfor%}
+   {% endfor %}
   <label class="price-label">Precio:  ${{ reservationData.fields.reservationAmount }}</label>        
-
 </section>
 
 {% endblock main %}
+
+{% block styles %}
+{{ parent() }}
+<style>
+    @media print {
+        /* Estilos generales para la impresión */
+
+        /* Hacer que el contenido se ajuste al ancho de la página */
+        #beachResortData {
+            max-width: 100%;
+            padding: 20px;
+            margin: 0;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            page-break-inside: avoid;
+        }
+
+        /* Ocultar elementos que no deben aparecer en la impresión */
+        @page {
+            margin: 20mm;
+        }
+
+        .no-print {
+            display: none;
+        }
+
+        /* Ajustar el tamaño de las fuentes para la impresión */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .price-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* Asegurarse de que las unidades no se corten */
+        label:nth-of-type(5) {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+{% endblock %}

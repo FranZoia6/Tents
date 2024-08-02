@@ -25,7 +25,16 @@ class Controller {
             [    
                 "href" => "/beachResortIndex",
                 "name" => "Balnearios",
+            ],
+            [
+                "href" => "/contact",
+                "name" => "Contacto"
+            ],
+            [
+                "href" => "/about",
+                "name" => "Sobre nosotros"
             ]
+
         ];
         @$this->menuAdmin = [
 
@@ -58,6 +67,12 @@ class Controller {
     
     public function setModel(Model $model) {
         $this -> model = $model;
+    }
+
+    public function isLogged() {
+        //session_start();
+        $hayLogin = isset($_SESSION['login']) && !empty($_SESSION['login']);
+        return $hayLogin;
     }
 
 

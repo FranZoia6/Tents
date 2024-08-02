@@ -6,6 +6,12 @@
         
         <p class="required-message">Todos los campos son obligatorios.</p>
 
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
         <input type="hidden" id="id" name="id" value="{{ beachResort.fields.id }}">
 
         <label for="name">Nombre:</label>
@@ -55,26 +61,23 @@
         <input type="hidden" id="latitud" name="latitud" value="{{ beachResort.fields.lat }}">
 
         <label id="lbStreet" for="street">Calle:</label>
-        <input type="text" id="street" name="street" required value="{{ beachResort.fields.street }}">
+        <input type="text" id="street" name="street" value="{{ beachResort.fields.street }}">
         <label id="lbNumber" for="number">Numero:</label>
-        <input type="text" id="number" name="number" required value="{{ beachResort.fields.number }}">
+        <input type="text" id="number" name="number" value="{{ beachResort.fields.number }}">
         <section class="conteinerBtnLocalizar">
             <button type='button' id="btnLocalizar" class="btnLocalizar">Localizar</button>
         </section>
         
         <section style="width:100%; height:50vh;" class="map" id="map"></section>
  
-        {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
-        {% endif %}
-
         <section class="secctionBtn">
             <button class="bReserva" type="submit">Envíar</button>
         </section>
     </form>
 {% endblock %}
+
+{% block footer %}{% endblock %}
+
 {% block javascript %}
    <script>
         const longitud = document.getElementById("longitud").value;

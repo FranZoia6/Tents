@@ -27,7 +27,7 @@ class UserController extends Controller {
                 if (!password_verify($password, $user["password"])) {
                     throw new Exception("La contraseña es incorrecta");
                 }
-                session_start();
+                //session_start();
                 $_SESSION['logueado'] = true;
                 $_SESSION['login'] = $user["user"];
                 $this->inicioUsuario();

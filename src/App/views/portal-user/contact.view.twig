@@ -6,11 +6,11 @@
             <h2>Contáctanos</h2>
             <p>Si tienes alguna pregunta o necesitas asistencia, no dudes en ponerte en contacto con nosotros. Estaremos encantados de ayudarte.</p>
 
-            <form action="send_message.php" method="post">
+            <form action="/sendMessage" method="post">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" required>
 
-                <label for="email">Correo Electrónico:</label>
+                <label for="email">Correo electrónico:</label>
                 <input type="email" id="email" name="email" required>
 
                 <label for="message">Mensaje:</label>
@@ -19,7 +19,13 @@
                 <button type="submit">Enviar</button>
             </form>
 
-            <h3>Información de Contacto</h3>
+            {% if mensaje %}
+                <div class="message">
+                    {{ mensaje }}
+                </div>
+            {% endif %}
+
+            <h3>Información de contacto</h3>
             <p>Teléfono: +123456789</p>
             <p>Email: contacto@tents.com</p>
         </section>    

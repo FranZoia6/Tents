@@ -1,25 +1,25 @@
 {% extends "base.view.twig" %}
 {% block main %}
     <h1>{{ titulo }}</h1>
-    <section class="reservationData">
-        <fieldset class="datosReserva">
-            <p>
-                Fecha: {{ reservation.fields.date }} <br>
-                Desde: {{ reservation.fields.from }} <br>
-                Hasta: {{ reservation.fields.to }} <br>
-                Nombre: {{ reservation.fields.firstName }} <br>
-                Apellido: {{ reservation.fields.lastName }} <br>
-                Email: {{ reservation.fields.email }} <br>
-                Teléfono: {{ reservation.fields.phone }} <br>
-                Monto: {{ reservation.fields.reservationAmount }} <br>
-                Pagada: {% if reservation.fields.payed == 1 %}Si{% else %}No{% endif %} <br> 
-                {% if tents > 0 %}
-                    Carpas: {{ tents }}
-                {% endif %}
-                {% if parasol > 0 %}
-                    Sombrillas: {{ parasol }}
-                {% endif %}
-            </p>
-        </fieldset>  
+    <section class="ticketPadre">
+        <section class="ticket">
+            <label>Fecha: {{ reservation.fields.date }}</label>
+            <label>Desde: {{ reservation.fields.from }}</label>
+            <label>Hasta: {{ reservation.fields.to }}</label>
+            <label>Nombre: {{ reservation.fields.firstName }}</label>
+            <label>Apellido: {{ reservation.fields.lastName }}</label>
+            <label>Email: {{ reservation.fields.email }}</label>
+            <label>Teléfono: {{ reservation.fields.phone }}</label>
+            <label>Monto: {{ reservation.fields.reservationAmount }}</label>
+            <label class="price-label">Pagada: {% if reservation.fields.payed == 1 %}Si{% else %}No{% endif %}</label>
+            {% if tents > 0 %}
+                Carpas: {{ tents }}
+            {% endif %}
+            {% if parasol > 0 %}
+                Sombrillas: {{ parasol }}
+            {% endif %}
+        </section>
     </section>
 {% endblock main %}
+
+{% block footer %}{% endblock %}

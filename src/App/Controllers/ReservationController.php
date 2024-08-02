@@ -20,18 +20,6 @@ use MercadoPago\MercadoPagoConfig;
 use MercadoPago\SDK;
 use MercadoPago\Payment;
 
-
-
-
-
-
-
-
-
-// use MercadoPago\Client\Preference\PreferenceClient;
-// use MercadoPago\MercadoPagoConfig;
-// use MercadoPago\Client\Common\RequestOptions;
-
 class ReservationController extends Controller {
 
     public string $viewsDir;
@@ -46,27 +34,18 @@ class ReservationController extends Controller {
         $start_date = $this->request->get('start_date');
         $end_date = $this->request->get('end_date');
 
-        // $unitCollection = new UnitCollection;
-        // $unitCollection ->setQueryBuilder($this->model->queryBuilder);
-        // $units = $unitCollection->getAll();
-
-        // $unitReservationCollection = new UnitReservationCollection;
-        // $unitReservationCollection ->setQueryBuilder($this->model->queryBuilder);
-        // $unitsReservation = $unitReservationCollection->getAll();
-
         $occupatedTents = $this -> model -> getOccupatedTents($beachResortId, $start_date, $end_date);
         header('Content-Type: application/json');
         echo json_encode($occupatedTents, JSON_UNESCAPED_UNICODE);
+
     }
 
-
-
     public function datosReservation(){
+
         $data = $_POST;
         $menu = $this->menu;
         $titulo = "Resumen de la reserva";
         $reservation = new Reservation;
-        // $date = new DateTime();
 
         $reservation->setDate(date('Y-m-d'));  //($date->formate('Y-m-d'));
         $reservation->setFrom($data['startDate']);
@@ -110,19 +89,18 @@ class ReservationController extends Controller {
     }
 
     public function adminReservation() {
-        session_start();
-        if (isset($_SESSION['logueado'])) {
+
+        if ($this -> isLogged()) {
+
             $titulo = "Reservas";
             $menu = $this->menuAdmin;
             $reservationCollection = new ReservationCollection;
             $reservationCollection ->setQueryBuilder($this->model->queryBuilder);
             $reservations = $reservationCollection->getAll();
 
-
-
             echo $this->twig->render('/portal-admin/adminReservation.view.twig',compact('menu','titulo','reservations'));
         }else {
-            $mensajeError = 'Prueba';
+            $mensajeError = 'Debe iniciar sesión';
             $menu = $this->menu;
             echo $this->twig->render('/portal-user/login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }
@@ -150,13 +128,11 @@ class ReservationController extends Controller {
                 $parasol += 1;
             }
         }
-        
         echo $this->twig->render('/portal-admin/reservation.view.twig', compact('titulo','menu','reservation','tents','parasol'));
     }
 
 
     public function paymentStatus() {       
-       
         
         $body = file_get_contents('php://input');
         
@@ -182,12 +158,12 @@ class ReservationController extends Controller {
                         $mail->isSMTP();
                         $mail->Host       = 'smtp.office365.com'; 
                         $mail->SMTPAuth   = true;
-                        $mail->Username   = 'francozoiamoque@hotmail.com';
-                        $mail->Password   = getenv("mail_password"); 
+                        $mail->Username   = getenv("MAIL");
+                        $mail->Password   = getenv("MAIL_PASSWORD"); 
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->Port       = 587;
             
-                        $mail->setFrom('francozoiamoque@hotmail.com', 'Franco Zoia');
+                        $mail->setFrom(getenv("MAIL"), 'Tents');
                         $mail->addAddress($reservationData->fields['email'], $reservationData->fields['firstName'] . ' ' . $reservationData->fields['lastName']);
                         
                         $mail->isHTML(true);
@@ -214,10 +190,6 @@ class ReservationController extends Controller {
         } 
         
         http_response_code(200);
-        
-
-
-      
 
     }
 
@@ -262,10 +234,7 @@ class ReservationController extends Controller {
         $beachResortCollection -> setQueryBuilder($this->model->queryBuilder);
         $beachResort = $beachResortCollection->get($beachResortId);
 
-
         $reservation->fields['beachResortName'] = $beachResort->fields['name'];
-
-
 
         $reservation->fields['units'] = $units;
 
@@ -308,20 +277,6 @@ class ReservationController extends Controller {
         </div>
         <?php
         return ob_get_clean();
-    }
-    
-    
-    
-    
-
-
-
-    public function edit() {
-
-    }
-
-    public function set() {
-
     }
 
 }

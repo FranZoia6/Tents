@@ -1156,30 +1156,60 @@ fieldset p{
   font-size: 18px;
 }
 
+.ticketPadre {
+  text-align: center;
+}
+
 /* Añadir un poco de espacio y cambiar el fondo del contenedor principal */
 .ticket {
-  background-color: #f8f9fa;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin: 20px auto;
-  max-width: 800px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Espaciado entre las etiquetas */
 .ticket label {
   display: block;
-  margin-bottom: 10px;
   font-size: 16px;
-  color: #333;
+  color: #555;
+  margin-bottom: 10px;
 }
 
 /* Resaltar el título */
 .ticket h1 {
   font-size: 24px;
+  color: #333;
   margin-bottom: 20px;
-  color: #007bff;
+}
+
+/* Estilo especial para la etiqueta del precio */
+.price-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e74c3c; /* Puedes cambiar el color según el tema de tu sitio */
+}
+
+.ticket .unit-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ticket .unit-list label {
+  margin-bottom: 5px;
+}
+
+/* Resaltar las etiquetas importantes */
+.ticket label {
+  font-weight: normal;
+}
+
+.ticket .highlight {
+  font-weight: bold;
+  color: #333;
 }
 
 /* Añadir estilo al contenedor de la billetera */
@@ -1246,6 +1276,14 @@ fieldset p{
   text-align: center;
 }
 
+#precio_total {
+  display: none;
+}
+
+#ticket {
+  font-weight: bold;
+}
+
 .datosReserva {
   text-align: left;
   margin: auto;
@@ -1304,6 +1342,30 @@ header img {
     margin-top: 0.5rem;
   }
 
+  .reservar-pasos > section {
+    flex-direction: column;
+  }
+
+  .reservar-pasos article {
+    display: block;
+    margin: 16px auto;
+  }
+
+  .balneario {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  fieldset {
+    padding: 0;
+  }
+
+  #reservationForm input {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 991px) {
   /*navegación principal del sitio*/
   .menu {
     display: none;
@@ -1370,30 +1432,6 @@ header img {
     display: none; /* Inicialmente oculta la lista */
   }
 
-  .reservar-pasos > section {
-    flex-direction: column;
-  }
-
-  .reservar-pasos article {
-    display: block;
-    margin: 16px auto;
-  }
-
-  .balneario {
-    text-align: center;
-    margin-left: 0;
-  }
-
-  fieldset {
-    padding: 0;
-  }
-
-  #reservationForm input {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 991px) {
   .menu li a p:hover {
     color: white;
   }
@@ -1469,5 +1507,79 @@ header img {
 
   .centered-cards {
     justify-content: center;
+  }
+}
+
+/* Estilos generales para los mensajes */
+.message {
+  background-color: #d8f180;
+  color: #1d721c;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.message::before {
+  content: "\26A0";
+  margin-right: 10px;
+  font-size: 18px;
+}
+/* print.css */
+
+@media print {
+  /* Estilos generales para la impresión */
+  body {
+      font-family: Arial, sans-serif;
+      color: #000;
+      margin: 0;
+      padding: 0;
+  }
+
+  /* Hacer que el contenido se ajuste al ancho de la página */
+  #beachResortData {
+      max-width: 100%;
+      padding: 20px;
+      margin: 0;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      page-break-inside: avoid;
+  }
+
+  /* Ocultar elementos que no deben aparecer en la impresión */
+  @page {
+      margin: 20mm;
+  }
+
+  .no-print {
+      display: none;
+  }
+
+  /* Ajustar el tamaño de las fuentes para la impresión */
+  h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+  }
+
+  label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 10px;
+  }
+
+  .price-label {
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+  }
+
+  /* Asegurarse de que las unidades no se corten */
+  label:nth-of-type(5) {
+      margin-bottom: 20px;
   }
 }

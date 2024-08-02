@@ -6,6 +6,7 @@ use Tents\Core\Database\QueryBuilder;
 use Tents\App\Models\CityCollection;
 use Tents\App\Models\BeachResortCollection; 
 use Tents\App\Models\ReservationCollection;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class PageController extends Controller
 {
@@ -19,8 +20,6 @@ class PageController extends Controller
         $titulo = 'Tents';
         $menu = $this->menu;
 
-        session_start();
-
         // Cerrar Sesion
         
         $cerrarSesion = isset($_GET['sesion']);
@@ -31,6 +30,7 @@ class PageController extends Controller
             setcookie(session_name(), '', time() - 10000);
             session_destroy();
         }
+
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
@@ -47,44 +47,45 @@ class PageController extends Controller
         echo $this->twig->render('/portal-user/index.view.twig', compact('menu','titulo','cities', 'search'));
     }
 
-    public function contact()
+    public function contact($mensaje='')
     {
         $titulo = 'Contacto';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/contact.view.twig', compact('menu','titulo'));
+        $search = true;
+        echo $this->twig->render('/portal-user/contact.view.twig', compact('menu','titulo','mensaje','search'));
     }
 
     public function about()
     {
         $titulo = 'Sobre Nosotros';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/about.view.twig', compact('menu','titulo'));
+        $search = true;
+        echo $this->twig->render('/portal-user/about.view.twig', compact('menu','titulo','search'));
     }
 
     public function privacyPolicies()
     {
         $titulo = 'Politicas de Privacidad';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/privacyPolicies.view.twig', compact('menu','titulo'));
+        $search = true;
+        echo $this->twig->render('/portal-user/privacyPolicies.view.twig', compact('menu','titulo','search'));
     }
 
     public function termsOfServices()
     {
         $titulo = 'Términos de Servicio';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/termsOfService.view.twig', compact('menu','titulo'));
+        $search = true;
+        echo $this->twig->render('/portal-user/termsOfService.view.twig', compact('menu','titulo','search'));
     }
 
+    public function login(){
 
-    public function login()
-    {
-        session_start();
         $menu = $this->menu;
-        $hayLogin = isset($_SESSION['login']) && !empty($_SESSION['login']);
 
         $usuario = '';
 
-        if ($hayLogin) {
+        if ($this -> isLogged()) {
             $usuario = $_SESSION['login'];
 
             $titulo = "Admin";
@@ -106,7 +107,7 @@ class PageController extends Controller
 
             echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo','numberOfCities','numberOfBeachResorts','numberOfReservations'));
         } else {
-            echo $this->twig->render('/portal-user/login.view.twig', ['hayLogin' => $hayLogin, 
+            echo $this->twig->render('/portal-user/login.view.twig', ['hayLogin' => $this -> isLogged(), 
             'usuario' => $usuario, 'menu' => $menu],
             );
         }
@@ -121,6 +122,39 @@ class PageController extends Controller
 
     public function reservationPersonalData() {
         echo $this->twig->render('/portal-user/reservationPersonalData.view.twig');
+    }
+
+    public function sendMessage(){
+
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.office365.com'; 
+            $mail->SMTPAuth   = true;
+            $mail->Username   = getenv("MAIL");
+            $mail->Password   = getenv("MAIL_PASSWORD"); 
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
+
+            $mail->setFrom(getenv("MAIL"), 'Tents');
+            $mail->addAddress(getenv("MAIL"),$_POST['name']);
+            
+            $mail->isHTML(true);
+            $mail->Subject = $_POST['email'];
+            $mail->Body = $_POST['message'];
+
+            $mail->AltBody = 'Este es el cuerpo del correo electrónico en texto plano.';
+
+            $mail->send();
+            $mensaje = 'Mail enviado con exito';
+            $this->contact($mensaje);
+        } catch (Exception $e) {
+            echo "Error al enviar el correo: {$mail->ErrorInfo}";
+        }
+
+
     }
  
 }
