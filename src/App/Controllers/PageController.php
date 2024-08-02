@@ -51,28 +51,32 @@ class PageController extends Controller
     {
         $titulo = 'Contacto';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/contact.view.twig', compact('menu','titulo','mensaje'));
+        $search = true;
+        echo $this->twig->render('/portal-user/contact.view.twig', compact('menu','titulo','mensaje','search'));
     }
 
     public function about()
     {
         $titulo = 'Sobre Nosotros';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/about.view.twig', compact('menu','titulo'));
+        $search = true;
+        echo $this->twig->render('/portal-user/about.view.twig', compact('menu','titulo','search'));
     }
 
     public function privacyPolicies()
     {
         $titulo = 'Politicas de Privacidad';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/privacyPolicies.view.twig', compact('menu','titulo'));
+        $search = true;
+        echo $this->twig->render('/portal-user/privacyPolicies.view.twig', compact('menu','titulo','search'));
     }
 
     public function termsOfServices()
     {
         $titulo = 'Términos de Servicio';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/termsOfService.view.twig', compact('menu','titulo'));
+        $search = true;
+        echo $this->twig->render('/portal-user/termsOfService.view.twig', compact('menu','titulo','search'));
     }
 
     public function login(){
