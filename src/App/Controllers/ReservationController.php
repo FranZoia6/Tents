@@ -171,12 +171,12 @@ class ReservationController extends Controller {
                         $mail->isSMTP();
                         $mail->Host       = 'smtp.office365.com'; 
                         $mail->SMTPAuth   = true;
-                        $mail->Username   = 'francozoiamoque@hotmail.com';
-                        $mail->Password   = getenv("mail_password"); 
+                        $mail->Username   = getenv("MAIL");
+                        $mail->Password   = getenv("MAIL_PASSWORD"); 
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->Port       = 587;
             
-                        $mail->setFrom('francozoiamoque@hotmail.com', 'Franco Zoia');
+                        $mail->setFrom(getenv("MAIL"), 'Tents');
                         $mail->addAddress($reservationData->fields['email'], $reservationData->fields['firstName'] . ' ' . $reservationData->fields['lastName']);
                         
                         $mail->isHTML(true);

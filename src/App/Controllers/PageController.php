@@ -6,6 +6,7 @@ use Tents\Core\Database\QueryBuilder;
 use Tents\App\Models\CityCollection;
 use Tents\App\Models\BeachResortCollection; 
 use Tents\App\Models\ReservationCollection;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class PageController extends Controller
 {
@@ -121,6 +122,38 @@ class PageController extends Controller
 
     public function reservationPersonalData() {
         echo $this->twig->render('/portal-user/reservationPersonalData.view.twig');
+    }
+
+    public function sendMessage(){
+
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.office365.com'; 
+            $mail->SMTPAuth   = true;
+            $mail->Username   = getenv("MAIL");
+            $mail->Password   = getenv("MAIL_PASSWORD"); 
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
+
+            $mail->setFrom(getenv("MAIL"), 'Tents');
+            $mail->addAddress(getenv("MAIL"),$_POST['name']);
+            
+            $mail->isHTML(true);
+            $mail->Subject = $_POST['email'];
+            $mail->Body = $_POST['message'];
+
+            $mail->AltBody = 'Este es el cuerpo del correo electrónico en texto plano.';
+
+            $mail->send();
+            $this->contact();
+        } catch (Exception $e) {
+            echo "Error al enviar el correo: {$mail->ErrorInfo}";
+        }
+
+
     }
  
 }
