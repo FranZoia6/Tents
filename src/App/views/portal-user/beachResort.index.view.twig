@@ -2,22 +2,25 @@
     
 
 {% block main %}
-        <h1>{{ titulo }}</h1>
         <section>
                 {% for city in cities %}
                         <h2>{{ city.fields.name }}</h2>
+                        <section class="centered-cards">
                         {% for beachResort in beachResorts %}
                                 {% if beachResort.fields.city == city.fields.id %}
                                         {% if beachResort.fields.state != 3 %}
                                                 <a href="beachResort?id={{ beachResort.fields.id }}">
                                                         <article>
                                                                 <h3>{{ beachResort.fields.name }}</h3>
-                                                                <img src="{{ beachResort.fields.img }}" alt="{{ beachResort.fields.name }}">
+                                                                <figure>
+                                                                        <img src="{{ beachResort.fields.img }}" alt="{{ beachResort.fields.name }}">
+                                                                </figure>
                                                         </article>
                                                 </a>
                                         {% endif %}
                                 {% endif %}
                         {% endfor %}
+                        </section>
                 {% endfor %}
         </section>
 {% endblock %}
