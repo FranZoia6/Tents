@@ -118,7 +118,6 @@ class CityController extends Controller {
                 $city->setName($_POST['name']);
                 $city->setLat($_POST['latitud']);
                 $city->setLon($_POST['longitud']);
-
                 $city->setImg($uploadFile);
                 $this->model->insertCity($city);
                 header("Location: /adminCity");
@@ -154,16 +153,19 @@ class CityController extends Controller {
     public function editCity() {
 
         if ($this -> isLogged()) {
-
             $idCity = $_POST['id'];
             $nameCity = $_POST['name'];
             $provinceCity = $_POST['province'];
-    
+            $lat = $_POST['latitud'];
+            $lon = $_POST['longitud'];
+
             $city = new City;
             $city -> setId($idCity);
             $city -> setName($nameCity);
             $city -> setProvince($provinceCity);
-    
+            $city -> setLat($lat);
+            $city -> setLon($lon);
+            
             $this->model->updateCity($city);
             
             header("Location: /adminCity");

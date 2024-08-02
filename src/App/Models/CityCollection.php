@@ -51,7 +51,9 @@ class CityCollection extends Model {
         $params = [
             "id" => $city -> fields['id'],
             "name" => $city -> fields['name'],
-            "img" => $city -> fields['img']
+            "img" => $city -> fields['img'],
+            "lat" => $city -> fields['lat'],
+            "lon" => $city -> fields['lon']
         ];
 
         try {

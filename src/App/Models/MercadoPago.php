@@ -24,7 +24,7 @@ class MercadoPago extends Model {
 
     public function crearPago($id){
 
-        $mpAccessToken = getenv('mercado_pago_access_token');
+        $mpAccessToken = getenv('MERCADO_PAGO_ACCES_TOKEN');
         MercadoPagoConfig::setAccessToken($mpAccessToken);
 
         error_reporting(E_ERROR | E_PARSE);
@@ -72,7 +72,7 @@ class MercadoPago extends Model {
             'failure' => 'http://localhost:8888/reservationDenied?id=' . $reservation->fields['id']
         ];
  
-        $mpAccessToken = getenv('mercado_pago_access_token');
+        $mpAccessToken = getenv('MERCADO_PAGO_ACCES_TOKEN');
         MercadoPagoConfig::setAccessToken($mpAccessToken);
         
           $client = new PreferenceClient();
@@ -83,7 +83,7 @@ class MercadoPago extends Model {
             "items"=> $items ,
             "payer" => $payer,
             "back_urls" => $backUrls,
-            'notification_url' => 'https://61b9-181-230-212-69.ngrok-free.app/paymentStatus',
+            'notification_url' =>  getenv('NGROK') .'/paymentStatus',
             "external_reference" => $reservation->fields['id']
           ]);
 

@@ -61,19 +61,19 @@
 
 {% block javascript %}
     <script>
-        const longitud = document.getElementById("longitud").value;
-        const latitud = document.getElementById("latitud").value;
+        const longitud = document.getElementById("longitud");
+        const latitud = document.getElementById("latitud");
         
         var map = L.map('map');
 
-        if (latitud && longitud) {
+        if (latitud.value && longitud.value) {
             // Si hay coordenadas disponibles, posicionar el mapa y agregar un marcador
-            map.setView([latitud, longitud], 13);
-            var marker = L.marker([latitud, longitud], {draggable:true}).addTo(map);
+            map.setView([latitud.value, longitud.value], 13);
+            var marker = L.marker([latitud.value, longitud.value], {draggable:true}).addTo(map);
             marker.on('dragend', function(event){
                 var newLocation = this.getLatLng();
-                document.getElementById("latitud").value = newLocation.lat;
-                document.getElementById("longitud").value = newLocation.lng;
+                latitud.value = newLocation.lat;
+                longitud.value = newLocation.lng;
             });
         } else {
             // Si no hay coordenadas, posicionar el mapa en un lugar por defecto
@@ -88,15 +88,15 @@
             const response = await fetch('https://nominatim.openstreetmap.org/search?city='+ciudad+'&state='+provincia+'&country='+pais+'&format=json');
             const responseJSON = await response.json();
             if (responseJSON.length !== 0) {
-                document.getElementById("longitud").value = responseJSON[0].lon;
-                document.getElementById("latitud").value = responseJSON[0].lat;
+                longitud.value = responseJSON[0].lon;
+                latitud.value = responseJSON[0].lat;
                 clearMarkers();
                 map.setView([responseJSON[0].lat, responseJSON[0].lon], 13);
                 var marker = L.marker([responseJSON[0].lat, responseJSON[0].lon], {draggable:true}).addTo(map);
                 marker.on('dragend', function(event){
                     var newLocation = this.getLatLng();
-                    document.getElementById("latitud").value = newLocation.lat;
-                    document.getElementById("longitud").value = newLocation.lng;
+                    latitud.value = newLocation.lat;
+                    longitud.value = newLocation.lng;
                 });
                 markers.push(marker);
                 return true;

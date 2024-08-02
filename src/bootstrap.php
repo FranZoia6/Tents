@@ -46,6 +46,7 @@ $router->post('/createPaymentPreference','MercadoLibreController@createPaymentPr
 $router->post('/paymentStatus', 'ReservationController@paymentStatus');
 $router->get('/approvedReservation', 'ReservationController@approvedReservation');
 $router->get('/reservationDenied', 'ReservationController@reservationDenied');
+$router->post('/sendMessage','PageController@sendMessage');
 
 $router->get('/about','PageController@about');
 $router->get('/privacyPolicies','PageController@privacyPolicies');

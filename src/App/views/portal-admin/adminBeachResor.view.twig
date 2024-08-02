@@ -30,7 +30,7 @@
         </section>
 
         <!-- Modal -->
-        <span id="exampleModal" class="modal">
+        <span id="modal" class="modal">
                 <span class="modal-content">
                         <a class="close" onclick="closeModal()">&times;</a>
                         <p id="texto"></p>
@@ -49,7 +49,7 @@
                         form.action = route;
                         document.getElementById('texto').innerHTML = text;
                         document.getElementById("idbeachresort").value = id;
-                        document.getElementById("exampleModal").style.display = "block";  
+                        document.getElementById("modal").style.display = "block";  
                 }
 
                 function closeModal() {

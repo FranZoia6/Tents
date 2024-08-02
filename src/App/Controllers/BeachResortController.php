@@ -171,6 +171,14 @@ class BeachResortController extends Controller {
                 $beachResort->setDescription($_POST['description']);
                 $beachResort->setCity($_POST['city']);
                 $beachResort->setState(1);
+                $street = $_POST['street'];
+                if ($street == null || $street == "") {
+                    $street = "Sin calle";
+                }
+                $number = $_POST['number'];
+                if ($number == null || $number == "") {
+                    $number = "0";
+                }
                 $beachResort->setStreet($_POST['street']);
                 $beachResort->setNumber($_POST['number']);
                 $beachResort->setLat($_POST['latitud']);
@@ -240,47 +248,51 @@ class BeachResortController extends Controller {
     public function edit() {
 
         if ($this -> isLogged()) {
+    
             $beachResortId = $this->request->get('beachResort');
             $menu = $this->menuAdmin;
-    
+
             $beachResortCollection = new BeachResortCollection;
-            $beachResortCollection->setQueryBuilder($this->model->queryBuilder);
+            $beachResortCollection ->setQueryBuilder($this->model->queryBuilder);
             $beachResort = $beachResortCollection->get($beachResortId);
-    
+            //Balneario a editar
+
             $cityCollection = new CityCollection;
-            $cityCollection->setQueryBuilder($this->model->queryBuilder);
+            $cityCollection ->setQueryBuilder($this->model->queryBuilder);
             $cities = $cityCollection->getAll();
-    
+            //Todas las ciudades
+
             $serviceBeachResortCollection = new ServiceBeachResortCollection;
             $serviceBeachResortCollection->setQueryBuilder($this->model->queryBuilder);
             $servicesBeachResort = $serviceBeachResortCollection->getByBeachResort($beachResortId);
-    
+            //Servicios del balneario
+            
             $serviceCollection = new ServiceCollection;
             $serviceCollection->setQueryBuilder($this->model->queryBuilder);
             $services = $serviceCollection->getAll();
-    
+            //Todos los servicios
+            
             $unitCollection = new UnitCollection;
             $unitCollection->setQueryBuilder($this->model->queryBuilder);
             $units = $unitCollection->getByBeachResort($beachResortId);
-    
+            //Unidades del balneario
+            
             $precioCarpas = "";
             $precioSombrillas = "";
             foreach ($units as $unit) {
                 $sombra = $unit->fields['shade'];
-                if ($sombra == 1 && !$precioCarpas) {
+                if ($sombra == 1 && $precioCarpas == null) {
                     $precioCarpas = $unit->fields['price'];
                 }
-                if ($sombra == 2 && !$precioSombrillas) {
+                if ($sombra == 2 && $precioSombrillas == null) {
                     $precioSombrillas = $unit->fields['price'];
                 }
             }
-    
-            echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('menu', 'cities', 'beachResort', 'servicesBeachResort', 'services', 'units', 'precioCarpas', 'precioSombrillas'));
-        } else {
-            header("Location: /");
-            exit();
-        }
         
+            echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('menu','cities','beachResort','servicesBeachResort','services','units','precioCarpas','precioSombrillas'));
+        } else {
+
+        }
     }
 
     public function submitEdit() {
@@ -291,8 +303,16 @@ class BeachResortController extends Controller {
                 $beachResort->setName($_POST['name']);
                 $beachResort->setDescription($_POST['description']);
                 $beachResort->setCity($_POST['city']);
-                $beachResort->setStreet($_POST['street']);
-                $beachResort->setNumber($_POST['number']);
+                $street = $_POST['street'];
+                if ($street == null || $street == "") {
+                    $street = "Sin calle";
+                }
+                $number = $_POST['number'];
+                if ($number == null || $number == "") {
+                    $number = "0";
+                }
+                $beachResort->setStreet($street);
+                $beachResort->setNumber($number);
                 $beachResort->setLat($_POST['latitud']);
                 $beachResort->setLon($_POST['longitud']);
                 $this->model->updateBeachResort($beachResort);
