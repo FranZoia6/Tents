@@ -2,7 +2,7 @@
 {% block main %}
     <h1>{{ titulo }}</h1>
     <section class="reservationData">
-        <fieldset>
+        <fieldset class="datosReserva">
             <p>
                 Fecha: {{ reservation.fields.date }} <br>
                 Desde: {{ reservation.fields.from }} <br>
@@ -13,11 +13,12 @@
                 Teléfono: {{ reservation.fields.phone }} <br>
                 Monto: {{ reservation.fields.reservationAmount }} <br>
                 Pagada: {% if reservation.fields.payed == 1 %}Si{% else %}No{% endif %} <br> 
-            </p>
-        </fieldset>
-        <fieldset>
-            <p>
-                Unidad
+                {% if tents > 0 %}
+                    Carpas: {{ tents }}
+                {% endif %}
+                {% if parasol > 0 %}
+                    Sombrillas: {{ parasol }}
+                {% endif %}
             </p>
         </fieldset>  
     </section>

@@ -134,13 +134,24 @@ class ReservationController extends Controller {
         $titulo = "Reserva";
         $reservation = $this->model->get($reservationId);
 
-        $unitReservationCollection = new ReservationCollection;
+        $unitReservationCollection = new UnitReservationCollection;
         $unitReservationCollection ->setQueryBuilder($this->model->queryBuilder);
-        $unitReservations = $unitReservationCollection->getAll();
+        $unitReservations = $unitReservationCollection->unitsFronREservation($reservationId);
 
-      
-
-        echo $this->twig->render('/portal-admin/reservation.view.twig', compact('titulo','menu','reservation'));
+        $unitCollection = new UnitCollection;
+        $unitCollection -> setQueryBuilder($this->model->queryBuilder);
+        $tents = 0;
+        $parasol = 0;
+        foreach ($unitReservations as $unitReservation) {   
+            $shade = $unitCollection->get($unitReservation['unit'])->fields['shade'];
+            if ($shade == 1) {
+                $tents += 1;
+            } else {
+                $parasol += 1;
+            }
+        }
+        
+        echo $this->twig->render('/portal-admin/reservation.view.twig', compact('titulo','menu','reservation','tents','parasol'));
     }
 
 
