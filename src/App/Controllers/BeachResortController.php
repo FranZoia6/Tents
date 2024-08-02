@@ -194,8 +194,16 @@ class BeachResortController extends Controller {
             $beachResort->setDescription($_POST['description']);
             $beachResort->setCity($_POST['city']);
             $beachResort->setState(1);
-            $beachResort->setStreet($_POST['street']);
-            $beachResort->setNumber($_POST['number']);
+            $street = $_POST['street'];
+            if ($street == null || $street == "") {
+                $street = "Sin calle";
+            }
+            $number = $_POST['number'];
+            if ($number == null || $number == "") {
+                $number = "0";
+            }
+            $beachResort->setStreet($street);
+            $beachResort->setNumber($number);
             $beachResort->setLat($_POST['latitud']);
             $beachResort->setLon($_POST['longitud']);
             $beachResort->setImg($uploadFilePerfil); // Guardar la imagen de perfil en el modelo
@@ -327,8 +335,16 @@ class BeachResortController extends Controller {
             $beachResort->setName($_POST['name']);
             $beachResort->setDescription($_POST['description']);
             $beachResort->setCity($_POST['city']);
-            $beachResort->setStreet($_POST['street']);
-            $beachResort->setNumber($_POST['number']);
+            $street = $_POST['street'];
+            if ($street == null || $street == "") {
+                $street = "Sin calle";
+            }
+            $number = $_POST['number'];
+            if ($number == null || $number == "") {
+                $number = "0";
+            }
+            $beachResort->setStreet($street);
+            $beachResort->setNumber($number);
             $beachResort->setLat($_POST['latitud']);
             $beachResort->setLon($_POST['longitud']);
             $this->model->updateBeachResort($beachResort);
