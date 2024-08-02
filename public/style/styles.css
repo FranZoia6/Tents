@@ -1577,6 +1577,26 @@ fieldset p{
   background-color: #e5f6f6;
 }
 
+/* Estilos generales para los mensajes */
+.message {
+  background-color: #d8f180;
+  color: #1d721c;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.message::before {
+  content: "\26A0";
+  margin-right: 10px;
+  font-size: 18px;
+}
 /* print.css */
 
 @media print {

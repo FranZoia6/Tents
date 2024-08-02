@@ -47,11 +47,11 @@ class PageController extends Controller
         echo $this->twig->render('/portal-user/index.view.twig', compact('menu','titulo','cities', 'search'));
     }
 
-    public function contact()
+    public function contact($mensaje='')
     {
         $titulo = 'Contacto';
         $menu = $this->menu;
-        echo $this->twig->render('/portal-user/contact.view.twig', compact('menu','titulo'));
+        echo $this->twig->render('/portal-user/contact.view.twig', compact('menu','titulo','mensaje'));
     }
 
     public function about()
@@ -144,7 +144,8 @@ class PageController extends Controller
             $mail->AltBody = 'Este es el cuerpo del correo electrónico en texto plano.';
 
             $mail->send();
-            $this->contact();
+            $mensaje = 'Mail enviado con exito';
+            $this->contact($mensaje);
         } catch (Exception $e) {
             echo "Error al enviar el correo: {$mail->ErrorInfo}";
         }
