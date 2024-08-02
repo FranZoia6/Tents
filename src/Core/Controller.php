@@ -25,7 +25,16 @@ class Controller {
             [    
                 "href" => "/beachResortIndex",
                 "name" => "Balnearios",
+            ],
+            [
+                "href" => "/contact",
+                "name" => "Contacto"
+            ],
+            [
+                "href" => "/about",
+                "name" => "Sobre nosotros"
             ]
+
         ];
         @$this->menuAdmin = [
 
