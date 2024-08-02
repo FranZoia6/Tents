@@ -92,7 +92,7 @@ class BeachResortController extends Controller {
             $beachResorts = $this->model->obtenerNombres();
             echo $this->twig->render('/portal-admin/adminBeachResor.view.twig', compact('menu', 'titulo', 'beachResorts'));
         } else {
-            $mensajeError = 'Prueba';
+            $mensajeError = 'Debe iniciar sesión';
             $menu = $this->menu;
             echo $this->twig->render('/portal-user/login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }
@@ -245,11 +245,16 @@ class BeachResortController extends Controller {
         exit();
     }
 
-    public function edit() {
+    public function edit($error='', $id='') {
 
         if ($this -> isLogged()) {
-    
-            $beachResortId = $this->request->get('beachResort');
+            
+            if ($id) {
+                $beachResortId = $id;
+            } else{
+                $beachResortId = $this->request->get('beachResort');
+            }
+
             $menu = $this->menuAdmin;
 
             $beachResortCollection = new BeachResortCollection;
@@ -289,7 +294,8 @@ class BeachResortController extends Controller {
                 }
             }
         
-            echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('menu','cities','beachResort','servicesBeachResort','services','units','precioCarpas','precioSombrillas'));
+            echo $this->twig->render('/portal-admin/editBeachResort.view.twig', compact('menu','cities','beachResort','servicesBeachResort','services','units','precioCarpas','precioSombrillas', 'error'));
+            
         } else {
 
         }
@@ -351,7 +357,7 @@ class BeachResortController extends Controller {
                 exit();
             } catch (Exception $e) {
                 $error = $e->getMessage();
-                $this->new($error);
+                $this->edit($error, $_POST['id']);
             }
         } else {
             header("Location: /");

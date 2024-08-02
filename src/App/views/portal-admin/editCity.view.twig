@@ -5,6 +5,12 @@
     <form class="newCity" action="/submitEditCity" method = "POST" enctype="multipart/form-data">  
         
         <p class="required-message">Todos los campos son obligatorios.</p>
+        
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
 
         <input type="hidden" id="id" name="id" value="{{ city.fields.id }}">
 
@@ -47,17 +53,13 @@
         
         <section style="width:100%; height:50vh" class="map" id="map"></section>
 
-        {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
-        {% endif %}
-
         <section class="secctionBtn">
             <button class="bReserva" type="submit">Envíar</button>
         </section>
     </form>
 {% endblock %}
+
+{% block footer %}{% endblock %}
 
 {% block javascript %}
     <script>

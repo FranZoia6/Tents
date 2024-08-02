@@ -6,6 +6,12 @@
         
         <p class="required-message">Todos los campos son obligatorios.</p>
 
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
         <input type="hidden" id="id" name="id" value="{{ beachResort.fields.id }}">
 
         <label for="name">Nombre:</label>
@@ -64,17 +70,14 @@
         
         <section style="width:100%; height:50vh;" class="map" id="map"></section>
  
-        {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
-        {% endif %}
-
         <section class="secctionBtn">
             <button class="bReserva" type="submit">Envíar</button>
         </section>
     </form>
 {% endblock %}
+
+{% block footer %}{% endblock %}
+
 {% block javascript %}
    <script>
         const longitud = document.getElementById("longitud").value;

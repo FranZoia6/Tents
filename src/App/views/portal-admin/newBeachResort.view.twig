@@ -6,6 +6,12 @@
         
         <p class="required-message">Todos los campos son obligatorios.</p>
 
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
     
@@ -84,12 +90,6 @@
         </section>
         
         <section style="width:100%; height:50vh; display:none;" class="map" id="map"></section>
- 
-        {% if error %}
-            <div class="error-message">
-                {{ error }}
-            </div>
-        {% endif %}
 
         <section class="secctionBtn">
             <button class="bReserva" type="submit">Envíar</button>
@@ -98,6 +98,8 @@
     </form>
 
 {% endblock %}
+
+{% block footer %}{% endblock %}
 
 {% block javascript %}
     <script>

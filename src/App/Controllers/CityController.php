@@ -65,7 +65,7 @@ class CityController extends Controller {
             $cities = $this->model->getAll();
             echo $this->twig->render('/portal-admin/adminCity.view.twig',compact('menu','titulo','cities'));
         }else {
-            $mensajeError = 'Prueba';
+            $mensajeError = 'Debe iniciar sesión';
             $menu = $this->menu;
             echo $this->twig->render('login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }
@@ -165,7 +165,7 @@ class CityController extends Controller {
             $city -> setProvince($provinceCity);
             $city -> setLat($lat);
             $city -> setLon($lon);
-            
+
             $this->model->updateCity($city);
             
             header("Location: /adminCity");

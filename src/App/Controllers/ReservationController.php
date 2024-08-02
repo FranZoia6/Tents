@@ -100,7 +100,7 @@ class ReservationController extends Controller {
 
             echo $this->twig->render('/portal-admin/adminReservation.view.twig',compact('menu','titulo','reservations'));
         }else {
-            $mensajeError = 'Prueba';
+            $mensajeError = 'Debe iniciar sesión';
             $menu = $this->menu;
             echo $this->twig->render('/portal-user/login.view.twig', ['mensajeError' => $mensajeError, 'menu' => $menu]);
         }

@@ -1,6 +1,8 @@
-
 {% block head %}{{include('parts/head.view.twig')}}{% endblock %}
 <body>
+
+		{% block styles %}{% endblock %}
+
 		{% block nav %} {{include('parts/nav.view.twig')}} {% endblock %}
 
 		{% block main %}{% endblock %}
@@ -8,5 +10,6 @@
 		{% block footer %}{{include('parts/footer.view.twig')}}{% endblock %}
 	
 		{% block javascript %}{% endblock %}
+
 </body>
 </html>
