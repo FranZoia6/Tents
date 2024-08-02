@@ -1525,3 +1525,11 @@ fieldset p{
   text-align: center;
 }
 
+#precio_total {
+  display: none;
+}
+
+#ticket {
+  font-weight: bold;
+}
+

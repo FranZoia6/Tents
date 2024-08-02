@@ -60,5 +60,11 @@ class Controller {
         $this -> model = $model;
     }
 
+    public function isLogged() {
+        //session_start();
+        $hayLogin = isset($_SESSION['login']) && !empty($_SESSION['login']);
+        return $hayLogin;
+    }
+
 
 }

@@ -19,8 +19,6 @@ class PageController extends Controller
         $titulo = 'Tents';
         $menu = $this->menu;
 
-        session_start();
-
         // Cerrar Sesion
         
         $cerrarSesion = isset($_GET['sesion']);
@@ -31,6 +29,7 @@ class PageController extends Controller
             setcookie(session_name(), '', time() - 10000);
             session_destroy();
         }
+
         $cityCollection = new CityCollection;
         $cityCollection ->setQueryBuilder($this->model->queryBuilder);
         $cities = $cityCollection->getAll();
@@ -75,16 +74,13 @@ class PageController extends Controller
         echo $this->twig->render('/portal-user/termsOfService.view.twig', compact('menu','titulo'));
     }
 
+    public function login(){
 
-    public function login()
-    {
-        session_start();
         $menu = $this->menu;
-        $hayLogin = isset($_SESSION['login']) && !empty($_SESSION['login']);
 
         $usuario = '';
 
-        if ($hayLogin) {
+        if ($this -> isLogged()) {
             $usuario = $_SESSION['login'];
 
             $titulo = "Admin";
@@ -106,21 +102,11 @@ class PageController extends Controller
 
             echo $this->twig->render('/portal-admin/inicio-usuario.view.twig',compact('menu','titulo','numberOfCities','numberOfBeachResorts','numberOfReservations'));
         } else {
-            echo $this->twig->render('/portal-user/login.view.twig', ['hayLogin' => $hayLogin, 
+            echo $this->twig->render('/portal-user/login.view.twig', ['hayLogin' => $this -> isLogged(), 
             'usuario' => $usuario, 'menu' => $menu],
             );
         }
 
-    }
-
-    public function contactProccess()
-    {
-        $formulario = $_POST;
-        require $this-> viewsDir . '/portal-user/contact.view.php';
-    }
-
-    public function reservationPersonalData() {
-        echo $this->twig->render('/portal-user/reservationPersonalData.view.twig');
     }
  
 }

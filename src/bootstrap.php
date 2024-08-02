@@ -30,7 +30,7 @@ $connection = $connectionBuilder-> make($config);
 $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops-> register();
-
+session_start();
 $request = new Request;
 
 $router = new Router;

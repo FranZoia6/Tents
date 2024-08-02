@@ -5,6 +5,7 @@ class ReservationsBeachResortComponent {
         const startDate = document.getElementById("startDate");
         const endDate = document.getElementById("endDate");
         const svgImage = document.getElementById("svgImage");
+        const precioTotal = document.getElementById("precio_total");
         const lastUnit = document.getElementById("lastUnit");
         const ticket = document.getElementById("ticket");
         const continueBtn = document.getElementById("continueBtn");
@@ -39,32 +40,31 @@ class ReservationsBeachResortComponent {
                         if (unit.free) {
                             svgUnit.style.fill = "#8ce189";
                             svgUnit.style.cursor = "pointer";
+                            console.log(unit);
                             if (!svgUnit.onclick) {
                                 svgUnit.onclick = function(event) {
-                                    /*
-                                     * Vamos por acá. Está el problema de q se carga el listener
-                                     * cada vez q cambiamos las fechas. Debe cargarse una sola vez.
-                                     */
                                     const idUnit = unit.id;
                                     console.log(unit);
                                     const idInArray = selectedUnits.indexOf(idUnit);
+                                    precioTotal.style.display = "inline";
+                                    let currentTotal = parseFloat(ticket.innerHTML) || 0; // Ensure the current total is a number
                                     if (idInArray >= 0) {
                                         // Lo está soltando...
                                         selectedUnits.splice(idInArray, 1);
                                         event.target.style.fill = "#8ce189";
-                                        ticket.innerHTML = Number(ticket.innerHTML) - Number(unit.price);
+                                    //    ticket.innerHTML = Number(ticket.innerHTML) - Number(unit.price);
+                                        currentTotal -= parseFloat(unit.price);
+                                        document.getElementById(`number${unit.number}`).remove();
                                     } else {
                                         // Lo está marcando...
                                         selectedUnits.push(idUnit);
                                         event.target.style.fill = "#0cc0de";
-                                        ticket.innerHTML = Number(ticket.innerHTML) + Number(unit.price);
+                                        currentTotal += parseFloat(unit.price);
+                                      //  ticket.innerHTML = Number(ticket.innerHTML) + Number(unit.price);
+                                        var priceUnit = showUnitInfo(unit);
+                                        lastUnit.appendChild(priceUnit);
                                     }
-                                    /**
-                                     * @TODO Hacer que el back devuelva "Carpa" o "Sombrilla"
-                                     * en vez de "1" y "2" respectivamente.
-                                     */
-                                    lastUnit.innerHTML = `${unit.shade} ${unit.number} ${unit.price}`;
-                                    showUnitInfo(unit);
+                                    ticket.innerHTML = currentTotal.toFixed(2); // Update the total with two decimal places
                                 };
                             }
                         } else {
@@ -87,15 +87,17 @@ class ReservationsBeachResortComponent {
         function showUnitInfo(unit) {
             const shadeName = getShadeName(unit.shade);
             const formattedPrice = formatPrice(unit.price);
-            
-            lastUnit.innerHTML = `
-                <div style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9;">
+            const priceUnit = document.createElement('div');
+
+            priceUnit.innerHTML = 
+                `<div id=number${unit.number} style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; background: #f9f9f9;">
                     <h3>Unidad ${unit.number}</h3>
                     <p><strong>Tipo:</strong> ${shadeName}</p>
                     <p><strong>Precio:</strong> ${formattedPrice}</p>
-                </div>
-            `;
+                </div>`
+            ;
             lastUnit.style.display = "block";
+            return priceUnit
         }
 
         function getShadeName(shadeId) {
@@ -108,7 +110,7 @@ class ReservationsBeachResortComponent {
         }
     
         function formatPrice(price) {
-            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(price);
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'ARS' }).format(price);
         }
 
         continueBtn.addEventListener('click', function(event) {
